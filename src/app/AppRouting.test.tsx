@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import App from './App'
+import AppRouting from './AppRouting'
 
-describe('<App />', () => {
+describe('<AppRouting />', () => {
   it('renders well', () => {
-    const wrapper = shallow(<App />)
+    const wrapper = shallow(<AppRouting />)
     expect(wrapper).toMatchSnapshot()
   })
 })
