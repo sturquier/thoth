@@ -1,4 +1,4 @@
-const threshold = 90
+const threshold = 80
 
 module.exports = {
   clearMocks: true,

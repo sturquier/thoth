@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> renders well 1`] = `
+<h1>
+  Home Page
+</h1>
+`;

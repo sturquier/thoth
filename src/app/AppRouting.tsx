@@ -8,7 +8,7 @@ export default function AppRouting () {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' render={() => <Home />} />
-        <Route exact path='/login' render={() => <Login />} />
+        <Route path='/login' render={() => <Login />} />
       </Switch>
     </BrowserRouter>
   )

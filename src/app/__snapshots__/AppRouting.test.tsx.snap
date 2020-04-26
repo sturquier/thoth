@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppRouting /> renders well 1`] = `
+<BrowserRouter>
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      path="/login"
+      render={[Function]}
+    />
+  </Switch>
+</BrowserRouter>
+`;
