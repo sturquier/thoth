@@ -19,6 +19,9 @@ module.exports = {
       lines: threshold
     }
   },
+  moduleNameMapper: {
+    "^.+\\.(less)$": "identity-obj-proxy"
+  },
   setupFiles: [
     './tests/setupTests.ts'
   ],
