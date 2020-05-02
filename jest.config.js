@@ -31,6 +31,6 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
     '\\.(css|scss)$': '<rootDir>/tests/__mocks__/styleMock.js',
-    '\\.(gif|ttf|eot|woff|woff2|png|jpeg|jpg)$': '<rootDir>/tests/__mocks__/fileMock.js'
+    '\\.(gif|ttf|eot|woff|woff2|png|jpeg|jpg|svg)$': '<rootDir>/tests/__mocks__/fileMock.js'
   }
 }
