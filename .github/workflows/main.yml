@@ -18,7 +18,7 @@ jobs:
         uses: codecov/codecov-action@v1
       - name: Build production
         run: npm run build
-      - name: Add remote origin
+      - name: Add Heroku remote
         run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
       - name: Rewrite branches
         run: git filter-branch -- --all
