@@ -4,7 +4,7 @@
   "author": "Simon Turquier",
   "main": "src/index.tsx",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js --hot",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest --coverage",
     "test-changed-files": "jest -o",
@@ -39,9 +39,11 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.4",
+    "@types/webpack-env": "^1.15.2",
     "antd": "^4.1.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
     "react-router-dom": "^5.1.2",
     "typescript": "~3.7.2"
   },

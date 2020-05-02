@@ -7,7 +7,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
-  entry: './index.tsx',
+  entry: ['react-hot-loader/patch', './index.tsx'],
   module: {
     rules: [
       {
