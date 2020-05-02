@@ -20,10 +20,14 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          'sass-loader',
           {
-            loader: 'sass-loader',
+            loader: 'sass-resources-loader',
             options: {
-              implementation: require('sass')
+              implementation: require('sass'),
+              resources: [
+                path.resolve(__dirname, 'src/style/base.scss')
+              ]
             }
           }
         ]
