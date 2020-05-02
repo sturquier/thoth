@@ -29,6 +29,22 @@ module.exports = {
         ]
       },
       {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                implementation: require('less'),
+                javascriptEnabled: true
+              }
+            }
+          }
+        ]
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|svg|png|jpe?g|gif)$/i,
         use: [
           {
