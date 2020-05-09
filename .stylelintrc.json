@@ -1,6 +1,7 @@
 {
   "extends": "stylelint-config-standard",
   "rules": {
+    "color-hex-length": "long",
     "no-empty-source": null
   },
   "syntax": "scss"
