@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> renders well 1`] = `
+<Menu
+  className="sidebar"
+  mode="inline"
+>
+  <MenuItem
+    icon={<ForwardRef(ReadOutlined) />}
+    key="articles"
+  >
+    Articles
+  </MenuItem>
+</Menu>
+`;

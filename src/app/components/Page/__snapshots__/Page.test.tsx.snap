@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Page /> renders well 1`] = `
+<Fragment>
+  <Header />
+  <div
+    className="page"
+  >
+    <Sidebar />
+    <div
+      className="page-content"
+    >
+      Hello world !
+    </div>
+  </div>
+</Fragment>
+`;

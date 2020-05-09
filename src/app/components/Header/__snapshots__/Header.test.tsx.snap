@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders well 1`] = `
+<Menu
+  className="menu"
+  mode="horizontal"
+>
+  <SubMenu
+    className="menu-dropdown"
+    icon={
+      <Avatar
+        icon={<ForwardRef(UserOutlined) />}
+        shape="circle"
+        size="small"
+      />
+    }
+  >
+    <MenuItem
+      key="profile"
+    >
+      Mon profil
+    </MenuItem>
+    <MenuItem
+      key="logout"
+    >
+      Déconnexion
+    </MenuItem>
+  </SubMenu>
+</Menu>
+`;
