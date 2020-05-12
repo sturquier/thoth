@@ -9,7 +9,11 @@ exports[`<AppRouting /> renders well 1`] = `
       render={[Function]}
     />
     <Route
+      exact={true}
       path="/login"
+      render={[Function]}
+    />
+    <Route
       render={[Function]}
     />
   </Switch>

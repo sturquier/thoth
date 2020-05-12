@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFound /> renders well 1`] = `
+<div
+  className="container"
+>
+  <h1>
+    404
+  </h1>
+  <div
+    className="container-subtitle"
+  >
+    <p
+      className="container-subtitle-path"
+    >
+      <code>
+        /
+      </code>
+       not found.
+    </p>
+    <p>
+      Go back to 
+      <Link
+        to="/"
+      >
+        homepage
+      </Link>
+    </p>
+  </div>
+</div>
+`;
