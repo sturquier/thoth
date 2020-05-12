@@ -2,7 +2,13 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "color-hex-length": "long",
-    "no-empty-source": null
+    "no-empty-source": null,
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      {
+        "ignoreFontFamilies": ["Merriweather", "Open Sans"]
+      }
+    ]
   },
   "syntax": "scss"
 }

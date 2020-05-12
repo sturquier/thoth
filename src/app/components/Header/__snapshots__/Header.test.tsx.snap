@@ -16,11 +16,13 @@ exports[`<Header /> renders well 1`] = `
     }
   >
     <MenuItem
+      className="menu-dropdown-item"
       key="profile"
     >
       Mon profil
     </MenuItem>
     <MenuItem
+      className="menu-dropdown-item"
       key="logout"
     >
       Déconnexion
