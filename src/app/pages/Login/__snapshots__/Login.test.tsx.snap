@@ -1,7 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Login /> renders well 1`] = `
-<h1>
-  Login Page
-</h1>
+<div
+  className="login-page"
+>
+  <h1>
+    Login
+  </h1>
+  <ForwardRef(InternalForm)
+    className="login-page-form"
+    onFinish={[Function]}
+  >
+    <FormItem
+      name="email"
+    >
+      <Input
+        placeholder="Email"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <FormItem
+      name="password"
+    >
+      <Password
+        action="click"
+        placeholder="Password"
+        prefix={<ForwardRef(UnlockOutlined) />}
+        visibilityToggle={true}
+      />
+    </FormItem>
+    <FormItem>
+      <Button
+        block={false}
+        ghost={false}
+        htmlType="submit"
+        loading={false}
+      >
+        Submit
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
+</div>
 `;

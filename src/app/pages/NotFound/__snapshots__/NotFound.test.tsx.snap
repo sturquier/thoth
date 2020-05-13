@@ -2,16 +2,16 @@
 
 exports[`<NotFound /> renders well 1`] = `
 <div
-  className="container"
+  className="not-found-page"
 >
   <h1>
     404
   </h1>
   <div
-    className="container-subtitle"
+    className="not-found-page-subtitle"
   >
     <p
-      className="container-subtitle-path"
+      className="not-found-page-subtitle-path"
     >
       <code>
         /
