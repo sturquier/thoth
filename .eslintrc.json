@@ -26,6 +26,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "generator-star-spacing": ["error", "after"],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars-experimental": "error"
     },
