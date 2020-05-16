@@ -26,6 +26,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "camelcase": ["error", {
+          "allow": ["created_at"]
+        }],
         "generator-star-spacing": ["error", "after"],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars-experimental": "error"

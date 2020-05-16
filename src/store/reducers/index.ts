@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 
-const createRootReducer = combineReducers({
+import articles from './articles/articles'
 
+const createRootReducer = combineReducers({
+  articles
 })
 
 export type RootState = ReturnType<typeof createRootReducer>
