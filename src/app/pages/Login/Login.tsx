@@ -1,12 +1,20 @@
 import React from 'react'
+import { Dispatch } from 'redux'
+import { connect } from 'react-redux'
 import { Button, Form, Input } from 'antd'
 import { UnlockOutlined, UserOutlined } from '@ant-design/icons'
 
+import { loginRequest } from '../../../store/actions/login/login'
 import './Login.scss'
 
-export default function Login () {
+type Props = {
+  onLoginRequest: (payload: { email: string, password: string }) => void
+}
+
+function Login (props: Props) {
   const onFinish = (values: { email: string, password: string }) => {
-    console.log(values)
+    const { email, password } = values
+    props.onLoginRequest({ email, password })
   }
 
   return (
@@ -26,3 +34,9 @@ export default function Login () {
     </div>
   )
 }
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onLoginRequest: (payload: { email: string, password: string }) => dispatch(loginRequest(payload))
+})
+
+export default connect(null, mapDispatchToProps)(Login)
