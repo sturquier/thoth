@@ -1,11 +1,11 @@
 import { createStore } from 'redux'
 
-import middlewares, { sagaMiddleware } from './middlewares'
+import middlewares, { history, sagaMiddleware } from './middlewares'
 import reducers from './reducers'
 import sagas from './sagas'
 
 const createStoreWithMiddlewares = createStore(
-  reducers,
+  reducers(history),
   middlewares
 )
 

@@ -1,7 +1,11 @@
 import { applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
 
 declare const window: any
+
+export const history = createBrowserHistory()
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -12,6 +16,7 @@ const composeEnhancers =
 export const sagaMiddleware = createSagaMiddleware()
 
 const middlewares = composeEnhancers(applyMiddleware(
+  routerMiddleware(history),
   sagaMiddleware
 ))
 
