@@ -1,5 +1,3 @@
-const threshold = 80
-
 module.exports = {
   clearMocks: true,
   collectCoverage: true,
@@ -13,10 +11,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      statements: threshold,
-      branches: threshold,
-      functions: threshold,
-      lines: threshold
+      statements: 80,
+      branches: 65,
+      functions: 80,
+      lines: 80
     }
   },
   moduleNameMapper: {

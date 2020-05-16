@@ -1,9 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Home /> renders well 1`] = `
-<Page>
-  <h1>
-    Home
-  </h1>
-</Page>
+<ContextProvider
+  value={null}
+>
+  <Home
+    articles={Array []}
+    loading={false}
+    onFetchArticles={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
 `;
