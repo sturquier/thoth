@@ -25,6 +25,10 @@ export default function login (state = initialState, action: ActionType = {}) {
         loading: false,
         error: action.error
       }
+    case actionTypes.LOGOUT:
+      return {
+        ...initialState
+      }
     default:
       return state
   }
