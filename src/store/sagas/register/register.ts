@@ -6,7 +6,7 @@ import { loginRequest } from '../../actions/login/login'
 import { createHttpRequest } from '../../../utils/services'
 import { USERS_ENDPOINT } from '../../../config/endpoints'
 
-export function* registerSaga (action: { type: 'REGISTER_REQUEST', payload: { email: string, password: string } }) {
+export function* registerSaga (action: { type: string, payload: { email: string, password: string } }) {
   try {
     const user: UserType = yield call(() => createHttpRequest(USERS_ENDPOINT, { method: 'POST', params: action.payload }))
     yield put(registerSuccess(user))
