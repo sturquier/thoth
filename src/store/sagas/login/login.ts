@@ -19,6 +19,7 @@ export function* loginSaga (action: { type: string, payload: { email: string, pa
 
 export function* logoutSaga () {
   yield call(() => localStorage.removeItem('token'))
+  yield put(push('/login'))
 }
 
 export default function* loginRootSaga () {

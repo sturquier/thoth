@@ -90,6 +90,11 @@ describe('Login sagas', () => {
     expect(saga.next()).toHaveProperty('done', false)
 
     expect(saga.next()).toEqual({
+      done: false,
+      value: put(push('/login'))
+    })
+
+    expect(saga.next()).toEqual({
       done: true,
       value: undefined
     })
