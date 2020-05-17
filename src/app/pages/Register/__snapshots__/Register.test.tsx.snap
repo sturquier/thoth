@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login <ConnectedLogin /> renders well 1`] = `
-<Login
-  onLoginRequest={[Function]}
+exports[`<Register <ConnectedRegister /> renders well 1`] = `
+<Register
+  onRegisterRequest={[Function]}
   store={
     Object {
       "clearActions": [Function],
@@ -16,15 +16,15 @@ exports[`Login <ConnectedLogin /> renders well 1`] = `
 />
 `;
 
-exports[`Login <Login /> renders well 1`] = `
+exports[`<Register <Register /> renders well 1`] = `
 <div
-  className="login-page"
+  className="register-page"
 >
   <h1>
-    Login
+    Register
   </h1>
   <ForwardRef(InternalForm)
-    className="login-page-form"
+    className="register-page-form"
     onFinish={[Function]}
   >
     <FormItem

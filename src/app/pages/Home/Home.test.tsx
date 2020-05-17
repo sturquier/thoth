@@ -5,9 +5,9 @@ import { shallow } from 'enzyme'
 
 import { RootStore } from '../../../store'
 import dummyStore from '../../../../tests/fixtures/store'
-import Home from './Home'
+import ConnectedHome, { Home } from './Home'
 
-describe('<Home />', () => {
+describe('Home', () => {
   const initialState = dummyStore
   const middlewares: Array<Middleware> = []
   const mockStore = configureStore(middlewares)
@@ -26,8 +26,17 @@ describe('<Home />', () => {
     onFetchArticles: jest.fn()
   }
 
-  it('renders well', () => {
-    const wrapper = shallow(<Home store={store} {...props} />)
-    expect(wrapper).toMatchSnapshot()
+  describe('<ConnectedHome />', () => {
+    it('renders well', () => {
+      const wrapper = shallow(<ConnectedHome store={store} />)
+      expect(wrapper).toMatchSnapshot()
+    })
+  })
+
+  describe('<Home />', () => {
+    it('renders well', () => {
+      const wrapper = shallow(<Home {...props} />)
+      expect(wrapper).toMatchSnapshot()
+    })
   })
 })

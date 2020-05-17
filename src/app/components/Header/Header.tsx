@@ -11,7 +11,7 @@ type Props = {
   onLogout: () => void
 }
 
-function Header (props: Props) {
+export function Header (props: Props) {
   return (
     <Menu mode='horizontal' className='menu'>
       <Menu.SubMenu icon={<Avatar size='small' icon={<UserOutlined />} />} className='menu-dropdown'>

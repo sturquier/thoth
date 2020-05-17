@@ -13,7 +13,7 @@ type Props = {
   onFetchArticles: () => void
 }
 
-function Home (props: Props) {
+export function Home (props: Props) {
   useEffect(() => {
     props.onFetchArticles()
   }, [])

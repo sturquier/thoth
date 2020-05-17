@@ -11,7 +11,7 @@ type Props = {
   onLoginRequest: (payload: { email: string, password: string }) => void
 }
 
-function Login (props: Props) {
+export function Login (props: Props) {
   const onFinish = (values: { email: string, password: string }) => {
     const { email, password } = values
     props.onLoginRequest({ email, password })

@@ -1,6 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> renders well 1`] = `
+exports[`Header <ConnectedHeader /> renders well 1`] = `
+<Header
+  onLogout={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+/>
+`;
+
+exports[`Header <Header /> renders well 1`] = `
 <Menu
   className="menu"
   mode="horizontal"
@@ -24,6 +40,7 @@ exports[`<Header /> renders well 1`] = `
     <MenuItem
       className="menu-dropdown-item"
       key="logout"
+      onClick={[MockFunction]}
     >
       Logout
     </MenuItem>

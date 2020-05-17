@@ -11,7 +11,7 @@ type Props = {
   onRegisterRequest: (payload: { email: string, password: string }) => void
 }
 
-function Register (props: Props) {
+export function Register (props: Props) {
   const onFinish = (values: { email: string, password: string }) => {
     const { email, password } = values
     props.onRegisterRequest({ email, password })

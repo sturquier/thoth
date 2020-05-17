@@ -2,7 +2,7 @@
 
 exports[`<Page /> renders well 1`] = `
 <Fragment>
-  <Header />
+  <Connect(Header) />
   <div
     className="page"
   >

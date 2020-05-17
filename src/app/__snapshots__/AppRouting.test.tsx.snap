@@ -1,7 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<AppRouting /> renders well 1`] = `
-<BrowserRouter>
+<Connect(ConnectedRouterWithContext)
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
   <Switch>
     <Route
       exact={true}
@@ -14,8 +35,13 @@ exports[`<AppRouting /> renders well 1`] = `
       render={[Function]}
     />
     <Route
+      exact={true}
+      path="/register"
+      render={[Function]}
+    />
+    <Route
       render={[Function]}
     />
   </Switch>
-</BrowserRouter>
+</Connect(ConnectedRouterWithContext)>
 `;

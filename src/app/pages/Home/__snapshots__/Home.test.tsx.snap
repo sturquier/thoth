@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Home /> renders well 1`] = `
+exports[`Home <ConnectedHome /> renders well 1`] = `
 <ContextProvider
   value={null}
 >
@@ -20,4 +20,12 @@ exports[`<Home /> renders well 1`] = `
     }
   />
 </ContextProvider>
+`;
+
+exports[`Home <Home /> renders well 1`] = `
+<Page>
+  <h1>
+    Home
+  </h1>
+</Page>
 `;
