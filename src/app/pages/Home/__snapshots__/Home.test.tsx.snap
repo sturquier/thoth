@@ -4,7 +4,7 @@ exports[`Home <ConnectedHome /> renders well 1`] = `
 <ContextProvider
   value={null}
 >
-  <Home
+  <Component
     articles={Array []}
     loading={false}
     onFetchArticles={[Function]}
