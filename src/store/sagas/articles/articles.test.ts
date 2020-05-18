@@ -28,6 +28,8 @@ describe('Articles sagas', () => {
 
     expect(saga.next()).toHaveProperty('done', false)
 
+    expect(saga.next()).toHaveProperty('done', false)
+
     expect(saga.next(articles)).toEqual({
       done: false,
       value: put(fetchArticlesSuccess(articles))
@@ -42,6 +44,8 @@ describe('Articles sagas', () => {
   it('handles fetchArticlesSaga() on failure', () => {
     const saga = fetchArticlesSaga()
     const error = 'An error has occurred while trying to fetch articles'
+
+    expect(saga.next()).toHaveProperty('done', false)
 
     expect(saga.next()).toHaveProperty('done', false)
 

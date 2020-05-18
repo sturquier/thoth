@@ -7,7 +7,8 @@ import { ARTICLES_ENDPOINT } from '../../../config/endpoints'
 
 export function* fetchArticlesSaga () {
   try {
-    const articles: Array<ArticleType> = yield call(() => createHttpRequest(ARTICLES_ENDPOINT, { method: 'GET' }))
+    const token: string = yield call(() => JSON.parse(localStorage.getItem('token')))
+    const articles: Array<ArticleType> = yield call(() => createHttpRequest(ARTICLES_ENDPOINT, { method: 'GET' }, token))
     yield put(fetchArticlesSuccess(articles))
   } catch (error) {
     yield put(fetchArticlesFailure(error))
