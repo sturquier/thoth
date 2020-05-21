@@ -33,13 +33,31 @@ exports[`Header <Header /> renders well 1`] = `
   >
     <MenuItem
       className="menu-dropdown-item"
-      key="profile"
     >
-      Profile
+      <NavLink
+        exact={true}
+        to="/profile"
+      >
+        Profile
+      </NavLink>
     </MenuItem>
     <MenuItem
       className="menu-dropdown-item"
-      key="logout"
+    >
+      <NavLink
+        exact={true}
+        to="/change-password"
+      >
+        Change password
+      </NavLink>
+    </MenuItem>
+    <Divider
+      className=""
+      disabled={true}
+      style={Object {}}
+    />
+    <MenuItem
+      className="menu-dropdown-item"
       onClick={[MockFunction]}
     >
       Logout

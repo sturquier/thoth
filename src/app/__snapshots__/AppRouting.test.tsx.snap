@@ -31,7 +31,22 @@ exports[`<AppRouting /> renders well 1`] = `
     />
     <Route
       exact={true}
+      path="/change-password"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/crawl"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
       path="/login"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/profile"
       render={[Function]}
     />
     <Route

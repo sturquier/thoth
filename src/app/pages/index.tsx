@@ -1,4 +1,7 @@
+export { default as ChangePassword } from './ChangePassword/ChangePassword'
+export { default as Crawl } from './Crawl/Crawl'
 export { default as Home } from './Home/Home'
 export { default as Login } from './Login/Login'
 export { default as NotFound } from './NotFound/NotFound'
+export { default as Profile } from './Profile/Profile'
 export { default as Register } from './Register/Register'

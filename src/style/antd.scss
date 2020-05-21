@@ -1,0 +1,21 @@
+.ant-menu {
+  ::after {
+    border: none !important;
+  }
+
+  &-submenu {
+    border: none !important;
+  }
+
+  &-item {
+    background: inherit !important;
+
+    &-selected {
+      color: inherit !important;
+    }
+
+    &-active {
+      color: inherit !important;
+    }
+  }
+}

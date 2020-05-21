@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profile /> renders well 1`] = `
+<Page>
+  <h1>
+    Profile
+  </h1>
+</Page>
+`;

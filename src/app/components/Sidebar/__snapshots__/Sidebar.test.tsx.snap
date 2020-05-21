@@ -6,10 +6,26 @@ exports[`<Sidebar /> renders well 1`] = `
   mode="inline"
 >
   <MenuItem
+    className="sidebar-item-selected"
     icon={<ForwardRef(ReadOutlined) />}
-    key="articles"
   >
-    Articles
+    <NavLink
+      exact={true}
+      to="/"
+    >
+      Articles
+    </NavLink>
+  </MenuItem>
+  <MenuItem
+    className="sidebar-item"
+    icon={<ForwardRef(SettingOutlined) />}
+  >
+    <NavLink
+      exact={true}
+      to="/crawl"
+    >
+      Crawl
+    </NavLink>
   </MenuItem>
 </Menu>
 `;

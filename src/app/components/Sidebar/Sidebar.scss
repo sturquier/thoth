@@ -4,7 +4,20 @@
   background: var(--grey-3);
   font-family: 'Open Sans';
 
+  a {
+    color: inherit;
+  }
+
   &:first-child {
     padding-top: 25px;
+  }
+
+  &-item {
+    &-selected {
+      .anticon,
+      a {
+        color: var(--cyan-6);
+      }
+    }
   }
 }
