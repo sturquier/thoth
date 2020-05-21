@@ -6,7 +6,7 @@ import { RootState } from '../../../store/reducers'
 import { ArticleType } from '../../../store/types/articles/articles'
 import { fetchArticlesRequest } from '../../../store/actions/articles/articles'
 import { WithAuthentication } from '../../hoc'
-import { Page } from '../../components'
+import { Loader, Page } from '../../components'
 
 type Props = {
   loading: boolean
@@ -21,6 +21,7 @@ export function Home (props: Props) {
 
   return (
     <Page>
+      {props.loading && <Loader />}
       <h1>Home</h1>
     </Page>
   )
