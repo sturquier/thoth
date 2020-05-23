@@ -1,3 +1,12 @@
 h1 {
   font-family: 'Merriweather';
 }
+
+.form {
+  &-item {
+    &-input,
+    &-button {
+      border: none;
+    }
+  }
+}

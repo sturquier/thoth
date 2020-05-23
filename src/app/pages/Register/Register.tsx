@@ -20,15 +20,15 @@ export function Register (props: Props) {
   return (
     <div className='register-page'>
       <h1>Register</h1>
-      <Form onFinish={onFinish} className='register-page-form'>
-        <Form.Item name='email'>
-          <Input prefix={<UserOutlined />} placeholder='Email' />
+      <Form onFinish={onFinish} className='form register-page-form' size='large'>
+        <Form.Item name='email' className='form-item'>
+          <Input prefix={<UserOutlined />} placeholder='Email' className='form-item-input' />
         </Form.Item>
-        <Form.Item name='password'>
-          <Input.Password prefix={<UnlockOutlined />} placeholder='Password' />
+        <Form.Item name='password' className='form-item'>
+          <Input.Password prefix={<UnlockOutlined />} placeholder='Password' className='form-item-input' />
         </Form.Item>
-        <Form.Item>
-          <Button htmlType='submit'>Submit</Button>
+        <Form.Item className='form-item'>
+          <Button htmlType='submit' className='form-item-button'>Submit</Button>
         </Form.Item>
       </Form>
     </div>

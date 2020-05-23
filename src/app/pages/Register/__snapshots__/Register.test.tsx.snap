@@ -24,31 +24,39 @@ exports[`<Register <Register /> renders well 1`] = `
     Register
   </h1>
   <ForwardRef(InternalForm)
-    className="register-page-form"
+    className="form register-page-form"
     onFinish={[Function]}
+    size="large"
   >
     <FormItem
+      className="form-item"
       name="email"
     >
       <Input
+        className="form-item-input"
         placeholder="Email"
         prefix={<ForwardRef(UserOutlined) />}
         type="text"
       />
     </FormItem>
     <FormItem
+      className="form-item"
       name="password"
     >
       <Password
         action="click"
+        className="form-item-input"
         placeholder="Password"
         prefix={<ForwardRef(UnlockOutlined) />}
         visibilityToggle={true}
       />
     </FormItem>
-    <FormItem>
+    <FormItem
+      className="form-item"
+    >
       <Button
         block={false}
+        className="form-item-button"
         ghost={false}
         htmlType="submit"
         loading={false}
