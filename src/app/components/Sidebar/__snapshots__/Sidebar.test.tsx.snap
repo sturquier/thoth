@@ -22,9 +22,9 @@ exports[`<Sidebar /> renders well 1`] = `
   >
     <NavLink
       exact={true}
-      to="/crawl"
+      to="/crawler"
     >
-      Crawl
+      Crawler
     </NavLink>
   </MenuItem>
 </Menu>

@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Crawl /> renders well 1`] = `
+exports[`<Crawler /> renders well 1`] = `
 <Page>
   <h1>
-    Crawl
+    Crawler
   </h1>
 </Page>
 `;

@@ -1,5 +1,5 @@
 export { default as ChangePassword } from './ChangePassword/ChangePassword'
-export { default as Crawl } from './Crawl/Crawl'
+export { default as Crawler } from './Crawler/Crawler'
 export { default as Home } from './Home/Home'
 export { default as Login } from './Login/Login'
 export { default as NotFound } from './NotFound/NotFound'

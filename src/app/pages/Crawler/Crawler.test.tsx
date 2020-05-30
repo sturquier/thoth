@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import { Crawl } from './Crawl'
+import { Crawler } from './Crawler'
 
-describe('<Crawl />', () => {
+describe('<Crawler />', () => {
   it('renders well', () => {
-    const wrapper = shallow(<Crawl />)
+    const wrapper = shallow(<Crawler />)
     expect(wrapper).toMatchSnapshot()
   })
 })

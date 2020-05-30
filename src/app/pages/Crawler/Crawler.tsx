@@ -3,12 +3,12 @@ import React from 'react'
 import { WithAuthentication } from '../../hoc'
 import { Page } from '../../components'
 
-export function Crawl () {
+export function Crawler () {
   return (
     <Page>
-      <h1>Crawl</h1>
+      <h1>Crawler</h1>
     </Page>
   )
 }
 
-export default WithAuthentication(Crawl)
+export default WithAuthentication(Crawler)

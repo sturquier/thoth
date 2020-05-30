@@ -14,8 +14,8 @@ export default function Sidebar () {
       <Menu.Item className={`${pathname === '/' ? 'sidebar-item-selected' : 'sidebar-item'}`} icon={<ReadOutlined />}>
         <NavLink exact to='/'>Articles</NavLink>
       </Menu.Item>
-      <Menu.Item className={`${pathname === '/crawl' ? 'sidebar-item-selected' : 'sidebar-item'}`} icon={<SettingOutlined />}>
-        <NavLink exact to='/crawl'>Crawl</NavLink>
+      <Menu.Item className={`${pathname === '/crawler' ? 'sidebar-item-selected' : 'sidebar-item'}`} icon={<SettingOutlined />}>
+        <NavLink exact to='/crawler'>Crawler</NavLink>
       </Menu.Item>
     </Menu>
   )

@@ -36,7 +36,7 @@ exports[`<AppRouting /> renders well 1`] = `
     />
     <Route
       exact={true}
-      path="/crawl"
+      path="/crawler"
       render={[Function]}
     />
     <Route
