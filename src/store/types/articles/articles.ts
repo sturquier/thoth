@@ -1,3 +1,5 @@
+import { WebsiteType } from '../websites/websites'
+
 export const actionTypes = {
   FETCH_ARTICLES_REQUEST: 'FETCH_ARTICLES_REQUEST',
   FETCH_ARTICLES_SUCCESS: 'FETCH_ARTICLES_SUCCESS',
@@ -23,4 +25,5 @@ export type ArticleType = {
   created_at: Date
   url: string
   image?: string
+  website: WebsiteType
 }

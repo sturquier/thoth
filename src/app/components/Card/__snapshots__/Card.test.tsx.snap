@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> renders well 1`] = `
+<Card
+  className="card"
+>
+  <div
+    className="card-header"
+  >
+    <Avatar
+      shape="circle"
+      size="large"
+    />
+    <h3
+      className="card-header-title"
+    >
+      <a
+        className="card-header-title-link"
+        href="https://www.foo.com/article"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        First article
+      </a>
+    </h3>
+  </div>
+  <p
+    className="card-content"
+  >
+    No description provided
+  </p>
+  <div
+    className="card-footer"
+  >
+    <span>
+      2020-06-07
+    </span>
+    <span>
+      Foo
+    </span>
+  </div>
+</Card>
+`;
+
+exports[`<Card /> renders well with a description containing less than 200 characters 1`] = `
+<Card
+  className="card"
+>
+  <div
+    className="card-header"
+  >
+    <Avatar
+      shape="circle"
+      size="large"
+    />
+    <h3
+      className="card-header-title"
+    >
+      <a
+        className="card-header-title-link"
+        href="https://www.foo.com/article"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        First article
+      </a>
+    </h3>
+  </div>
+  <p
+    className="card-content"
+  >
+    Lorem ipsum dolor sit amet
+  </p>
+  <div
+    className="card-footer"
+  >
+    <span>
+      2020-06-07
+    </span>
+    <span>
+      Foo
+    </span>
+  </div>
+</Card>
+`;
+
+exports[`<Card /> renders well with a description containing more than 200 characters 1`] = `
+<Card
+  className="card"
+>
+  <div
+    className="card-header"
+  >
+    <Avatar
+      shape="circle"
+      size="large"
+    />
+    <h3
+      className="card-header-title"
+    >
+      <a
+        className="card-header-title-link"
+        href="https://www.foo.com/article"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        First article
+      </a>
+    </h3>
+  </div>
+  <p
+    className="card-content"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec pharetra nibh non odio interdum, ut rutrum lacus condimentum. Nulla facilisi. Aliquam erat volutpat.
+    Donec eros sapien, ultrices ...
+  </p>
+  <div
+    className="card-footer"
+  >
+    <span>
+      2020-06-07
+    </span>
+    <span>
+      Foo
+    </span>
+  </div>
+</Card>
+`;

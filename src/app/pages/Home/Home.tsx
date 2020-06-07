@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import { Col, Row } from 'antd'
 
 import { RootState } from '../../../store/reducers'
 import { ArticleType } from '../../../store/types/articles/articles'
 import { fetchArticlesRequest } from '../../../store/actions/articles/articles'
 import { WithAuthentication } from '../../hoc'
-import { Loader, Page } from '../../components'
+import { Card, Loader, Page } from '../../components'
 
 type Props = {
   loading: boolean
@@ -23,6 +24,13 @@ export function Home (props: Props) {
     <Page>
       {props.loading && <Loader />}
       <h1>Home</h1>
+      <Row gutter={[16, 16]}>
+        {props.articles.map((article, i) =>
+          <Col key={i} span={6}>
+            <Card article={article} />
+          </Col>
+        )}
+      </Row>
     </Page>
   )
 }
