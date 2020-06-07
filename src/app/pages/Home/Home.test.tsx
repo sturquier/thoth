@@ -2,6 +2,7 @@ import React from 'react'
 import { Middleware } from 'redux'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
+import moment from 'moment'
 
 import { RootStore } from '../../../store'
 import dummyStore from '../../../../tests/fixtures/store'
@@ -20,8 +21,8 @@ describe('Home', () => {
   const props = {
     loading: false,
     articles: [
-      { id: 1, title: 'First article', created_at: new Date(2020, 12, 31), url: 'https://www.foo.com/article' },
-      { id: 2, title: 'Second article', description: 'Lorem Ipsum', created_at: new Date(2020, 12, 30), url: 'https://www.bar.com/article', image: 'https://www.bar.com/article-image.jpeg' }
+      { id: 1, title: 'First article', created_at: moment('2020-12-31T00:00:00'), url: 'https://www.foo.com/article' },
+      { id: 2, title: 'Second article', description: 'Lorem Ipsum', created_at: moment('2020-12-30T00:00:00'), url: 'https://www.bar.com/article', image: 'https://www.bar.com/article-image.jpeg' }
     ],
     onFetchArticles: jest.fn()
   }
