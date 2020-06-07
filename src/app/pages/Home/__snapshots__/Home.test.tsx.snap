@@ -42,7 +42,7 @@ exports[`Home <Home /> renders well 1`] = `
       <Card
         article={
           Object {
-            "created_at": "2020-12-31T00:00:00+01:00",
+            "created_at": "2020-12-31",
             "id": 1,
             "title": "First article",
             "url": "https://www.foo.com/article",
@@ -57,7 +57,7 @@ exports[`Home <Home /> renders well 1`] = `
       <Card
         article={
           Object {
-            "created_at": "2020-12-30T00:00:00+01:00",
+            "created_at": "2020-12-30",
             "description": "Lorem Ipsum",
             "id": 2,
             "image": "https://www.bar.com/article-image.jpeg",
