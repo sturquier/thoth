@@ -1,3 +1,4 @@
 export const ARTICLES_ENDPOINT = 'articles'
 export const USERS_ENDPOINT = 'users'
 export const USERS_LOGIN_ENDPOINT = 'users/login'
+export const WEBSITES_ENDPOINT = 'websites'

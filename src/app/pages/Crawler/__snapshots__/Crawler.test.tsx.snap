@@ -1,9 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Crawler /> renders well 1`] = `
+exports[`Crawler <ConnectedCrawler /> renders well 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Component
+    loading={false}
+    onFetchWebsites={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+    websites={Array []}
+  />
+</ContextProvider>
+`;
+
+exports[`Crawler <Crawler /> renders well 1`] = `
 <Page>
   <h1>
     Crawler
   </h1>
+  <Row
+    gutter={
+      Array [
+        16,
+        16,
+      ]
+    }
+  >
+    <Col
+      key="0"
+      span={12}
+    >
+      <Checkbox
+        indeterminate={false}
+        key="0"
+      >
+        Foo
+      </Checkbox>
+    </Col>
+    <Col
+      key="1"
+      span={12}
+    >
+      <Checkbox
+        indeterminate={false}
+        key="1"
+      >
+        Bar
+      </Checkbox>
+    </Col>
+  </Row>
 </Page>
 `;
