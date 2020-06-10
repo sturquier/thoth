@@ -19,4 +19,5 @@ export type ActionType = {
 export type WebsiteType = {
   id: number
   name: string
+  slug: string
 }
