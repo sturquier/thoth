@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Avatar, Menu } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 
+import logo from '../../../../public/logo.svg'
 import { logout } from '../../../store/actions/login/login'
 import './Header.scss'
 
@@ -15,7 +16,12 @@ type Props = {
 export function Header (props: Props) {
   return (
     <Menu mode='horizontal' className='menu'>
-      <Menu.SubMenu icon={<Avatar size='small' icon={<UserOutlined />} />} className='menu-dropdown'>
+      <Menu.Item className='menu-logo'>
+        <NavLink exact to='/'>
+          <Avatar size={46} src={logo} />
+        </NavLink>
+      </Menu.Item>
+      <Menu.SubMenu icon={<Avatar icon={<UserOutlined className='menu-dropdown-icon' />} />} className='menu-dropdown'>
         <Menu.Item className='menu-dropdown-item'>
           <NavLink exact to='/profile'>Profile</NavLink>
         </Menu.Item>

@@ -1,10 +1,20 @@
 .menu {
   background: var(--cyan-7);
-  border-bottom: none;
+
+  &-logo {
+    margin-bottom: 5px;
+  }
 
   &-dropdown {
     float: right;
     padding-right: 22px;
+
+    &-icon {
+      svg {
+        height: 18px;
+        width: 18px;
+      }
+    }
 
     &-item {
       font-family: 'Open Sans';

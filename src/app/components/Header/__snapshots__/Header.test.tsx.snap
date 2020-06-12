@@ -21,13 +21,31 @@ exports[`Header <Header /> renders well 1`] = `
   className="menu"
   mode="horizontal"
 >
+  <MenuItem
+    className="menu-logo"
+  >
+    <NavLink
+      exact={true}
+      to="/"
+    >
+      <Avatar
+        shape="circle"
+        size={46}
+        src="logo.svg"
+      />
+    </NavLink>
+  </MenuItem>
   <SubMenu
     className="menu-dropdown"
     icon={
       <Avatar
-        icon={<ForwardRef(UserOutlined) />}
+        icon={
+          <ForwardRef(UserOutlined)
+            className="menu-dropdown-icon"
+          />
+        }
         shape="circle"
-        size="small"
+        size="default"
       />
     }
   >
