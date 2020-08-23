@@ -6,6 +6,7 @@ exports[`Crawler <ConnectedCrawler /> renders well 1`] = `
 >
   <Component
     loading={false}
+    onCrawlWebsiteRequest={[Function]}
     onFetchWebsites={[Function]}
     store={
       Object {
@@ -27,36 +28,63 @@ exports[`Crawler <Crawler /> renders well 1`] = `
   <h1>
     Crawler
   </h1>
-  <Row
-    gutter={
-      Array [
-        16,
-        16,
-      ]
-    }
+  <ForwardRef(InternalForm)
+    className="form crawler-page-form"
+    onFinish={[Function]}
   >
-    <Col
-      key="0"
-      span={12}
+    <FormItem
+      className="form-item"
+      name="checkboxes"
     >
-      <Checkbox
-        indeterminate={false}
-        key="0"
+      <CheckboxGroup
+        options={Array []}
       >
-        Foo
-      </Checkbox>
-    </Col>
-    <Col
-      key="1"
-      span={12}
+        <Row
+          gutter={
+            Array [
+              16,
+              16,
+            ]
+          }
+        >
+          <Col
+            key="0"
+            span={12}
+          >
+            <Checkbox
+              className="form-item-checkbox"
+              indeterminate={false}
+            >
+              Foo
+            </Checkbox>
+          </Col>
+          <Col
+            key="1"
+            span={12}
+          >
+            <Checkbox
+              className="form-item-checkbox"
+              indeterminate={false}
+            >
+              Bar
+            </Checkbox>
+          </Col>
+        </Row>
+      </CheckboxGroup>
+    </FormItem>
+    <FormItem
+      className="form-item"
     >
-      <Checkbox
-        indeterminate={false}
-        key="1"
+      <Button
+        block={false}
+        className="form-item-button crawler-page-form-button"
+        ghost={false}
+        htmlType="submit"
+        loading={false}
       >
-        Bar
-      </Checkbox>
-    </Col>
-  </Row>
+        Submit
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
 </Page>
 `;
