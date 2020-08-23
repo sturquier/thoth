@@ -27,46 +27,43 @@ exports[`Home <Home /> renders well 1`] = `
   <h1>
     Home
   </h1>
-  <Row
-    gutter={
+  <Tabs
+    articles={
       Array [
-        16,
-        16,
+        Object {
+          "created_at": "2020-12-31",
+          "id": 1,
+          "title": "First article",
+          "url": "https://www.foo.com/article",
+        },
+        Object {
+          "created_at": "2020-12-30",
+          "description": "Lorem Ipsum",
+          "id": 2,
+          "image": "https://www.bar.com/article-image.jpeg",
+          "title": "Second article",
+          "url": "https://www.bar.com/article",
+        },
       ]
     }
-  >
-    <Col
-      key="0"
-      span={6}
-    >
-      <Card
-        article={
-          Object {
-            "created_at": "2020-12-31",
-            "id": 1,
-            "title": "First article",
-            "url": "https://www.foo.com/article",
-          }
-        }
-      />
-    </Col>
-    <Col
-      key="1"
-      span={6}
-    >
-      <Card
-        article={
-          Object {
-            "created_at": "2020-12-30",
-            "description": "Lorem Ipsum",
-            "id": 2,
-            "image": "https://www.bar.com/article-image.jpeg",
-            "title": "Second article",
-            "url": "https://www.bar.com/article",
-          }
-        }
-      />
-    </Col>
-  </Row>
+    favorites={
+      Array [
+        Object {
+          "created_at": "2020-12-31",
+          "id": 1,
+          "title": "First article",
+          "url": "https://www.foo.com/article",
+        },
+        Object {
+          "created_at": "2020-12-30",
+          "description": "Lorem Ipsum",
+          "id": 2,
+          "image": "https://www.bar.com/article-image.jpeg",
+          "title": "Second article",
+          "url": "https://www.bar.com/article",
+        },
+      ]
+    }
+  />
 </Page>
 `;
