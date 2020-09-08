@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Card /> renders well 1`] = `
+exports[`Card <Card /> renders well 1`] = `
 <Card
   className="card"
 >
@@ -23,6 +23,7 @@ exports[`<Card /> renders well 1`] = `
         First article
       </a>
     </h3>
+    <ForwardRef(HeartFilled) />
   </div>
   <p
     className="card-content"
@@ -42,7 +43,7 @@ exports[`<Card /> renders well 1`] = `
 </Card>
 `;
 
-exports[`<Card /> renders well with a description containing less than 200 characters 1`] = `
+exports[`Card <Card /> renders well with a description containing less than 200 characters 1`] = `
 <Card
   className="card"
 >
@@ -65,6 +66,7 @@ exports[`<Card /> renders well with a description containing less than 200 chara
         First article
       </a>
     </h3>
+    <ForwardRef(HeartFilled) />
   </div>
   <p
     className="card-content"
@@ -84,7 +86,7 @@ exports[`<Card /> renders well with a description containing less than 200 chara
 </Card>
 `;
 
-exports[`<Card /> renders well with a description containing more than 200 characters 1`] = `
+exports[`Card <Card /> renders well with a description containing more than 200 characters 1`] = `
 <Card
   className="card"
 >
@@ -107,13 +109,14 @@ exports[`<Card /> renders well with a description containing more than 200 chara
         First article
       </a>
     </h3>
+    <ForwardRef(HeartFilled) />
   </div>
   <p
     className="card-content"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Donec pharetra nibh non odio interdum, ut rutrum lacus condimentum. Nulla facilisi. Aliquam erat volutpat.
-    Donec eros sapien, ultrices ...
+      Donec pharetra nibh non odio interdum, ut rutrum lacus condimentum. Nulla facilisi. Aliquam erat volutpat.
+      Donec eros sapien, ultri...
   </p>
   <div
     className="card-footer"
@@ -126,4 +129,25 @@ exports[`<Card /> renders well with a description containing more than 200 chara
     </span>
   </div>
 </Card>
+`;
+
+exports[`Card <ConnectedCard /> renders well 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Card
+    dispatch={[Function]}
+    favorites={Array []}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
 `;

@@ -27,7 +27,7 @@ export function Home (props: Props) {
 
   return (
     <Page>
-      {props.loading && <Loader />}
+      {(props.loadingArticles || props.loadingFavorites) && <Loader />}
       <h1>Home</h1>
       <Tabs articles={props.articles} favorites={props.favorites} />
     </Page>

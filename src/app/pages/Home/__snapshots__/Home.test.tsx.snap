@@ -49,6 +49,16 @@ exports[`Home <Home /> renders well 1`] = `
         },
       ]
     }
+    favorites={
+      Array [
+        Object {
+          "created_at": "2020-12-31",
+          "id": 1,
+          "title": "First article",
+          "url": "https://www.foo.com/article",
+        },
+      ]
+    }
   />
 </Page>
 `;

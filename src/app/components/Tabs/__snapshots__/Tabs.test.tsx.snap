@@ -24,7 +24,7 @@ exports[`<Tabs /> renders well 1`] = `
         key="0"
         span={6}
       >
-        <Card
+        <Connect(Card)
           article={
             Object {
               "created_at": "2020-12-31",
@@ -39,7 +39,7 @@ exports[`<Tabs /> renders well 1`] = `
         key="1"
         span={6}
       >
-        <Card
+        <Connect(Card)
           article={
             Object {
               "created_at": "2020-12-30",
@@ -71,7 +71,7 @@ exports[`<Tabs /> renders well 1`] = `
         key="0"
         span={6}
       >
-        <Card
+        <Connect(Card)
           article={
             Object {
               "created_at": "2020-12-31",
