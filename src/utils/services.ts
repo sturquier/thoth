@@ -23,6 +23,11 @@ export const createHttpRequest = async (url: string, options: any, token: string
 
   try {
     const response = await fetch(`${process.env.ROOT_ENDPOINT}${url}`, fetchOptions)
+
+    if (response.ok && response.status === 204) {
+      return Promise.resolve()
+    }
+
     const result = await response.json()
 
     if (!response.ok) {

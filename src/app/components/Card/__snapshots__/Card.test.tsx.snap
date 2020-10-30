@@ -23,7 +23,9 @@ exports[`Card <Card /> renders well 1`] = `
         First article
       </a>
     </h3>
-    <ForwardRef(HeartFilled) />
+    <ForwardRef(HeartFilled)
+      onClick={[Function]}
+    />
   </div>
   <p
     className="card-content"
@@ -66,7 +68,9 @@ exports[`Card <Card /> renders well with a description containing less than 200 
         First article
       </a>
     </h3>
-    <ForwardRef(HeartFilled) />
+    <ForwardRef(HeartFilled)
+      onClick={[Function]}
+    />
   </div>
   <p
     className="card-content"
@@ -109,7 +113,9 @@ exports[`Card <Card /> renders well with a description containing more than 200 
         First article
       </a>
     </h3>
-    <ForwardRef(HeartFilled) />
+    <ForwardRef(HeartFilled)
+      onClick={[Function]}
+    />
   </div>
   <p
     className="card-content"
@@ -136,8 +142,9 @@ exports[`Card <ConnectedCard /> renders well 1`] = `
   value={null}
 >
   <Card
-    dispatch={[Function]}
     favorites={Array []}
+    onCreateFavorite={[Function]}
+    onRemoveFavorite={[Function]}
     store={
       Object {
         "clearActions": [Function],

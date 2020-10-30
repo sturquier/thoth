@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import { RootState } from '../../../store/reducers'
 import { ArticleType } from '../../../store/types/articles/articles'
-import { FavoriteType } from '../../../store/types/favorites/favorites'
 import { fetchArticlesRequest } from '../../../store/actions/articles/articles'
 import { fetchFavoritesRequest } from '../../../store/actions/favorites/favorites'
 import { WithAuthentication } from '../../hoc'
@@ -14,7 +13,7 @@ type Props = {
   loadingArticles: boolean
   loadingFavorites: boolean
   articles: Array<ArticleType>
-  favorites: Array<FavoriteType>
+  favorites: Array<ArticleType>
   onFetchArticles: () => void
   onFetchFavorites: () => void
 }

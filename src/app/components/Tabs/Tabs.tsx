@@ -2,13 +2,12 @@ import React from 'react'
 import { Col, Row, Tabs as AntdTabs } from 'antd'
 
 import { ArticleType } from '../../../store/types/articles/articles'
-import { FavoriteType } from '../../../store/types/favorites/favorites'
 import { Card } from '../'
 import './Tabs.scss'
 
 type Props = {
   articles: Array<ArticleType>
-  favorites: Array<FavoriteType>
+  favorites: Array<ArticleType>
 }
 
 export default function Tabs (props: Props) {

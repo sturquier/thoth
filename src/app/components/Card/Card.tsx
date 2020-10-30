@@ -1,17 +1,20 @@
 import React from 'react'
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Avatar, Card as AntdCard } from 'antd'
 import { HeartOutlined, HeartFilled } from '@ant-design/icons'
 import moment from 'moment'
 
 import { RootState } from '../../../store/reducers'
+import { createFavoriteRequest, removeFavoriteRequest } from '../../../store/actions/favorites/favorites'
 import { ArticleType } from '../../../store/types/articles/articles'
-import { FavoriteType } from '../../../store/types/favorites/favorites'
 import './Card.scss'
 
 type Props = {
   article: ArticleType
-  favorites: Array<FavoriteType>
+  favorites: Array<ArticleType>
+  onCreateFavorite: (payload: { article: number }) => void
+  onRemoveFavorite: (payload: { article: number }) => void
 }
 
 export function Card (props: Props) {
@@ -26,7 +29,11 @@ export function Card (props: Props) {
         <h3 className='card-header-title'>
           <a href={url} className='card-header-title-link' target='_blank' rel='noopener noreferrer'>{title}</a>
         </h3>
-        {favorites.find(favorite => favorite.id === id) ? <HeartFilled /> : <HeartOutlined />}
+        {favorites.find(favorite => favorite.id === id) ? (
+          <HeartFilled onClick={() => props.onRemoveFavorite({ article: id })} />
+        ) : (
+          <HeartOutlined onClick={() => props.onCreateFavorite({ article: id })} />
+        )}
       </div>
       <p className='card-content'>{descriptionPreview}</p>
       <div className='card-footer'>
@@ -41,4 +48,9 @@ const mapStateToProps = (state: RootState) => ({
   favorites: state.favorites.favorites
 })
 
-export default connect(mapStateToProps)(Card)
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onCreateFavorite: (payload: { article: number }) => dispatch(createFavoriteRequest(payload)),
+  onRemoveFavorite: (payload: { article: number }) => dispatch(removeFavoriteRequest(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card)

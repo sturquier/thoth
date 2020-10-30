@@ -9,6 +9,8 @@ export const initialState: StateType = {
 export default function favorites (state = initialState, action: ActionType = {}) {
   switch (action.type) {
     case actionTypes.FETCH_FAVORITES_REQUEST:
+    case actionTypes.CREATE_FAVORITE_REQUEST:
+    case actionTypes.REMOVE_FAVORITE_REQUEST:
       return {
         ...state,
         loading: true
@@ -19,7 +21,21 @@ export default function favorites (state = initialState, action: ActionType = {}
         loading: false,
         favorites: action.favorites
       }
+    case actionTypes.CREATE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        favorites: [...state.favorites, action.favorite.article]
+      }
+    case actionTypes.REMOVE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        favorites: [...state.favorites.filter(favorite => favorite.id !== action.id)]
+      }
     case actionTypes.FETCH_FAVORITES_FAILURE:
+    case actionTypes.CREATE_FAVORITE_FAILURE:
+    case actionTypes.REMOVE_FAVORITE_FAILURE:
       return {
         ...state,
         loading: false,
