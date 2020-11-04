@@ -7,6 +7,28 @@ h1 {
     &-input,
     &-button {
       border: none;
+      border-radius: 4px;
+    }
+
+    &-input {
+      box-shadow: none;
+      border-bottom: 1px solid var(--cyan-7);
+    }
+
+    &-button {
+      background: var(--cyan-7);
+      color: var(--grey-1);
+      text-transform: uppercase;
+    }
+
+    &-button:hover {
+      box-shadow: 1px 1px 5px var(--grey-8);
+    }
+
+    &-button:hover,
+    &-button:focus {
+      background: var(--cyan-7);
+      color: var(--grey-1);
     }
   }
 }

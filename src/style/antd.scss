@@ -1,22 +1,24 @@
-.ant-menu {
-  ::after {
-    border: none !important;
-  }
-
-  &-submenu {
-    border: none !important;
-  }
-
-  &-item {
-    background: inherit !important;
-    border: none !important;
-
-    &-selected {
-      color: inherit !important;
+.ant {
+  &-menu {
+    ::after {
+      border: none !important;
     }
 
-    &-active {
-      color: inherit !important;
+    &-submenu {
+      border: none !important;
+    }
+
+    &-item {
+      background: inherit !important;
+      border: none !important;
+
+      &-selected {
+        color: inherit !important;
+      }
+
+      &-active {
+        color: inherit !important;
+      }
     }
   }
 }
