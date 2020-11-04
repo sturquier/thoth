@@ -1,13 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
 const path = require('path')
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    contentBase: [path.join(__dirname, 'src'), path.join(__dirname, 'public')]
   },
-  entry: ['react-hot-loader/patch', './index.tsx'],
   module: {
     rules: [
       {
@@ -67,14 +66,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].js'
   },
   plugins: [
-    new Dotenv(),
     new HtmlWebpackPlugin({
       title: 'Thoth',
       template: path.resolve(__dirname, 'public/index.html'),
-      favicon: path.resolve(__dirname, 'public/favicon.ico')
+      favicon: path.resolve(__dirname, 'public/favicon.ico'),
+      hash: false
     })
   ]
 }
