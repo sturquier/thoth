@@ -7,5 +7,37 @@
 
   &-form {
     font-family: 'Open Sans';
+
+    &-password {
+      margin-bottom: 5px;
+    }
+
+    &-submit {
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+
+  &-resetPasswordLink {
+    text-align: right;
+
+    a {
+      color: var(--grey-9);
+    }
+  }
+
+  &-registerLink {
+    width: 242px;
+    cursor: default;
+
+    a {
+      color: var(--cyan-7);
+      font-weight: bold;
+    }
+  }
+
+  &-resetPasswordLink,
+  &-registerLink {
+    font-family: 'Open Sans';
   }
 }

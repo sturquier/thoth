@@ -56,12 +56,12 @@ exports[`<Register <Register /> renders well 1`] = `
     >
       <Button
         block={false}
-        className="form-item-button"
+        className="form-item-button register-page-form-submit"
         ghost={false}
         htmlType="submit"
         loading={false}
       >
-        Submit
+        Register
       </Button>
     </FormItem>
   </ForwardRef(InternalForm)>

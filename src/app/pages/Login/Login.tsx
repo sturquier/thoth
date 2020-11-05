@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Button, Form, Input } from 'antd'
@@ -24,13 +25,17 @@ export function Login (props: Props) {
         <Form.Item name='email' className='form-item'>
           <Input prefix={<UserOutlined />} placeholder='Email' className='form-item-input' />
         </Form.Item>
-        <Form.Item name='password' className='form-item'>
+        <Form.Item name='password' className='form-item login-page-form-password'>
           <Input.Password prefix={<UnlockOutlined />} placeholder='Password' className='form-item-input' />
         </Form.Item>
+        <p className='login-page-resetPasswordLink'>
+          <NavLink exact to='/reset-password'>Forgot password ?</NavLink>
+        </p>
         <Form.Item className='form-item'>
-          <Button htmlType='submit' className='form-item-button'>Submit</Button>
+          <Button htmlType='submit' className='form-item-button login-page-form-submit'>Sign in</Button>
         </Form.Item>
       </Form>
+      <p className='login-page-registerLink'>No account ? <NavLink exact to='/register'>Sign up here</NavLink></p>
     </div>
   )
 }

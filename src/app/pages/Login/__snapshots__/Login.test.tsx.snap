@@ -40,7 +40,7 @@ exports[`Login <Login /> renders well 1`] = `
       />
     </FormItem>
     <FormItem
-      className="form-item"
+      className="form-item login-page-form-password"
       name="password"
     >
       <Password
@@ -51,19 +51,40 @@ exports[`Login <Login /> renders well 1`] = `
         visibilityToggle={true}
       />
     </FormItem>
+    <p
+      className="login-page-resetPasswordLink"
+    >
+      <NavLink
+        exact={true}
+        to="/reset-password"
+      >
+        Forgot password ?
+      </NavLink>
+    </p>
     <FormItem
       className="form-item"
     >
       <Button
         block={false}
-        className="form-item-button"
+        className="form-item-button login-page-form-submit"
         ghost={false}
         htmlType="submit"
         loading={false}
       >
-        Submit
+        Sign in
       </Button>
     </FormItem>
   </ForwardRef(InternalForm)>
+  <p
+    className="login-page-registerLink"
+  >
+    No account ? 
+    <NavLink
+      exact={true}
+      to="/register"
+    >
+      Sign up here
+    </NavLink>
+  </p>
 </div>
 `;

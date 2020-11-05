@@ -28,7 +28,7 @@ export function Register (props: Props) {
           <Input.Password prefix={<UnlockOutlined />} placeholder='Password' className='form-item-input' />
         </Form.Item>
         <Form.Item className='form-item'>
-          <Button htmlType='submit' className='form-item-button'>Submit</Button>
+          <Button htmlType='submit' className='form-item-button register-page-form-submit'>Register</Button>
         </Form.Item>
       </Form>
     </div>
