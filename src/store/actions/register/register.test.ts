@@ -4,6 +4,8 @@ import { registerRequest, registerSuccess, registerFailure } from './register'
 describe('Register actions', () => {
   it('handles registerRequest() action', () => {
     const payload = {
+      firstName: 'Foo',
+      lastName: 'Bar',
       email: 'foo@bar.com',
       password: 'fooBar1'
     }
@@ -16,6 +18,8 @@ describe('Register actions', () => {
   it('handles registerSuccess() action', () => {
     const user = {
       id: 1,
+      firstName: 'Foo',
+      lastName: 'Bar',
       email: 'foo@bar.com'
     }
     expect(registerSuccess(user)).toEqual({

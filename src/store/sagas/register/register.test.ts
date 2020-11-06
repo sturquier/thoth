@@ -24,6 +24,8 @@ describe('Register sagas', () => {
     const action = {
       type: 'REGISTER_REQUEST',
       payload: {
+        firstName: 'Foo',
+        lastName: 'Bar',
         email: 'foo@bar.com',
         password: 'fooBar1'
       }
@@ -31,6 +33,8 @@ describe('Register sagas', () => {
     const saga = registerSaga(action)
     const user = {
       id: 1,
+      firstName: 'Foo',
+      lastName: 'Bar',
       email: 'foo@bar.com'
     }
 
@@ -56,6 +60,8 @@ describe('Register sagas', () => {
     const action = {
       type: 'REGISTER_REQUEST',
       payload: {
+        firstName: 'Foo',
+        lastName: 'Bar',
         email: 'foo@bar.com',
         password: 'fooBar1'
       }

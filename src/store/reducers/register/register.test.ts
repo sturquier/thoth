@@ -8,6 +8,8 @@ describe('Register reducer', () => {
 
   it('handles REGISTER_REQUEST action type', () => {
     const payload = {
+      firstName: 'Foo',
+      lastName: 'Bar',
       email: 'foo@bar.com',
       password: 'fooBar1'
     }
@@ -18,6 +20,8 @@ describe('Register reducer', () => {
   it('handles REGISTER_SUCCESS action type', () => {
     const user = {
       id: 1,
+      firstName: 'Foo',
+      lastName: 'Bar',
       email: 'foo@bar.com'
     }
     const action = registerSuccess(user)

@@ -12,4 +12,15 @@
       width: 100%;
     }
   }
+
+  &-loginLink {
+    font-family: 'Open Sans';
+    width: 242px;
+    cursor: default;
+
+    a {
+      color: var(--cyan-7);
+      font-weight: bold;
+    }
+  }
 }

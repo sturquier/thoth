@@ -15,7 +15,9 @@ h1 {
     }
 
     &-input:hover {
-      border-bottom: 1px solid var(--cyan-7);
+      box-shadow: 0 1px var(--cyan-7);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
 
     &-button {

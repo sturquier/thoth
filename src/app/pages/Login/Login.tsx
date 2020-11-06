@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Button, Form, Input } from 'antd'
-import { UnlockOutlined, UserOutlined } from '@ant-design/icons'
+import { MailOutlined, UnlockOutlined } from '@ant-design/icons'
 
 import { loginRequest } from '../../../store/actions/login/login'
 import './Login.scss'
@@ -23,7 +23,7 @@ export function Login (props: Props) {
       <h1>Login</h1>
       <Form onFinish={onFinish} className='form login-page-form' size='large'>
         <Form.Item name='email' className='form-item'>
-          <Input prefix={<UserOutlined />} placeholder='Email' className='form-item-input' />
+          <Input prefix={<MailOutlined />} placeholder='Email' className='form-item-input' />
         </Form.Item>
         <Form.Item name='password' className='form-item login-page-form-password'>
           <Input.Password prefix={<UnlockOutlined />} placeholder='Password' className='form-item-input' />

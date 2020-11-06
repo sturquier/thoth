@@ -18,5 +18,7 @@ export type ActionType = {
 
 export type UserType = {
   id: number
+  firstName: string
+  lastName: string
   email: string
 }

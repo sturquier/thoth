@@ -35,7 +35,7 @@ exports[`Login <Login /> renders well 1`] = `
       <Input
         className="form-item-input"
         placeholder="Email"
-        prefix={<ForwardRef(UserOutlined) />}
+        prefix={<ForwardRef(MailOutlined) />}
         type="text"
       />
     </FormItem>

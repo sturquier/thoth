@@ -32,6 +32,8 @@ describe('<Register', () => {
     it('dispatches REGISTER_REQUEST action type when triggering onFinish() event on form', () => {
       const wrapper = shallow(<ConnectedRegister store={store} />)
       wrapper.dive().find(Form).simulate('finish', {
+        firstName: 'Foo',
+        lastName: 'Bar',
         email: 'foo@bar.com',
         password: 'fooBar1'
       })
@@ -41,6 +43,8 @@ describe('<Register', () => {
           expect.objectContaining({
             type: actionTypes.REGISTER_REQUEST,
             payload: {
+              firstName: 'Foo',
+              lastName: 'Bar',
               email: 'foo@bar.com',
               password: 'fooBar1'
             }

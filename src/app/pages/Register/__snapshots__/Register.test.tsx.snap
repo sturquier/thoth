@@ -30,12 +30,34 @@ exports[`<Register <Register /> renders well 1`] = `
   >
     <FormItem
       className="form-item"
+      name="firstName"
+    >
+      <Input
+        className="form-item-input"
+        placeholder="First name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <FormItem
+      className="form-item"
+      name="lastName"
+    >
+      <Input
+        className="form-item-input"
+        placeholder="Last name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <FormItem
+      className="form-item"
       name="email"
     >
       <Input
         className="form-item-input"
         placeholder="Email"
-        prefix={<ForwardRef(UserOutlined) />}
+        prefix={<ForwardRef(MailOutlined) />}
         type="text"
       />
     </FormItem>
@@ -65,5 +87,16 @@ exports[`<Register <Register /> renders well 1`] = `
       </Button>
     </FormItem>
   </ForwardRef(InternalForm)>
+  <p
+    className="register-page-loginLink"
+  >
+    Have an account already ? 
+    <NavLink
+      exact={true}
+      to="/login"
+    >
+      Sign in
+    </NavLink>
+  </p>
 </div>
 `;

@@ -1,6 +1,6 @@
 import { actionTypes, UserType } from '../../types/register/register'
 
-export const registerRequest = (payload: { email: string, password: string }) => ({
+export const registerRequest = (payload: { firstName: string, lastName: string, email: string, password: string }) => ({
   type: actionTypes.REGISTER_REQUEST,
   payload
 })
