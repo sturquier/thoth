@@ -36,7 +36,7 @@ export const createHttpRequest = async (url: string, options: any, token: string
 
     return result
   } catch (err) {
-    return err
+    return Promise.reject(err)
   }
 }
 
