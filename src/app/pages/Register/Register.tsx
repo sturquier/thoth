@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
@@ -13,15 +13,24 @@ type Props = {
 }
 
 export function Register (props: Props) {
-  const onFinish = (values: { firstName: string, lastName: string, email: string, password: string }) => {
-    const { firstName, lastName, email, password } = values
+  const [fields, setFields] = useState([
+    { name: ['firstName'], value: '' },
+    { name: ['lastName'], value: '' },
+    { name: ['email'], value: '' },
+    { name: ['password'], value: '' }
+  ])
+
+  const isFormValid = () => fields.every(field => field.value)
+
+  const onFinish = (fields: { firstName: string, lastName: string, email: string, password: string }) => {
+    const { firstName, lastName, email, password } = fields
     props.onRegisterRequest({ firstName, lastName, email, password })
   }
 
   return (
     <div className='register-page'>
       <h1>Register</h1>
-      <Form onFinish={onFinish} className='form register-page-form' size='large'>
+      <Form fields={fields} onFieldsChange={(_, allFields) => setFields(allFields)} onFinish={onFinish} className='form register-page-form' size='large'>
         <Form.Item name='firstName' className='form-item'>
           <Input prefix={<UserOutlined />} placeholder='First name' className='form-item-input' />
         </Form.Item>
@@ -35,7 +44,7 @@ export function Register (props: Props) {
           <Input.Password prefix={<UnlockOutlined />} placeholder='Password' className='form-item-input' />
         </Form.Item>
         <Form.Item className='form-item'>
-          <Button htmlType='submit' className='form-item-button register-page-form-submit'>Register</Button>
+          <Button htmlType='submit' className='form-item-button register-page-form-submit' disabled={!isFormValid()}>Register</Button>
         </Form.Item>
       </Form>
       <p className='register-page-loginLink'>Have an account already ? <NavLink exact to='/login'>Sign in</NavLink></p>
