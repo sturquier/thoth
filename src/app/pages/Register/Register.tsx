@@ -5,10 +5,14 @@ import { connect } from 'react-redux'
 import { Button, Form, Input } from 'antd'
 import { MailOutlined, UnlockOutlined, UserOutlined } from '@ant-design/icons'
 
-import { registerRequest } from '../../../store/actions/register/register'
+import { RootState } from '../../../store/reducers'
+import { RegisterErrorType } from '../../../store/types/register/register'
+import { resetRegisterFormInputError, registerRequest } from '../../../store/actions/register/register'
 import './Register.scss'
 
 type Props = {
+  error: RegisterErrorType
+  onResetRegisterFormInputError: (name: string) => void
   onRegisterRequest: (payload: { firstName: string, lastName: string, email: string, password: string }) => void
 }
 
@@ -20,7 +24,7 @@ export function Register (props: Props) {
     { name: ['password'], value: '' }
   ])
 
-  const isFormValid = () => fields.every(field => field.value)
+  const isFormValid = () => fields.every(field => field.value) && Object.values(props.error.errors.children).filter(field => !field.errors || field.errors.length === 0).length === fields.length
 
   const onFinish = (fields: { firstName: string, lastName: string, email: string, password: string }) => {
     const { firstName, lastName, email, password } = fields
@@ -31,18 +35,46 @@ export function Register (props: Props) {
     <div className='register-page'>
       <h1>Register</h1>
       <Form fields={fields} onFieldsChange={(_, allFields) => setFields(allFields)} onFinish={onFinish} className='form register-page-form' size='large'>
-        <Form.Item name='firstName' className='form-item'>
-          <Input prefix={<UserOutlined />} placeholder='First name' className='form-item-input' />
+        <Form.Item name='firstName' className={`form-item ${props.error?.errors.children.firstName.errors?.length ? 'form-item-has-error' : ''}`}>
+          <Input
+            name='firstName'
+            placeholder='First name'
+            prefix={<UserOutlined />}
+            onChange={e => props.onResetRegisterFormInputError(e.target.name)}
+            className={`form-item-input ${props.error?.errors.children.firstName.errors?.length ? 'form-item-input-has-error' : ''}`}
+          />
         </Form.Item>
-        <Form.Item name='lastName' className='form-item'>
-          <Input prefix={<UserOutlined />} placeholder='Last name' className='form-item-input' />
+        <p className='form-error'>{props.error?.errors.children.firstName.errors?.toString()}</p>
+        <Form.Item name='lastName' className={`form-item ${props.error?.errors.children.lastName.errors?.length ? 'form-item-has-error' : ''}`}>
+          <Input
+            name='lastName'
+            placeholder='Last name'
+            prefix={<UserOutlined />}
+            onChange={e => props.onResetRegisterFormInputError(e.target.name)}
+            className={`form-item-input ${props.error?.errors.children.lastName.errors?.length ? 'form-item-input-has-error' : ''}`}
+          />
         </Form.Item>
-        <Form.Item name='email' className='form-item'>
-          <Input prefix={<MailOutlined />} placeholder='Email' className='form-item-input' />
+        <p className='form-error'>{props.error?.errors.children.lastName.errors?.toString()}</p>
+        <Form.Item name='email' className={`form-item ${props.error?.errors.children.email.errors?.length ? 'form-item-has-error' : ''}`}>
+          <Input
+            name='email'
+            placeholder='Email'
+            prefix={<MailOutlined />}
+            onChange={e => props.onResetRegisterFormInputError(e.target.name)}
+            className={`form-item-input ${props.error?.errors.children.email.errors?.length ? 'form-item-input-has-error' : ''}`}
+          />
         </Form.Item>
-        <Form.Item name='password' className='form-item'>
-          <Input.Password prefix={<UnlockOutlined />} placeholder='Password' className='form-item-input' />
+        <p className='form-error'>{props.error?.errors.children.email.errors?.toString()}</p>
+        <Form.Item name='password' className={`form-item ${props.error?.errors.children.password.errors?.length ? 'form-item-has-error' : ''}`}>
+          <Input.Password
+            name='password'
+            placeholder='Password'
+            prefix={<UnlockOutlined />}
+            onChange={e => props.onResetRegisterFormInputError(e.target.name)}
+            className={`form-item-input ${props.error?.errors.children.password.errors?.length ? 'form-item-input-has-error' : ''}`}
+          />
         </Form.Item>
+        <p className='form-error'>{props.error?.errors.children.password.errors?.toString()}</p>
         <Form.Item className='form-item'>
           <Button htmlType='submit' className='form-item-button register-page-form-submit' disabled={!isFormValid()}>Register</Button>
         </Form.Item>
@@ -52,8 +84,13 @@ export function Register (props: Props) {
   )
 }
 
+const mapStateToProps = (state: RootState) => ({
+  error: state.register.error
+})
+
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onResetRegisterFormInputError: (name: string) => dispatch(resetRegisterFormInputError(name)),
   onRegisterRequest: (payload: { firstName: string, lastName: string, email: string, password: string }) => dispatch(registerRequest(payload))
 })
 
-export default connect(null, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

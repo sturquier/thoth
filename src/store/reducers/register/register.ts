@@ -3,7 +3,18 @@ import { actionTypes, StateType, ActionType } from '../../types/register/registe
 export const initialState: StateType = {
   loading: false,
   user: null,
-  error: null
+  error: {
+    code: null,
+    message: null,
+    errors: {
+      children: {
+        firstName: {},
+        lastName: {},
+        email: {},
+        password: {}
+      }
+    }
+  }
 }
 
 export default function register (state = initialState, action: ActionType = {}) {
@@ -24,6 +35,22 @@ export default function register (state = initialState, action: ActionType = {})
         ...state,
         loading: false,
         error: action.error
+      }
+    case actionTypes.RESET_REGISTER_FORM_INPUT_ERROR:
+      return {
+        ...state,
+        error: {
+          ...state.error,
+          errors: {
+            ...state.error.errors,
+            children: {
+              ...state.error.errors.children,
+              [action.name]: {
+                errors: []
+              }
+            }
+          }
+        }
       }
     default:
       return state

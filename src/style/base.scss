@@ -4,6 +4,10 @@ h1 {
 
 .form {
   &-item {
+    &-has-error {
+      margin-bottom: 5px;
+    }
+
     &-input,
     &-button {
       border: none;
@@ -12,12 +16,22 @@ h1 {
 
     &-input {
       box-shadow: none;
+      color: var(--grey-13);
     }
 
     &-input:hover {
       box-shadow: 0 1px var(--cyan-7);
+    }
+
+    &-input-has-error,
+    &-input:hover {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+    }
+
+    &-input-has-error,
+    &-input-has-error:hover {
+      box-shadow: 0 1px var(--red-6);
     }
 
     &-button {
@@ -34,5 +48,9 @@ h1 {
     &-button:hover {
       box-shadow: 1px 1px 5px var(--grey-8);
     }
+  }
+
+  &-error {
+    color: var(--red-6);
   }
 }

@@ -1,4 +1,4 @@
-import { registerRequest, registerSuccess, registerFailure } from '../../actions/register/register'
+import { registerRequest, registerSuccess, registerFailure, resetRegisterFormInputError } from '../../actions/register/register'
 import reducer, { initialState } from './register'
 
 describe('Register reducer', () => {
@@ -49,5 +49,24 @@ describe('Register reducer', () => {
     const action = registerFailure(error)
     expect(reducer(initialState, action)).toHaveProperty('loading', false)
     expect(reducer(initialState, action)).toHaveProperty('error', error)
+  })
+
+  it('handles RESET_REGISTER_FORM_INPUT_ERROR action type', () => {
+    const name = 'email'
+    const action = resetRegisterFormInputError(name)
+    expect(reducer(initialState, action)).toHaveProperty('error', {
+      code: null,
+      message: null,
+      errors: {
+        children: {
+          firstName: {},
+          lastName: {},
+          email: {
+            errors: []
+          },
+          password: {}
+        }
+      }
+    })
   })
 })

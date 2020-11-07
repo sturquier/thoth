@@ -1,7 +1,8 @@
 export const actionTypes = {
   REGISTER_REQUEST: 'REGISTER_REQUEST',
   REGISTER_SUCCESS: 'REGISTER_SUCCESS',
-  REGISTER_FAILURE: 'REGISTER_FAILURE'
+  REGISTER_FAILURE: 'REGISTER_FAILURE',
+  RESET_REGISTER_FORM_INPUT_ERROR: 'RESET_REGISTER_FORM_INPUT_ERROR'
 }
 
 export type StateType = {
@@ -14,6 +15,7 @@ export type ActionType = {
   type?: string
   user?: UserType
   error?: RegisterErrorType
+  name?: string
 }
 
 export type UserType = {

@@ -14,3 +14,8 @@ export const registerFailure = (error: RegisterErrorType) => ({
   type: actionTypes.REGISTER_FAILURE,
   error
 })
+
+export const resetRegisterFormInputError = (name: string) => ({
+  type: actionTypes.RESET_REGISTER_FORM_INPUT_ERROR,
+  name
+})

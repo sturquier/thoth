@@ -1,4 +1,8 @@
 .ant {
+  &-input {
+    color: inherit !important;
+  }
+
   &-menu {
     ::after {
       border: none !important;

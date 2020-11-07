@@ -1,19 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Register <ConnectedRegister /> renders well 1`] = `
-<Register
-  onRegisterRequest={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
+<ContextProvider
+  value={null}
+>
+  <Register
+    error={null}
+    onRegisterRequest={[Function]}
+    onResetRegisterFormInputError={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
     }
-  }
-/>
+  />
+</ContextProvider>
 `;
 
 exports[`<Register <Register /> renders well 1`] = `
@@ -25,60 +31,249 @@ exports[`<Register <Register /> renders well 1`] = `
   </h1>
   <ForwardRef(InternalForm)
     className="form register-page-form"
+    fields={
+      Array [
+        Object {
+          "name": Array [
+            "firstName",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "lastName",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "email",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "password",
+          ],
+          "value": "",
+        },
+      ]
+    }
+    onFieldsChange={[Function]}
     onFinish={[Function]}
     size="large"
   >
     <FormItem
-      className="form-item"
+      className="form-item "
       name="firstName"
     >
       <Input
-        className="form-item-input"
+        className="form-item-input "
+        name="firstName"
+        onChange={[Function]}
         placeholder="First name"
         prefix={<ForwardRef(UserOutlined) />}
         type="text"
       />
     </FormItem>
+    <p
+      className="form-error"
+    />
     <FormItem
-      className="form-item"
+      className="form-item "
       name="lastName"
     >
       <Input
-        className="form-item-input"
+        className="form-item-input "
+        name="lastName"
+        onChange={[Function]}
         placeholder="Last name"
         prefix={<ForwardRef(UserOutlined) />}
         type="text"
       />
     </FormItem>
+    <p
+      className="form-error"
+    />
     <FormItem
-      className="form-item"
+      className="form-item "
       name="email"
     >
       <Input
-        className="form-item-input"
+        className="form-item-input "
+        name="email"
+        onChange={[Function]}
         placeholder="Email"
         prefix={<ForwardRef(MailOutlined) />}
         type="text"
       />
     </FormItem>
+    <p
+      className="form-error"
+    />
     <FormItem
-      className="form-item"
+      className="form-item "
       name="password"
     >
       <Password
         action="click"
-        className="form-item-input"
+        className="form-item-input "
+        name="password"
+        onChange={[Function]}
         placeholder="Password"
         prefix={<ForwardRef(UnlockOutlined) />}
         visibilityToggle={true}
       />
     </FormItem>
+    <p
+      className="form-error"
+    />
     <FormItem
       className="form-item"
     >
       <Button
         block={false}
         className="form-item-button register-page-form-submit"
+        disabled={true}
+        ghost={false}
+        htmlType="submit"
+        loading={false}
+      >
+        Register
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
+  <p
+    className="register-page-loginLink"
+  >
+    Have an account already ? 
+    <NavLink
+      exact={true}
+      to="/login"
+    >
+      Sign in
+    </NavLink>
+  </p>
+</div>
+`;
+
+exports[`<Register <Register /> renders well with errors 1`] = `
+<div
+  className="register-page"
+>
+  <h1>
+    Register
+  </h1>
+  <ForwardRef(InternalForm)
+    className="form register-page-form"
+    fields={
+      Array [
+        Object {
+          "name": Array [
+            "firstName",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "lastName",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "email",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "password",
+          ],
+          "value": "",
+        },
+      ]
+    }
+    onFieldsChange={[Function]}
+    onFinish={[Function]}
+    size="large"
+  >
+    <FormItem
+      className="form-item "
+      name="firstName"
+    >
+      <Input
+        className="form-item-input "
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item "
+      name="lastName"
+    >
+      <Input
+        className="form-item-input "
+        name="lastName"
+        onChange={[Function]}
+        placeholder="Last name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item form-item-has-error"
+      name="email"
+    >
+      <Input
+        className="form-item-input form-item-input-has-error"
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        prefix={<ForwardRef(MailOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    >
+      This value is already used
+    </p>
+    <FormItem
+      className="form-item form-item-has-error"
+      name="password"
+    >
+      <Password
+        action="click"
+        className="form-item-input form-item-input-has-error"
+        name="password"
+        onChange={[Function]}
+        placeholder="Password"
+        prefix={<ForwardRef(UnlockOutlined) />}
+        visibilityToggle={true}
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    >
+      This value is too short. It should have 7 characters or more
+    </p>
+    <FormItem
+      className="form-item"
+    >
+      <Button
+        block={false}
+        className="form-item-button register-page-form-submit"
+        disabled={true}
         ghost={false}
         htmlType="submit"
         loading={false}

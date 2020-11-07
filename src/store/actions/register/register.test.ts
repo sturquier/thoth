@@ -1,5 +1,5 @@
 import { actionTypes } from '../../types/register/register'
-import { registerRequest, registerSuccess, registerFailure } from './register'
+import { registerRequest, registerSuccess, registerFailure, resetRegisterFormInputError } from './register'
 
 describe('Register actions', () => {
   it('handles registerRequest() action', () => {
@@ -48,6 +48,14 @@ describe('Register actions', () => {
     expect(registerFailure(error)).toEqual({
       type: actionTypes.REGISTER_FAILURE,
       error
+    })
+  })
+
+  it('handles resetRegisterFormInputError() action', () => {
+    const name = 'email'
+    expect(resetRegisterFormInputError(name)).toEqual({
+      type: actionTypes.RESET_REGISTER_FORM_INPUT_ERROR,
+      name
     })
   })
 })
