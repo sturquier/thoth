@@ -29,7 +29,22 @@ describe('Register actions', () => {
   })
 
   it('handles registerFailure() action', () => {
-    const error = 'An error has occurred while trying to register'
+    const error = {
+      code: 400,
+      message: 'Validation Failed',
+      errors: {
+        children: {
+          firstName: {},
+          lastName: {},
+          email: {
+            errors: ['This value is already used']
+          },
+          password: {
+            errors: ['This value is too short. It should have 7 characters or more']
+          }
+        }
+      }
+    }
     expect(registerFailure(error)).toEqual({
       type: actionTypes.REGISTER_FAILURE,
       error

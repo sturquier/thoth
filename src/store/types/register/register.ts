@@ -7,13 +7,13 @@ export const actionTypes = {
 export type StateType = {
   loading: boolean
   user: UserType
-  error: string
+  error: RegisterErrorType
 }
 
 export type ActionType = {
   type?: string
   user?: UserType
-  error?: string
+  error?: RegisterErrorType
 }
 
 export type UserType = {
@@ -21,4 +21,25 @@ export type UserType = {
   firstName: string
   lastName: string
   email: string
+}
+
+export type RegisterErrorType = {
+  code: number
+  message: string
+  errors: {
+    children: {
+      firstName: {
+        errors?: Array<string>
+      }
+      lastName: {
+        errors?: Array<string>
+      }
+      email: {
+        errors?: Array<string>
+      }
+      password: {
+        errors?: Array<string>
+      }
+    }
+  }
 }

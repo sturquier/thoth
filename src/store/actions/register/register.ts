@@ -1,4 +1,4 @@
-import { actionTypes, UserType } from '../../types/register/register'
+import { actionTypes, UserType, RegisterErrorType } from '../../types/register/register'
 
 export const registerRequest = (payload: { firstName: string, lastName: string, email: string, password: string }) => ({
   type: actionTypes.REGISTER_REQUEST,
@@ -10,7 +10,7 @@ export const registerSuccess = (user: UserType) => ({
   user
 })
 
-export const registerFailure = (error: string) => ({
+export const registerFailure = (error: RegisterErrorType) => ({
   type: actionTypes.REGISTER_FAILURE,
   error
 })

@@ -30,7 +30,22 @@ describe('Register reducer', () => {
   })
 
   it('handles REGISTER_FAILURE action type', () => {
-    const error = 'An error has occurred while trying to register'
+    const error = {
+      code: 400,
+      message: 'Validation Failed',
+      errors: {
+        children: {
+          firstName: {},
+          lastName: {},
+          email: {
+            errors: ['This value is already used']
+          },
+          password: {
+            errors: ['This value is too short. It should have 7 characters or more']
+          }
+        }
+      }
+    }
     const action = registerFailure(error)
     expect(reducer(initialState, action)).toHaveProperty('loading', false)
     expect(reducer(initialState, action)).toHaveProperty('error', error)
