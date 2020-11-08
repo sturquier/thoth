@@ -1,5 +1,5 @@
 import { actionTypes } from '../../types/login/login'
-import { loginRequest, loginSuccess, loginFailure, logout } from './login'
+import { loginRequest, loginSuccess, loginFailure, resetLoginFormInputError, logout } from './login'
 
 describe('Login actions', () => {
   it('handles loginRequest() action', () => {
@@ -24,10 +24,18 @@ describe('Login actions', () => {
   })
 
   it('handles loginFailure() action', () => {
-    const error = 'An error has occurred while trying to login'
+    const error = {
+      message: 'Invalid credentials'
+    }
     expect(loginFailure(error)).toEqual({
       type: actionTypes.LOGIN_FAILURE,
       error
+    })
+  })
+
+  it('handles resetLoginFormInputError() action', () => {
+    expect(resetLoginFormInputError()).toEqual({
+      type: actionTypes.RESET_LOGIN_FORM_INPUT_ERROR
     })
   })
 

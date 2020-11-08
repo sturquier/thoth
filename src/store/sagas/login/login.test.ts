@@ -67,7 +67,9 @@ describe('Login sagas', () => {
       }
     }
     const saga = loginSaga(action)
-    const error = 'An error has occurred while trying to login'
+    const error = {
+      message: 'Invalid credentials'
+    }
 
     expect(saga.next()).toHaveProperty('done', false)
 

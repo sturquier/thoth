@@ -5,7 +5,20 @@ exports[`<Register <ConnectedRegister /> renders well 1`] = `
   value={null}
 >
   <Register
-    error={null}
+    error={
+      Object {
+        "code": null,
+        "errors": Object {
+          "children": Object {
+            "email": Object {},
+            "firstName": Object {},
+            "lastName": Object {},
+            "password": Object {},
+          },
+        },
+        "message": null,
+      }
+    }
     onRegisterRequest={[Function]}
     onResetRegisterFormInputError={[Function]}
     store={

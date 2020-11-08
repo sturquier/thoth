@@ -3,7 +3,9 @@ import { actionTypes, StateType, ActionType } from '../../types/login/login'
 export const initialState: StateType = {
   loading: false,
   authenticationToken: null,
-  error: null
+  error: {
+    message: ''
+  }
 }
 
 export default function login (state = initialState, action: ActionType = {}) {
@@ -24,6 +26,11 @@ export default function login (state = initialState, action: ActionType = {}) {
         ...state,
         loading: false,
         error: action.error
+      }
+    case actionTypes.RESET_LOGIN_FORM_INPUT_ERROR:
+      return {
+        ...state,
+        error: initialState.error
       }
     case actionTypes.LOGOUT:
       return {

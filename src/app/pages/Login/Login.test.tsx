@@ -20,6 +20,10 @@ describe('Login', () => {
   })
 
   const props = {
+    error: {
+      message: ''
+    },
+    onResetLoginFormInputError: jest.fn(),
     onLoginRequest: jest.fn()
   }
 
@@ -31,7 +35,7 @@ describe('Login', () => {
 
     it('dispatches LOGIN_REQUEST action type when triggering onFinish() event on form', () => {
       const wrapper = shallow(<ConnectedLogin store={store} />)
-      wrapper.dive().find(Form).simulate('finish', {
+      wrapper.dive().dive().find(Form).simulate('finish', {
         email: 'foo@bar.com',
         password: 'fooBar1'
       })

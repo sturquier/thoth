@@ -1,19 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login <ConnectedLogin /> renders well 1`] = `
-<Login
-  onLoginRequest={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
+<ContextProvider
+  value={null}
+>
+  <Login
+    error={
+      Object {
+        "message": "",
+      }
     }
-  }
-/>
+    onLoginRequest={[Function]}
+    onResetLoginFormInputError={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
 `;
 
 exports[`Login <Login /> renders well 1`] = `
@@ -25,27 +35,51 @@ exports[`Login <Login /> renders well 1`] = `
   </h1>
   <ForwardRef(InternalForm)
     className="form login-page-form"
+    fields={
+      Array [
+        Object {
+          "name": Array [
+            "email",
+          ],
+          "value": "",
+        },
+        Object {
+          "name": Array [
+            "password",
+          ],
+          "value": "",
+        },
+      ]
+    }
+    onFieldsChange={[Function]}
     onFinish={[Function]}
     size="large"
   >
     <FormItem
-      className="form-item"
+      className="form-item "
       name="email"
     >
       <Input
-        className="form-item-input"
+        className="form-item-input "
+        name="email"
+        onChange={[MockFunction]}
         placeholder="Email"
         prefix={<ForwardRef(MailOutlined) />}
         type="text"
       />
     </FormItem>
+    <p
+      className="form-error"
+    />
     <FormItem
       className="form-item login-page-form-password"
       name="password"
     >
       <Password
         action="click"
-        className="form-item-input"
+        className="form-item-input "
+        name="password"
+        onChange={[MockFunction]}
         placeholder="Password"
         prefix={<ForwardRef(UnlockOutlined) />}
         visibilityToggle={true}
@@ -67,6 +101,7 @@ exports[`Login <Login /> renders well 1`] = `
       <Button
         block={false}
         className="form-item-button login-page-form-submit"
+        disabled={true}
         ghost={false}
         htmlType="submit"
         loading={false}

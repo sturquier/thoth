@@ -1,4 +1,4 @@
-import { loginRequest, loginSuccess, loginFailure, logout } from '../../actions/login/login'
+import { loginRequest, loginSuccess, loginFailure, resetLoginFormInputError, logout } from '../../actions/login/login'
 import reducer, { initialState } from './login'
 
 describe('Login reducer', () => {
@@ -25,10 +25,17 @@ describe('Login reducer', () => {
   })
 
   it('handles LOGIN_FAILURE action type', () => {
-    const error = 'An error has occurred while trying to login'
+    const error = {
+      message: 'Invalid credentials'
+    }
     const action = loginFailure(error)
     expect(reducer(initialState, action)).toHaveProperty('loading', false)
     expect(reducer(initialState, action)).toHaveProperty('error', error)
+  })
+
+  it('handles RESET_LOGIN_FORM_INPUT_ERROR action type', () => {
+    const action = resetLoginFormInputError()
+    expect(reducer(initialState, action)).toHaveProperty('error', initialState.error)
   })
 
   it('handles LOGOUT action type', () => {
