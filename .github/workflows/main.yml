@@ -16,6 +16,10 @@ jobs:
         run: npm run test
       - name: Upload coverage to CodeCov
         uses: codecov/codecov-action@v1
+      - name: Create dotenv production file
+        env:
+          PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
+        run: echo $PROD_ENV_FILE | base64 --decode > .env.production
       - name: Build production
         run: npm run build
       - name: Add Heroku remote
