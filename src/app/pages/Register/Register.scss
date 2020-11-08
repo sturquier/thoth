@@ -9,6 +9,10 @@
     font-family: 'Open Sans';
     width: 386px;
 
+    @media (max-width: $xs) {
+      width: 346px;
+    }
+
     &-submit {
       width: 100%;
       margin-top: 30px;
@@ -19,6 +23,10 @@
     font-family: 'Open Sans';
     width: 386px;
     cursor: default;
+
+    @media (max-width: $xs) {
+      width: 346px;
+    }
 
     a {
       color: var(--cyan-7);

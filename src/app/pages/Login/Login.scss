@@ -9,6 +9,10 @@
     font-family: 'Open Sans';
     width: 386px;
 
+    @media (max-width: $xs) {
+      width: 346px;
+    }
+
     &-password {
       margin-bottom: 5px;
     }
@@ -30,6 +34,10 @@
   &-registerLink {
     width: 386px;
     cursor: default;
+
+    @media (max-width: $xs) {
+      width: 346px;
+    }
 
     a {
       color: var(--cyan-7);
