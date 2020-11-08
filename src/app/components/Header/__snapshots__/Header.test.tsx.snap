@@ -78,7 +78,9 @@ exports[`Header <Header /> renders well 1`] = `
       className="menu-dropdown-item"
       onClick={[MockFunction]}
     >
-      Logout
+      <div>
+        Logout
+      </div>
     </MenuItem>
   </SubMenu>
 </Menu>

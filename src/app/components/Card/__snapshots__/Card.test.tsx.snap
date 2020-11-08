@@ -7,10 +7,6 @@ exports[`Card <Card /> renders well 1`] = `
   <div
     className="card-header"
   >
-    <Avatar
-      shape="circle"
-      size="large"
-    />
     <h3
       className="card-header-title"
     >
@@ -24,6 +20,7 @@ exports[`Card <Card /> renders well 1`] = `
       </a>
     </h3>
     <ForwardRef(HeartFilled)
+      className="card-header-heartFilled"
       onClick={[Function]}
     />
   </div>
@@ -45,17 +42,13 @@ exports[`Card <Card /> renders well 1`] = `
 </Card>
 `;
 
-exports[`Card <Card /> renders well with a description containing less than 200 characters 1`] = `
+exports[`Card <Card /> renders well with a description containing less than 100 characters 1`] = `
 <Card
   className="card"
 >
   <div
     className="card-header"
   >
-    <Avatar
-      shape="circle"
-      size="large"
-    />
     <h3
       className="card-header-title"
     >
@@ -69,6 +62,7 @@ exports[`Card <Card /> renders well with a description containing less than 200 
       </a>
     </h3>
     <ForwardRef(HeartFilled)
+      className="card-header-heartFilled"
       onClick={[Function]}
     />
   </div>
@@ -90,17 +84,13 @@ exports[`Card <Card /> renders well with a description containing less than 200 
 </Card>
 `;
 
-exports[`Card <Card /> renders well with a description containing more than 200 characters 1`] = `
+exports[`Card <Card /> renders well with a description containing more than 100 characters 1`] = `
 <Card
   className="card"
 >
   <div
     className="card-header"
   >
-    <Avatar
-      shape="circle"
-      size="large"
-    />
     <h3
       className="card-header-title"
     >
@@ -114,6 +104,7 @@ exports[`Card <Card /> renders well with a description containing more than 200 
       </a>
     </h3>
     <ForwardRef(HeartFilled)
+      className="card-header-heartFilled"
       onClick={[Function]}
     />
   </div>
@@ -121,8 +112,7 @@ exports[`Card <Card /> renders well with a description containing more than 200 
     className="card-content"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec pharetra nibh non odio interdum, ut rutrum lacus condimentum. Nulla facilisi. Aliquam erat volutpat.
-      Donec eros sapien, ultri...
+      Donec pharetra nibh non odio interdum...
   </p>
   <div
     className="card-footer"

@@ -4,6 +4,10 @@
   background: var(--grey-3);
   font-family: 'Open Sans';
 
+  @media (max-width: $sm) {
+    display: none;
+  }
+
   a {
     color: inherit;
   }
@@ -12,12 +16,17 @@
     padding-top: 25px;
   }
 
-  &-item {
-    &-selected {
-      .anticon,
-      a {
-        color: var(--cyan-6);
-      }
+  &-item-selected {
+    .anticon,
+    a {
+      color: var(--cyan-7);
+    }
+  }
+
+  &-item:hover {
+    .anticon,
+    a {
+      color: var(--cyan-6);
     }
   }
 }

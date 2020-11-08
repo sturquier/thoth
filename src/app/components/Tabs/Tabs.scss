@@ -2,4 +2,16 @@
   div[role=tab] {
     font-family: 'Open Sans';
   }
+
+  &-col {
+    width: 321px;
+
+    @media (max-width: $sm) {
+      width: 368px;
+    }
+
+    @media (max-width: $xs) {
+      width: 100%;
+    }
+  }
 }

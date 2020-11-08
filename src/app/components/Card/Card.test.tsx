@@ -49,7 +49,7 @@ describe('Card', () => {
       expect(wrapper).toMatchSnapshot()
     })
 
-    it('renders well with a description containing less than 200 characters', () => {
+    it('renders well with a description containing less than 100 characters', () => {
       const description = 'Lorem ipsum dolor sit amet'
       props = {
         ...props,
@@ -63,7 +63,7 @@ describe('Card', () => {
       expect(wrapper).toMatchSnapshot()
     })
 
-    it('renders well with a description containing more than 200 characters', () => {
+    it('renders well with a description containing more than 100 characters', () => {
       const description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Donec pharetra nibh non odio interdum, ut rutrum lacus condimentum. Nulla facilisi. Aliquam erat volutpat.
       Donec eros sapien, ultrices id sodales vitae, semper blandit lorem.`

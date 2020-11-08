@@ -9,6 +9,15 @@ import { actionTypes } from '../../../store/types/login/login'
 import dummyStore from '../../../../tests/fixtures/store'
 import ConnectedHeader, { Header } from './Header'
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    location: {
+      pathname: '/'
+    }
+  })
+}))
+
 describe('Header', () => {
   const initialState = dummyStore
   const middlewares: Array<Middleware> = []

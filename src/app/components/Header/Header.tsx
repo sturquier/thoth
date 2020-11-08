@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Avatar, Menu } from 'antd'
@@ -14,6 +14,9 @@ type Props = {
 }
 
 export function Header (props: Props) {
+  const history = useHistory()
+  const { location: { pathname } } = history
+
   return (
     <Menu mode='horizontal' className='menu'>
       <Menu.Item className='menu-logo'>
@@ -22,14 +25,16 @@ export function Header (props: Props) {
         </NavLink>
       </Menu.Item>
       <Menu.SubMenu icon={<Avatar icon={<UserOutlined className='menu-dropdown-icon' />} />} className='menu-dropdown'>
-        <Menu.Item className='menu-dropdown-item'>
+        <Menu.Item className={`${pathname === '/profile' ? 'menu-dropdown-item-selected' : 'menu-dropdown-item'}`}>
           <NavLink exact to='/profile'>Profile</NavLink>
         </Menu.Item>
-        <Menu.Item className='menu-dropdown-item'>
+        <Menu.Item className={`${pathname === '/change-password' ? 'menu-dropdown-item-selected' : 'menu-dropdown-item'}`}>
           <NavLink exact to='/change-password'>Change password</NavLink>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item className='menu-dropdown-item' onClick={props.onLogout}>Logout</Menu.Item>
+        <Menu.Item className='menu-dropdown-item' onClick={props.onLogout}>
+          <div>Logout</div>
+        </Menu.Item>
       </Menu.SubMenu>
     </Menu>
   )

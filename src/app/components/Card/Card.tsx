@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { Avatar, Card as AntdCard } from 'antd'
+import { Card as AntdCard } from 'antd'
 import { HeartOutlined, HeartFilled } from '@ant-design/icons'
 import moment from 'moment'
 
@@ -18,19 +18,18 @@ type Props = {
 }
 
 export function Card (props: Props) {
-  const { article: { id, title, description, created_at, url, image, website }, favorites } = props
+  const { article: { id, title, description, created_at, url, website }, favorites } = props
 
-  const descriptionPreview = description ? description.length > 200 ? `${description.substr(0, 200)}...` : description : 'No description provided'
+  const descriptionPreview = description ? description.length > 100 ? `${description.substr(0, 100)}...` : description : 'No description provided'
 
   return (
     <AntdCard className='card'>
       <div className='card-header'>
-        <Avatar size='large' src={image} />
         <h3 className='card-header-title'>
           <a href={url} className='card-header-title-link' target='_blank' rel='noopener noreferrer'>{title}</a>
         </h3>
         {favorites.find(favorite => favorite.id === id) ? (
-          <HeartFilled onClick={() => props.onRemoveFavorite({ article: id })} />
+          <HeartFilled onClick={() => props.onRemoveFavorite({ article: id })} className='card-header-heartFilled' />
         ) : (
           <HeartOutlined onClick={() => props.onCreateFavorite({ article: id })} />
         )}

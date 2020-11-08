@@ -16,7 +16,7 @@ export default function Tabs (props: Props) {
       <AntdTabs.TabPane key='articles' tab={`All (${props.articles.length})`}>
         <Row gutter={[16, 16]}>
           {props.articles.map((article, i) =>
-            <Col key={i} span={6}>
+            <Col key={i} className='tabs-col'>
               <Card article={article} />
             </Col>
           )}
@@ -25,7 +25,7 @@ export default function Tabs (props: Props) {
       <AntdTabs.TabPane key='favorites' tab={`My favorites (${props.favorites.length})`}>
         <Row gutter={[16, 16]}>
           {props.favorites.map((article, i) =>
-            <Col key={i} span={6}>
+            <Col key={i} className='tabs-col'>
               <Card article={article} />
             </Col>
           )}

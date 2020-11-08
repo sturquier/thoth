@@ -21,8 +21,8 @@ exports[`<Tabs /> renders well 1`] = `
       }
     >
       <Col
+        className="tabs-col"
         key="0"
-        span={6}
       >
         <Connect(Card)
           article={
@@ -36,8 +36,8 @@ exports[`<Tabs /> renders well 1`] = `
         />
       </Col>
       <Col
+        className="tabs-col"
         key="1"
-        span={6}
       >
         <Connect(Card)
           article={
@@ -68,8 +68,8 @@ exports[`<Tabs /> renders well 1`] = `
       }
     >
       <Col
+        className="tabs-col"
         key="0"
-        span={6}
       >
         <Connect(Card)
           article={

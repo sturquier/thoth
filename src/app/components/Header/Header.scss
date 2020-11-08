@@ -16,8 +16,23 @@
       }
     }
 
-    &-item {
+    &-item,
+    &-item-selected {
       font-family: 'Open Sans';
+    }
+
+    &-item-selected {
+      a,
+      a:hover {
+        color: var(--cyan-7);
+      }
+    }
+
+    &-item {
+      a:hover,
+      div:hover {
+        color: var(--cyan-6);
+      }
     }
   }
 }
