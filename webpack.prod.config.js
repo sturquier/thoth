@@ -57,9 +57,9 @@ module.exports = {
     }),
     new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
     new CompressionPlugin({
-      test : /\.(js|css)(\?.*)?$/i,
+      test: /\.(js|css)(\?.*)?$/i,
       minRatio: Number.MAX_SAFE_INTEGER,
-      deleteOriginalAssets : false
+      deleteOriginalAssets: false
     })
   ]
 }

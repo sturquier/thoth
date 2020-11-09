@@ -54,6 +54,11 @@ h1 {
     &-button:hover {
       box-shadow: 1px 1px 5px var(--grey-8);
     }
+
+    &-button:disabled,
+    &-button:disabled:hover {
+      background: var(--grey-5);
+    }
   }
 
   &-error {
