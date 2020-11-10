@@ -1,5 +1,5 @@
-export const createHttpRequest = async (url: string, options: { params: object, method: string }, token: string = null) => {
-  const { params, method }: { params: object, method: string } = options
+export const createHttpRequest = async (url: string, options: { params?: object, method: string }, token: string = null) => {
+  const { params, method }: { params?: object, method: string } = options
 
   const fetchOptions = {
     method,
