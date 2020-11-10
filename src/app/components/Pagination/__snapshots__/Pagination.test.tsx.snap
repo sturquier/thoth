@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pagination /> renders well 1`] = `
+<div
+  className="pagination"
+>
+  <Button
+    block={false}
+    className="pagination-previous"
+    ghost={false}
+    htmlType="button"
+    icon={<ForwardRef(LeftOutlined) />}
+    loading={false}
+  />
+  <Button
+    block={false}
+    className="pagination-next"
+    ghost={false}
+    htmlType="button"
+    icon={<ForwardRef(RightOutlined) />}
+    loading={false}
+  />
+</div>
+`;

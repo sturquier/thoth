@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 60px;
+
+  &-previous,
+  &-next {
+    border: none;
+    box-shadow: none;
+  }
+
+  &-previous,
+  &-next,
+  &-previous:hover,
+  &-next:hover,
+  &-previous:focus,
+  &-next:focus {
+    background: transparent;
+    color: var(--cyan-7);
+  }
+}

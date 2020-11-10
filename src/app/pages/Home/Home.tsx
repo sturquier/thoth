@@ -7,7 +7,7 @@ import { ArticleType } from '../../../store/types/articles/articles'
 import { fetchArticlesRequest } from '../../../store/actions/articles/articles'
 import { fetchFavoritesRequest } from '../../../store/actions/favorites/favorites'
 import { WithAuthentication } from '../../hoc'
-import { Loader, Page, Tabs } from '../../components'
+import { Loader, Page, Pagination, Tabs } from '../../components'
 
 type Props = {
   loadingArticles: boolean
@@ -29,6 +29,7 @@ export function Home (props: Props) {
       {(props.loadingArticles || props.loadingFavorites) && <Loader />}
       <h1>Home</h1>
       <Tabs articles={props.articles} favorites={props.favorites} />
+      <Pagination />
     </Page>
   )
 }

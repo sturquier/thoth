@@ -60,5 +60,6 @@ exports[`Home <Home /> renders well 1`] = `
       ]
     }
   />
+  <Pagination />
 </Page>
 `;
