@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useHistory, NavLink } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
@@ -7,21 +7,28 @@ import { MenuOutlined, UserOutlined } from '@ant-design/icons'
 
 import { RootState } from '../../../store/reducers'
 import { ProfileType } from '../../../store/types/profile/profile'
+import { fetchProfileRequest } from '../../../store/actions/profile/profile'
 import { logout } from '../../../store/actions/login/login'
 import './Header.scss'
 
 type Props = {
   profile: ProfileType
+  onFetchProfile: () => void
   onLogout: () => void
 }
 
 export function Header (props: Props) {
   const history = useHistory()
   const { location: { pathname } } = history
+  const { profile } = props
 
-  const getInitials = () => `${props.profile.firstName.substr(0, 1)}${props.profile.lastName.substr(0, 1)}`
+  useEffect(() => {
+    !profile && props.onFetchProfile()
+  }, [])
 
-  const getIcon = () => props.profile ? <Avatar className='menu-dropdown-initials'>{getInitials()}</Avatar> : <Avatar icon={<UserOutlined className='menu-dropdown-icon' />} />
+  const getInitials = () => `${profile.firstName.substr(0, 1)}${profile.lastName.substr(0, 1)}`
+
+  const getIcon = () => profile ? <Avatar className='menu-dropdown-initials'>{getInitials()}</Avatar> : <Avatar icon={<UserOutlined className='menu-dropdown-icon' />} />
 
   return (
     <Menu mode='horizontal' className='menu'>
@@ -51,6 +58,7 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onFetchProfile: () => dispatch(fetchProfileRequest()),
   onLogout: () => dispatch(logout())
 })
 

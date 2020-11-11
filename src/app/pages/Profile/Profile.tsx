@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Button, Form, Input } from 'antd'
@@ -6,7 +6,7 @@ import { MailOutlined, UserOutlined } from '@ant-design/icons'
 
 import { RootState } from '../../../store/reducers'
 import { ProfileType, ProfileErrorType } from '../../../store/types/profile/profile'
-import { fetchProfileRequest, resetProfileFormInputError, updateProfileRequest } from '../../../store/actions/profile/profile'
+import { resetProfileFormInputError, updateProfileRequest } from '../../../store/actions/profile/profile'
 import { WithAuthentication } from '../../hoc'
 import { Loader, Page } from '../../components'
 import './Profile.scss'
@@ -15,16 +15,11 @@ type Props = {
   loading: boolean
   profile: ProfileType
   error: ProfileErrorType
-  onFetchProfile: () => void
   onResetProfileFormInputError: (name: string) => void
   onUpdateProfile: (payload: { firstName: string, lastName: string, email: string }) => void
 }
 
 export function Profile (props: Props) {
-  useEffect(() => {
-    !props.profile && props.onFetchProfile()
-  }, [])
-
   const [fields, setFields] = useState([
     { name: ['firstName'], value: '' },
     { name: ['lastName'], value: '' },
@@ -91,7 +86,6 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onFetchProfile: () => dispatch(fetchProfileRequest()),
   onResetProfileFormInputError: (name: string) => dispatch(resetProfileFormInputError(name)),
   onUpdateProfile: (payload: { firstName: string, lastName: string, email: string }) => dispatch(updateProfileRequest(payload))
 })

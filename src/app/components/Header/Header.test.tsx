@@ -35,6 +35,7 @@ describe('Header', () => {
       lastName: 'Bar',
       email: 'foo@bar.com'
     },
+    onFetchProfile: jest.fn(),
     onLogout: jest.fn()
   }
 
