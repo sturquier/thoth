@@ -11,6 +11,7 @@ import { resetLoginFormInputError, loginRequest } from '../../../store/actions/l
 import './Login.scss'
 
 type Props = {
+  loading: boolean
   error: LoginErrorType
   onResetLoginFormInputError: () => void
   onLoginRequest: (payload: { email: string, password: string }) => void
@@ -56,7 +57,7 @@ export function Login (props: Props) {
           <NavLink exact to='/reset-password'>Forgot password ?</NavLink>
         </p>
         <Form.Item className='form-item'>
-          <Button htmlType='submit' className='form-item-button login-page-form-submit' disabled={!isFormValid()}>Sign in</Button>
+          <Button htmlType='submit' loading={props.loading} disabled={!isFormValid()} className='form-item-button login-page-form-submit'>Sign in</Button>
         </Form.Item>
       </Form>
       <p className='login-page-registerLink'>No account ? <NavLink exact to='/register'>Sign up here</NavLink></p>
@@ -65,6 +66,7 @@ export function Login (props: Props) {
 }
 
 const mapStateToProps = (state: RootState) => ({
+  loading: state.login.loading,
   error: state.login.error
 })
 

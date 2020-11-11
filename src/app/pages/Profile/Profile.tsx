@@ -76,7 +76,7 @@ export function Profile (props: Props) {
           </Form.Item>
           <p className='form-error'>{props.error?.errors.children.email.errors?.toString()}</p>
           <Form.Item className='form-item'>
-            <Button htmlType='submit' className='form-item-button profile-page-form-submit' disabled={!isFormValid()}>Update</Button>
+            <Button htmlType='submit' loading={props.loading} disabled={!isFormValid()} className='form-item-button profile-page-form-submit'>Update</Button>
           </Form.Item>
         </Form>
       )}

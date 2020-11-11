@@ -20,6 +20,7 @@ describe('<Register', () => {
   })
 
   let props = {
+    loading: false,
     error: {
       code: null,
       message: null,

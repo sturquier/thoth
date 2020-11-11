@@ -20,6 +20,7 @@ describe('Login', () => {
   })
 
   const props = {
+    loading: false,
     error: {
       message: ''
     },

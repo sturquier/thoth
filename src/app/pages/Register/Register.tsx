@@ -11,6 +11,7 @@ import { resetRegisterFormInputError, registerRequest } from '../../../store/act
 import './Register.scss'
 
 type Props = {
+  loading: boolean
   error: RegisterErrorType
   onResetRegisterFormInputError: (name: string) => void
   onRegisterRequest: (payload: { firstName: string, lastName: string, email: string, password: string }) => void
@@ -76,7 +77,7 @@ export function Register (props: Props) {
         </Form.Item>
         <p className='form-error'>{props.error?.errors.children.password.errors?.toString()}</p>
         <Form.Item className='form-item'>
-          <Button htmlType='submit' className='form-item-button register-page-form-submit' disabled={!isFormValid()}>Register</Button>
+          <Button htmlType='submit' loading={props.loading} disabled={!isFormValid()} className='form-item-button register-page-form-submit'>Register</Button>
         </Form.Item>
       </Form>
       <p className='register-page-loginLink'>Have an account already ? <NavLink exact to='/login'>Sign in</NavLink></p>
@@ -85,6 +86,7 @@ export function Register (props: Props) {
 }
 
 const mapStateToProps = (state: RootState) => ({
+  loading: state.register.loading,
   error: state.register.error
 })
 

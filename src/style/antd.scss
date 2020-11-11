@@ -1,4 +1,12 @@
 .ant {
+  &-btn {
+    &-loading {
+      &::before {
+        background: transparent !important;
+      }
+    }
+  }
+
   &-input {
     color: inherit !important;
   }
