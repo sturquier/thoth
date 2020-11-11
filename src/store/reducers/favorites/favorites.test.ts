@@ -13,8 +13,8 @@ describe('Favorites reducer', () => {
 
   it('handles FETCH_FAVORITES_SUCCESS action type', () => {
     const favorites = [
-      { id: 1, title: 'First favorite', created_at: new Date(), url: 'https://www.foo.com/favorite' },
-      { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', created_at: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
+      { id: 1, title: 'First favorite', createdAt: new Date(), url: 'https://www.foo.com/favorite' },
+      { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', createdAt: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
     ]
     const action = fetchFavoritesSuccess(favorites)
     expect(reducer(initialState, action)).toHaveProperty('loading', false)
@@ -40,7 +40,7 @@ describe('Favorites reducer', () => {
       article: {
         id: 1,
         title: 'First favorite',
-        created_at: new Date(),
+        createdAt: new Date(),
         url: 'https://www.foo.com/favorite'
       }
     }
@@ -70,8 +70,8 @@ describe('Favorites reducer', () => {
     const state = {
       ...initialState,
       favorites: [
-        { id: 1, title: 'First favorite', created_at: new Date(), url: 'https://www.foo.com/favorite' },
-        { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', created_at: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
+        { id: 1, title: 'First favorite', createdAt: new Date(), url: 'https://www.foo.com/favorite' },
+        { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', createdAt: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
       ]
     }
     expect(reducer(state, action)).toHaveProperty('loading', false)

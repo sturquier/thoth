@@ -18,7 +18,7 @@ type Props = {
 }
 
 export function Card (props: Props) {
-  const { article: { id, title, description, created_at, url, website }, favorites } = props
+  const { article: { id, title, description, createdAt, url, website }, favorites } = props
 
   const descriptionPreview = description ? description.length > 100 ? `${description.substr(0, 100)}...` : description : 'No description provided'
 
@@ -36,7 +36,7 @@ export function Card (props: Props) {
       </div>
       <p className='card-content'>{descriptionPreview}</p>
       <div className='card-footer'>
-        <span>{moment(created_at).format('YYYY-MM-DD')}</span>
+        <span>{moment(createdAt).format('YYYY-MM-DD')}</span>
         <span>{website.name}</span>
       </div>
     </AntdCard>

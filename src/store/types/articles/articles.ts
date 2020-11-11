@@ -22,7 +22,7 @@ export type ArticleType = {
   id: number
   title: string
   description?: string
-  created_at: Date
+  createdAt: Date
   url: string
   image?: string
   website: WebsiteType

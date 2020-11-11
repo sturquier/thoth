@@ -13,8 +13,8 @@ describe('Articles reducer', () => {
 
   it('handles FETCH_ARTICLES_SUCCESS action type', () => {
     const articles = [
-      { id: 1, title: 'First article', created_at: new Date(), url: 'https://www.foo.com/article' },
-      { id: 2, title: 'Second article', description: 'Lorem Ipsum', created_at: new Date(), url: 'https://www.bar.com/article', image: 'https://www.bar.com/article-image.jpeg' }
+      { id: 1, title: 'First article', createdAt: new Date(), url: 'https://www.foo.com/article' },
+      { id: 2, title: 'Second article', description: 'Lorem Ipsum', createdAt: new Date(), url: 'https://www.bar.com/article', image: 'https://www.bar.com/article-image.jpeg' }
     ]
     const action = fetchArticlesSuccess(articles)
     expect(reducer(initialState, action)).toHaveProperty('loading', false)

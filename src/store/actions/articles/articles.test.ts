@@ -10,8 +10,8 @@ describe('Articles actions', () => {
 
   it('handles fetchArticlesSuccess() action', () => {
     const articles = [
-      { id: 1, title: 'First article', created_at: new Date(), url: 'https://www.foo.com/article' },
-      { id: 2, title: 'Second article', description: 'Lorem Ipsum', created_at: new Date(), url: 'https://www.bar.com/article', image: 'https://www.bar.com/article-image.jpeg' }
+      { id: 1, title: 'First article', createdAt: new Date(), url: 'https://www.foo.com/article' },
+      { id: 2, title: 'Second article', description: 'Lorem Ipsum', createdAt: new Date(), url: 'https://www.bar.com/article', image: 'https://www.bar.com/article-image.jpeg' }
     ]
     expect(fetchArticlesSuccess(articles)).toEqual({
       type: actionTypes.FETCH_ARTICLES_SUCCESS,

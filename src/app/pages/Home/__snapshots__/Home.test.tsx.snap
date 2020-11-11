@@ -34,13 +34,13 @@ exports[`Home <Home /> renders well 1`] = `
     articles={
       Array [
         Object {
-          "created_at": "2020-12-31",
+          "createdAt": "2020-12-31",
           "id": 1,
           "title": "First article",
           "url": "https://www.foo.com/article",
         },
         Object {
-          "created_at": "2020-12-30",
+          "createdAt": "2020-12-30",
           "description": "Lorem Ipsum",
           "id": 2,
           "image": "https://www.bar.com/article-image.jpeg",
@@ -52,7 +52,7 @@ exports[`Home <Home /> renders well 1`] = `
     favorites={
       Array [
         Object {
-          "created_at": "2020-12-31",
+          "createdAt": "2020-12-31",
           "id": 1,
           "title": "First article",
           "url": "https://www.foo.com/article",

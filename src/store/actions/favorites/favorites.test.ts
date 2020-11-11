@@ -10,8 +10,8 @@ describe('Favorites actions', () => {
 
   it('handles fetchFavoritesSuccess() action', () => {
     const favorites = [
-      { id: 1, title: 'First favorite', created_at: new Date(), url: 'https://www.foo.com/favorite' },
-      { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', created_at: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
+      { id: 1, title: 'First favorite', createdAt: new Date(), url: 'https://www.foo.com/favorite' },
+      { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', createdAt: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
     ]
     expect(fetchFavoritesSuccess(favorites)).toEqual({
       type: actionTypes.FETCH_FAVORITES_SUCCESS,
@@ -41,7 +41,7 @@ describe('Favorites actions', () => {
       article: {
         id: 1,
         title: 'First favorite',
-        created_at: new Date(),
+        createdAt: new Date(),
         url: 'https://www.foo.com/favorite'
       }
     }

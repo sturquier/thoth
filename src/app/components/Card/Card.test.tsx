@@ -22,7 +22,7 @@ describe('Card', () => {
     article: {
       id: 1,
       title: 'First article',
-      created_at: moment('2020-12-31').format('YYYY-MM-DD'),
+      createdAt: moment('2020-12-31').format('YYYY-MM-DD'),
       url: 'https://www.foo.com/article',
       website: {
         id: 1,
@@ -30,7 +30,7 @@ describe('Card', () => {
       }
     },
     favorites: [
-      { id: 1, title: 'First article', created_at: moment('2020-12-31').format('YYYY-MM-DD'), url: 'https://www.foo.com/article' }
+      { id: 1, title: 'First article', createdAt: moment('2020-12-31').format('YYYY-MM-DD'), url: 'https://www.foo.com/article' }
     ],
     onCreateFavorite: jest.fn(),
     onRemoveFavorite: jest.fn()
