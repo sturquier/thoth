@@ -4,7 +4,23 @@ exports[`<Page /> renders well 1`] = `
 <Fragment>
   <Connect(Header) />
   <div
-    className="page"
+    className="page "
+  >
+    <Sidebar />
+    <div
+      className="page-content"
+    >
+      Hello world !
+    </div>
+  </div>
+</Fragment>
+`;
+
+exports[`<Page /> renders well with className 1`] = `
+<Fragment>
+  <Connect(Header) />
+  <div
+    className="page profile-page"
   >
     <Sidebar />
     <div

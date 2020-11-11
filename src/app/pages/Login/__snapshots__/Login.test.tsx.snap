@@ -10,6 +10,7 @@ exports[`Login <ConnectedLogin /> renders well 1`] = `
         "message": "",
       }
     }
+    loading={false}
     onLoginRequest={[Function]}
     onResetLoginFormInputError={[Function]}
     store={

@@ -9,7 +9,7 @@ import { actionTypes } from '../../../store/types/register/register'
 import dummyStore from '../../../../tests/fixtures/store'
 import ConnectedRegister, { Register } from './Register'
 
-describe('<Register', () => {
+describe('Register', () => {
   const initialState = dummyStore
   const middlewares: Array<Middleware> = []
   const mockStore = configureStore(middlewares)

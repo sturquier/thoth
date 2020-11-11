@@ -6,6 +6,7 @@ exports[`<Loader /> renders well 1`] = `
 >
   <Spin
     className="loader-wrapper-spinner"
+    indicator={<ForwardRef(LoadingOutlined) />}
     size="large"
     spinning={true}
     wrapperClassName=""

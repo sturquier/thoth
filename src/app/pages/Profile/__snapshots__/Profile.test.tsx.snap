@@ -1,9 +1,213 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Profile /> renders well 1`] = `
-<Page>
+exports[`Profile <ConnectedProfile /> renders well 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Component
+    error={
+      Object {
+        "code": null,
+        "errors": Object {
+          "children": Object {
+            "email": Object {},
+            "firstName": Object {},
+            "lastName": Object {},
+          },
+        },
+        "message": null,
+      }
+    }
+    loading={false}
+    onResetProfileFormInputError={[Function]}
+    onUpdateProfile={[Function]}
+    profile={null}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`Profile <Profile /> renders well 1`] = `
+<Page
+  className="profile-page"
+>
   <h1>
     Profile
   </h1>
+  <ForwardRef(InternalForm)
+    className="form profile-page-form"
+    initialValues={
+      Object {
+        "email": "foo@bar.com",
+        "firstName": "Foo",
+        "id": 1,
+        "lastName": "Bar",
+      }
+    }
+    onFieldsChange={[Function]}
+    onFinish={[Function]}
+    size="large"
+  >
+    <FormItem
+      className="form-item "
+      name="firstName"
+    >
+      <Input
+        className="form-item-input "
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item "
+      name="lastName"
+    >
+      <Input
+        className="form-item-input "
+        name="lastName"
+        onChange={[Function]}
+        placeholder="Last name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item "
+      name="email"
+    >
+      <Input
+        className="form-item-input "
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        prefix={<ForwardRef(MailOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item"
+    >
+      <Button
+        block={false}
+        className="form-item-button profile-page-form-submit"
+        disabled={true}
+        ghost={false}
+        htmlType="submit"
+        loading={false}
+      >
+        Update
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
+</Page>
+`;
+
+exports[`Profile <Profile /> renders well with errors 1`] = `
+<Page
+  className="profile-page"
+>
+  <h1>
+    Profile
+  </h1>
+  <ForwardRef(InternalForm)
+    className="form profile-page-form"
+    initialValues={
+      Object {
+        "email": "foo@bar.com",
+        "firstName": "Foo",
+        "id": 1,
+        "lastName": "Bar",
+      }
+    }
+    onFieldsChange={[Function]}
+    onFinish={[Function]}
+    size="large"
+  >
+    <FormItem
+      className="form-item "
+      name="firstName"
+    >
+      <Input
+        className="form-item-input "
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item "
+      name="lastName"
+    >
+      <Input
+        className="form-item-input "
+        name="lastName"
+        onChange={[Function]}
+        placeholder="Last name"
+        prefix={<ForwardRef(UserOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    />
+    <FormItem
+      className="form-item form-item-has-error"
+      name="email"
+    >
+      <Input
+        className="form-item-input form-item-input-has-error"
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        prefix={<ForwardRef(MailOutlined) />}
+        type="text"
+      />
+    </FormItem>
+    <p
+      className="form-error"
+    >
+      This value is already used
+    </p>
+    <FormItem
+      className="form-item"
+    >
+      <Button
+        block={false}
+        className="form-item-button profile-page-form-submit"
+        disabled={true}
+        ghost={false}
+        htmlType="submit"
+        loading={false}
+      >
+        Update
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
 </Page>
 `;

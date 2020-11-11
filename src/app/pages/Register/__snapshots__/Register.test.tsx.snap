@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Register <ConnectedRegister /> renders well 1`] = `
+exports[`Register <ConnectedRegister /> renders well 1`] = `
 <ContextProvider
   value={null}
 >
@@ -19,6 +19,7 @@ exports[`<Register <ConnectedRegister /> renders well 1`] = `
         "message": null,
       }
     }
+    loading={false}
     onRegisterRequest={[Function]}
     onResetRegisterFormInputError={[Function]}
     store={
@@ -35,7 +36,7 @@ exports[`<Register <ConnectedRegister /> renders well 1`] = `
 </ContextProvider>
 `;
 
-exports[`<Register <Register /> renders well 1`] = `
+exports[`Register <Register /> renders well 1`] = `
 <div
   className="register-page"
 >
@@ -170,7 +171,7 @@ exports[`<Register <Register /> renders well 1`] = `
 </div>
 `;
 
-exports[`<Register <Register /> renders well with errors 1`] = `
+exports[`Register <Register /> renders well with errors 1`] = `
 <div
   className="register-page"
 >

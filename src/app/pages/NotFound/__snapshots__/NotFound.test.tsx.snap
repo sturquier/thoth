@@ -4,7 +4,9 @@ exports[`<NotFound /> renders well 1`] = `
 <div
   className="not-found-page"
 >
-  <h1>
+  <h1
+    className="not-found-page-title"
+  >
     404
   </h1>
   <div
@@ -18,7 +20,9 @@ exports[`<NotFound /> renders well 1`] = `
       </code>
        not found.
     </p>
-    <p>
+    <p
+      className="not-found-page-subtitle-link"
+    >
       Go back to 
       <Link
         to="/"

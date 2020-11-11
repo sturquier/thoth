@@ -1,19 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header <ConnectedHeader /> renders well 1`] = `
-<Header
-  onLogout={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
+<ContextProvider
+  value={null}
+>
+  <Header
+    onFetchProfile={[Function]}
+    onLogout={[Function]}
+    profile={null}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
     }
-  }
-/>
+  />
+</ContextProvider>
 `;
 
 exports[`Header <Header /> renders well 1`] = `
@@ -29,9 +35,10 @@ exports[`Header <Header /> renders well 1`] = `
       to="/"
     >
       <Avatar
+        className="menu-logo-icon"
+        icon={<ForwardRef(MenuOutlined) />}
         shape="circle"
-        size={46}
-        src="logo.svg"
+        size="default"
       />
     </NavLink>
   </MenuItem>
@@ -39,14 +46,12 @@ exports[`Header <Header /> renders well 1`] = `
     className="menu-dropdown"
     icon={
       <Avatar
-        icon={
-          <ForwardRef(UserOutlined)
-            className="menu-dropdown-icon"
-          />
-        }
+        className="menu-dropdown-initials"
         shape="circle"
         size="default"
-      />
+      >
+        FB
+      </Avatar>
     }
   >
     <MenuItem

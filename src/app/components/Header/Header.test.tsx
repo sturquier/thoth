@@ -47,7 +47,7 @@ describe('Header', () => {
 
     it('dispatches LOGOUT action type when triggering onClick() event on logout menu item', () => {
       const wrapper = shallow(<ConnectedHeader store={store} />)
-      wrapper.dive().find(Menu.Item).at(3).simulate('click')
+      wrapper.dive().dive().find(Menu.Item).at(3).simulate('click')
 
       expect(store.getActions()).toEqual(
         expect.arrayContaining([
