@@ -3,13 +3,15 @@ import { useHistory, NavLink } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Avatar, Menu } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { MenuOutlined, UserOutlined } from '@ant-design/icons'
 
-import logo from '../../../../public/logo.svg'
+import { RootState } from '../../../store/reducers'
+import { ProfileType } from '../../../store/types/profile/profile'
 import { logout } from '../../../store/actions/login/login'
 import './Header.scss'
 
 type Props = {
+  profile: ProfileType
   onLogout: () => void
 }
 
@@ -17,14 +19,18 @@ export function Header (props: Props) {
   const history = useHistory()
   const { location: { pathname } } = history
 
+  const getInitials = () => `${props.profile.firstName.substr(0, 1)}${props.profile.lastName.substr(0, 1)}`
+
+  const getIcon = () => props.profile ? <Avatar className='menu-dropdown-initials'>{getInitials()}</Avatar> : <Avatar icon={<UserOutlined className='menu-dropdown-icon' />} />
+
   return (
     <Menu mode='horizontal' className='menu'>
       <Menu.Item className='menu-logo'>
         <NavLink exact to='/'>
-          <Avatar size={46} src={logo} />
+          <Avatar icon={<MenuOutlined />} className='menu-logo-icon' />
         </NavLink>
       </Menu.Item>
-      <Menu.SubMenu icon={<Avatar icon={<UserOutlined className='menu-dropdown-icon' />} />} className='menu-dropdown'>
+      <Menu.SubMenu icon={getIcon()} className='menu-dropdown'>
         <Menu.Item className={`${pathname === '/profile' ? 'menu-dropdown-item-selected' : 'menu-dropdown-item'}`}>
           <NavLink exact to='/profile'>Profile</NavLink>
         </Menu.Item>
@@ -40,8 +46,12 @@ export function Header (props: Props) {
   )
 }
 
+const mapStateToProps = (state: RootState) => ({
+  profile: state.profile.profile
+})
+
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onLogout: () => dispatch(logout())
 })
 
-export default connect(null, mapDispatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

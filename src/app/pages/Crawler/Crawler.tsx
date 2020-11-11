@@ -20,7 +20,7 @@ type Props = {
 
 export function Crawler (props: Props) {
   useEffect(() => {
-    props.onFetchWebsites()
+    !props.websites.length && props.onFetchWebsites()
   }, [])
 
   const onFinish = (values: { checkboxes: Array<string> }) => {
@@ -30,24 +30,27 @@ export function Crawler (props: Props) {
 
   return (
     <Page>
-      {props.loading && <Loader />}
       <h1>Crawler</h1>
-      <Form onFinish={onFinish} className='form crawler-page-form'>
-        <Form.Item name='checkboxes' className='form-item'>
-          <Checkbox.Group>
-            <Row gutter={[16, 16]}>
-              {props.websites.map((website, i) =>
-                <Col key={i} span={12}>
-                  <Checkbox value={website.slug} className='form-item-checkbox'>{website.name}</Checkbox>
-                </Col>
-              )}
-            </Row>
-          </Checkbox.Group>
-        </Form.Item>
-        <Form.Item className='form-item'>
-          <Button htmlType='submit' className='form-item-button crawler-page-form-button'>Submit</Button>
-        </Form.Item>
-      </Form>
+      {props.loading ? (
+        <Loader />
+      ) : (
+        <Form onFinish={onFinish} className='form crawler-page-form'>
+          <Form.Item name='checkboxes' className='form-item'>
+            <Checkbox.Group>
+              <Row gutter={[16, 16]}>
+                {props.websites.map((website, i) =>
+                  <Col key={i} span={12}>
+                    <Checkbox value={website.slug} className='form-item-checkbox'>{website.name}</Checkbox>
+                  </Col>
+                )}
+              </Row>
+            </Checkbox.Group>
+          </Form.Item>
+          <Form.Item className='form-item'>
+            <Button htmlType='submit' className='form-item-button crawler-page-form-button'>Submit</Button>
+          </Form.Item>
+        </Form>
+      )}
     </Page>
   )
 }

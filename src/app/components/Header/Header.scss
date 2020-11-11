@@ -2,18 +2,36 @@
   background: var(--cyan-7);
 
   &-logo {
-    margin-bottom: 5px;
+    &-icon {
+      display: none;
+
+      @media (max-width: $sm) {
+        display: block;
+        margin-bottom: 5px;
+        background: var(--cyan-7);
+
+        svg {
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
   }
 
   &-dropdown {
     float: right;
     padding-right: 22px;
+    margin-bottom: 5px;
 
     &-icon {
       svg {
         height: 18px;
         width: 18px;
       }
+    }
+
+    &-initials {
+      font-family: 'Open Sans';
     }
 
     &-item,

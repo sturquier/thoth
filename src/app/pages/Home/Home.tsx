@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
@@ -20,16 +20,23 @@ type Props = {
 
 export function Home (props: Props) {
   useEffect(() => {
-    props.onFetchArticles()
-    props.onFetchFavorites()
+    if (!props.articles.length) {
+      props.onFetchArticles()
+      props.onFetchFavorites()
+    }
   }, [])
 
   return (
     <Page>
-      {(props.loadingArticles || props.loadingFavorites) && <Loader />}
       <h1>Home</h1>
-      <Tabs articles={props.articles} favorites={props.favorites} />
-      <Pagination />
+      {(props.loadingArticles || props.loadingFavorites) ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <Tabs articles={props.articles} favorites={props.favorites} />
+          <Pagination />
+        </Fragment>
+      )}
     </Page>
   )
 }

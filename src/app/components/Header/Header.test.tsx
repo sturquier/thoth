@@ -29,6 +29,12 @@ describe('Header', () => {
   })
 
   const props = {
+    profile: {
+      id: 1,
+      firstName: 'Foo',
+      lastName: 'Bar',
+      email: 'foo@bar.com'
+    },
     onLogout: jest.fn()
   }
 
