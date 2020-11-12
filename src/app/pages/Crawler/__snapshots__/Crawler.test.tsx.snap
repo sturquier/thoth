@@ -5,7 +5,8 @@ exports[`Crawler <ConnectedCrawler /> renders well 1`] = `
   value={null}
 >
   <Component
-    loading={false}
+    loadingCrawl={false}
+    loadingWebsites={false}
     onCrawlWebsiteRequest={[Function]}
     onFetchWebsites={[Function]}
     store={
@@ -77,12 +78,12 @@ exports[`Crawler <Crawler /> renders well 1`] = `
     >
       <Button
         block={false}
-        className="form-item-button crawler-page-form-button"
+        className="form-item-button crawler-page-form-submit"
         ghost={false}
         htmlType="submit"
         loading={false}
       >
-        Submit
+        Crawl
       </Button>
     </FormItem>
   </ForwardRef(InternalForm)>

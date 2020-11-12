@@ -28,7 +28,7 @@ exports[`Home <ConnectedHome /> renders well 1`] = `
 exports[`Home <Home /> renders well 1`] = `
 <Page>
   <h1>
-    Home
+    Articles
   </h1>
   <Tabs
     articles={

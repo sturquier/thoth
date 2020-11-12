@@ -5,6 +5,11 @@ exports[`<Tabs /> renders well 1`] = `
   className="tabs"
   defaultActiveKey="articles"
   hideAdd={false}
+  tabBarExtraContent={
+    <SearchBar
+      onChangeCallback={[Function]}
+    />
+  }
   tabPosition="top"
 >
   <TabPane

@@ -18,12 +18,14 @@ describe('Crawler', () => {
   })
 
   const props = {
-    loading: false,
+    loadingWebsites: false,
     websites: [
       { id: 1, name: 'Foo' },
       { id: 2, name: 'Bar' }
     ],
-    onFetchWebsites: jest.fn()
+    loadingCrawl: false,
+    onFetchWebsites: jest.fn(),
+    onCrawlWebsiteRequest: jest.fn()
   }
 
   describe('<ConnectedCrawler />', () => {

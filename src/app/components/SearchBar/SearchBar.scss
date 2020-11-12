@@ -1,0 +1,27 @@
+.input-search {
+  font-family: 'Open Sans';
+
+  span {
+    border-color: var(--grey-5);
+  }
+
+  span,
+  span:focus {
+    box-shadow: none;
+  }
+
+  span:hover {
+    border-color: var(--cyan-7);
+  }
+
+  button {
+    box-shadow: none;
+  }
+
+  button,
+  button:hover,
+  button:focus {
+    background: var(--cyan-7);
+    border-color: var(--cyan-7);
+  }
+}

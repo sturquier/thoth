@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Tabs /> renders well 1`] = `
+<Search
+  allowClear={true}
+  className="input-search"
+  enterButton={true}
+  onChange={[MockFunction]}
+  placeholder="Search for an article"
+/>
+`;
