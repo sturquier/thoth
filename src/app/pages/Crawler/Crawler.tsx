@@ -12,8 +12,9 @@ import { Loader, Page } from '../../components'
 import './Crawler.scss'
 
 type Props = {
-  loading: boolean
+  loadingWebsites: boolean
   websites: Array<WebsiteType>
+  loadingCrawl: boolean
   onFetchWebsites: () => void
   onCrawlWebsiteRequest: (payload: { slug: string }) => void
 }
@@ -31,7 +32,7 @@ export function Crawler (props: Props) {
   return (
     <Page>
       <h1>Crawler</h1>
-      {props.loading ? (
+      {props.loadingWebsites ? (
         <Loader />
       ) : (
         <Form onFinish={onFinish} className='form crawler-page-form'>
@@ -47,7 +48,7 @@ export function Crawler (props: Props) {
             </Checkbox.Group>
           </Form.Item>
           <Form.Item className='form-item'>
-            <Button htmlType='submit' className='form-item-button crawler-page-form-button'>Submit</Button>
+            <Button htmlType='submit' loading={props.loadingCrawl} className='form-item-button crawler-page-form-submit'>Crawl</Button>
           </Form.Item>
         </Form>
       )}
@@ -56,8 +57,9 @@ export function Crawler (props: Props) {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  loading: state.websites.loading,
-  websites: state.websites.websites
+  loadingWebsites: state.websites.loading,
+  websites: state.websites.websites,
+  loadingCrawl: state.crawl.loading
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

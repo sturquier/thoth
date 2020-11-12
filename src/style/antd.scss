@@ -7,6 +7,28 @@
     }
   }
 
+  &-checkbox,
+  &-checkbox-wrapper {
+    * {
+      border-color: var(--grey-6) !important;
+    }
+
+    &:hover {
+      * {
+        border-color: var(--cyan-6) !important;
+      }
+    }
+  }
+
+  &-checkbox-checked &-checkbox-inner {
+    background: var(--cyan-6) !important;
+    border-color: var(--cyan-6) !important;
+  }
+
+  &-checkbox-checked::after {
+    border-color: var(--cyan-6) !important;
+  }
+
   &-input {
     color: inherit !important;
   }
@@ -31,6 +53,24 @@
       &-active {
         color: inherit !important;
       }
+    }
+  }
+
+  &-tabs {
+    &-tab {
+      font-family: 'Open Sans' !important;
+
+      &:hover {
+        color: var(--cyan-6) !important;
+      }
+
+      &-active {
+        color: var(--cyan-7) !important;
+      }
+    }
+
+    &-ink-bar {
+      background: var(--cyan-7) !important;
     }
   }
 }

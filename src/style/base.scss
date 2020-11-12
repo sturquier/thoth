@@ -59,6 +59,13 @@ h1 {
     &-button:disabled:hover {
       background: var(--grey-5);
     }
+
+    &-checkbox {
+      span {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 
   &-error {

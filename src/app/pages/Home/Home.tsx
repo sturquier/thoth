@@ -28,7 +28,7 @@ export function Home (props: Props) {
 
   return (
     <Page>
-      <h1>Home</h1>
+      <h1>Articles</h1>
       {(props.loadingArticles || props.loadingFavorites) ? (
         <Loader />
       ) : (
