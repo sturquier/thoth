@@ -13,6 +13,7 @@ exports[`Profile <ConnectedProfile /> renders well 1`] = `
             "email": Object {},
             "firstName": Object {},
             "lastName": Object {},
+            "password": Object {},
           },
         },
         "message": null,

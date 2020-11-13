@@ -8,7 +8,8 @@ export default {
       children: {
         firstName: {},
         lastName: {},
-        email: {}
+        email: {},
+        password: {}
       }
     }
   }

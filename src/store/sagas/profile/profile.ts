@@ -15,7 +15,7 @@ export function* fetchProfileSaga () {
   }
 }
 
-export function* updateProfileSaga (action: { type: string, payload: { firstName: string, lastName: string, email: string } }) {
+export function* updateProfileSaga (action: { type: string, payload: { firstName?: string, lastName?: string, email?: string, password?: string } }) {
   try {
     const token: string = yield call(() => JSON.parse(localStorage.getItem('token')))
     const profile: ProfileType = yield call(() => createHttpRequest(USER_PROFILE_ENDPOINT, { method: 'PATCH', params: action.payload }, token))

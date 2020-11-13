@@ -42,6 +42,9 @@ export type ProfileErrorType = {
       email: {
         errors?: Array<string>
       }
+      password: {
+        errors?: Array<string>
+      }
     }
   }
 }

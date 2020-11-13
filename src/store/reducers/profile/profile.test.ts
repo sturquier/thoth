@@ -31,7 +31,8 @@ describe('Profile reducer', () => {
         children: {
           firstName: {},
           lastName: {},
-          email: {}
+          email: {},
+          password: {}
         }
       }
     }
@@ -72,7 +73,8 @@ describe('Profile reducer', () => {
           lastName: {},
           email: {
             errors: ['This value is already used']
-          }
+          },
+          password: {}
         }
       }
     }
@@ -93,7 +95,8 @@ describe('Profile reducer', () => {
           lastName: {},
           email: {
             errors: []
-          }
+          },
+          password: {}
         }
       }
     })

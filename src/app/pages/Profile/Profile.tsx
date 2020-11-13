@@ -26,7 +26,12 @@ export function Profile (props: Props) {
     { name: ['email'], value: '' }
   ])
 
-  const isFormValid = () => fields.every(field => field.value) && Object.values(props.error.errors.children).filter(field => !field.errors || field.errors.length === 0).length === fields.length
+  const isFormValid = () => (
+    fields.every(field => field.value) &&
+    (!props.error.errors.children.firstName.errors || props.error.errors.children.firstName.errors?.length === 0) &&
+    (!props.error.errors.children.lastName.errors || props.error.errors.children.lastName.errors?.length === 0) &&
+    (!props.error.errors.children.email.errors || props.error.errors.children.email.errors?.length === 0)
+  )
 
   const onFinish = (fields: { firstName: string, lastName: string, email: string }) => {
     const { firstName, lastName, email } = fields
@@ -40,36 +45,36 @@ export function Profile (props: Props) {
         <Loader />
       ) : (
         <Form initialValues={props.profile} onFieldsChange={(_, allFields) => setFields(allFields)} onFinish={onFinish} className='form profile-page-form' size='large'>
-          <Form.Item name='firstName' className={`form-item ${props.error?.errors.children.firstName.errors?.length ? 'form-item-has-error' : ''}`}>
+          <Form.Item name='firstName' className={`form-item ${props.error.errors.children.firstName.errors?.length ? 'form-item-has-error' : ''}`}>
             <Input
               name='firstName'
               placeholder='First name'
               prefix={<UserOutlined />}
               onChange={e => props.onResetProfileFormInputError(e.target.name)}
-              className={`form-item-input ${props.error?.errors.children.firstName.errors?.length ? 'form-item-input-has-error' : ''}`}
+              className={`form-item-input ${props.error.errors.children.firstName.errors?.length ? 'form-item-input-has-error' : ''}`}
             />
           </Form.Item>
-          <p className='form-error'>{props.error?.errors.children.firstName.errors?.toString()}</p>
-          <Form.Item name='lastName' className={`form-item ${props.error?.errors.children.lastName.errors?.length ? 'form-item-has-error' : ''}`}>
+          <p className='form-error'>{props.error.errors.children.firstName.errors?.toString()}</p>
+          <Form.Item name='lastName' className={`form-item ${props.error.errors.children.lastName.errors?.length ? 'form-item-has-error' : ''}`}>
             <Input
               name='lastName'
               placeholder='Last name'
               prefix={<UserOutlined />}
               onChange={e => props.onResetProfileFormInputError(e.target.name)}
-              className={`form-item-input ${props.error?.errors.children.lastName.errors?.length ? 'form-item-input-has-error' : ''}`}
+              className={`form-item-input ${props.error.errors.children.lastName.errors?.length ? 'form-item-input-has-error' : ''}`}
             />
           </Form.Item>
-          <p className='form-error'>{props.error?.errors.children.lastName.errors?.toString()}</p>
-          <Form.Item name='email' className={`form-item ${props.error?.errors.children.email.errors?.length ? 'form-item-has-error' : ''}`}>
+          <p className='form-error'>{props.error.errors.children.lastName.errors?.toString()}</p>
+          <Form.Item name='email' className={`form-item ${props.error.errors.children.email.errors?.length ? 'form-item-has-error' : ''}`}>
             <Input
               name='email'
               placeholder='Email'
               prefix={<MailOutlined />}
               onChange={e => props.onResetProfileFormInputError(e.target.name)}
-              className={`form-item-input ${props.error?.errors.children.email.errors?.length ? 'form-item-input-has-error' : ''}`}
+              className={`form-item-input ${props.error.errors.children.email.errors?.length ? 'form-item-input-has-error' : ''}`}
             />
           </Form.Item>
-          <p className='form-error'>{props.error?.errors.children.email.errors?.toString()}</p>
+          <p className='form-error'>{props.error.errors.children.email.errors?.toString()}</p>
           <Form.Item className='form-item'>
             <Button htmlType='submit' loading={props.loading} disabled={!isFormValid()} className='form-item-button profile-page-form-submit'>Update</Button>
           </Form.Item>

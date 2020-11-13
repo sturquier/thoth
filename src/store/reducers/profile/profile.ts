@@ -10,7 +10,8 @@ export const initialState: StateType = {
       children: {
         firstName: {},
         lastName: {},
-        email: {}
+        email: {},
+        password: {}
       }
     }
   }

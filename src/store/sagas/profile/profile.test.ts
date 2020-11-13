@@ -58,7 +58,8 @@ describe('Profile sagas', () => {
         children: {
           firstName: {},
           lastName: {},
-          email: {}
+          email: {},
+          password: {}
         }
       }
     }
@@ -128,7 +129,8 @@ describe('Profile sagas', () => {
           lastName: {},
           email: {
             errors: ['This value is already used']
-          }
+          },
+          password: {}
         }
       }
     }

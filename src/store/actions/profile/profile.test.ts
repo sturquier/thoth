@@ -29,7 +29,8 @@ describe('Profile actions', () => {
         children: {
           firstName: {},
           lastName: {},
-          email: {}
+          email: {},
+          password: {}
         }
       }
     }
@@ -74,7 +75,8 @@ describe('Profile actions', () => {
           lastName: {},
           email: {
             errors: ['This value is already used']
-          }
+          },
+          password: {}
         }
       }
     }

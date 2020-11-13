@@ -36,46 +36,46 @@ export function Register (props: Props) {
     <div className='register-page'>
       <h1>Register</h1>
       <Form fields={fields} onFieldsChange={(_, allFields) => setFields(allFields)} onFinish={onFinish} className='form register-page-form' size='large'>
-        <Form.Item name='firstName' className={`form-item ${props.error?.errors.children.firstName.errors?.length ? 'form-item-has-error' : ''}`}>
+        <Form.Item name='firstName' className={`form-item ${props.error.errors.children.firstName.errors?.length ? 'form-item-has-error' : ''}`}>
           <Input
             name='firstName'
             placeholder='First name'
             prefix={<UserOutlined />}
             onChange={e => props.onResetRegisterFormInputError(e.target.name)}
-            className={`form-item-input ${props.error?.errors.children.firstName.errors?.length ? 'form-item-input-has-error' : ''}`}
+            className={`form-item-input ${props.error.errors.children.firstName.errors?.length ? 'form-item-input-has-error' : ''}`}
           />
         </Form.Item>
-        <p className='form-error'>{props.error?.errors.children.firstName.errors?.toString()}</p>
-        <Form.Item name='lastName' className={`form-item ${props.error?.errors.children.lastName.errors?.length ? 'form-item-has-error' : ''}`}>
+        <p className='form-error'>{props.error.errors.children.firstName.errors?.toString()}</p>
+        <Form.Item name='lastName' className={`form-item ${props.error.errors.children.lastName.errors?.length ? 'form-item-has-error' : ''}`}>
           <Input
             name='lastName'
             placeholder='Last name'
             prefix={<UserOutlined />}
             onChange={e => props.onResetRegisterFormInputError(e.target.name)}
-            className={`form-item-input ${props.error?.errors.children.lastName.errors?.length ? 'form-item-input-has-error' : ''}`}
+            className={`form-item-input ${props.error.errors.children.lastName.errors?.length ? 'form-item-input-has-error' : ''}`}
           />
         </Form.Item>
-        <p className='form-error'>{props.error?.errors.children.lastName.errors?.toString()}</p>
-        <Form.Item name='email' className={`form-item ${props.error?.errors.children.email.errors?.length ? 'form-item-has-error' : ''}`}>
+        <p className='form-error'>{props.error.errors.children.lastName.errors?.toString()}</p>
+        <Form.Item name='email' className={`form-item ${props.error.errors.children.email.errors?.length ? 'form-item-has-error' : ''}`}>
           <Input
             name='email'
             placeholder='Email'
             prefix={<MailOutlined />}
             onChange={e => props.onResetRegisterFormInputError(e.target.name)}
-            className={`form-item-input ${props.error?.errors.children.email.errors?.length ? 'form-item-input-has-error' : ''}`}
+            className={`form-item-input ${props.error.errors.children.email.errors?.length ? 'form-item-input-has-error' : ''}`}
           />
         </Form.Item>
-        <p className='form-error'>{props.error?.errors.children.email.errors?.toString()}</p>
-        <Form.Item name='password' className={`form-item ${props.error?.errors.children.password.errors?.length ? 'form-item-has-error' : ''}`}>
+        <p className='form-error'>{props.error.errors.children.email.errors?.toString()}</p>
+        <Form.Item name='password' className={`form-item ${props.error.errors.children.password.errors?.length ? 'form-item-has-error' : ''}`}>
           <Input.Password
             name='password'
             placeholder='Password'
             prefix={<UnlockOutlined />}
             onChange={e => props.onResetRegisterFormInputError(e.target.name)}
-            className={`form-item-input ${props.error?.errors.children.password.errors?.length ? 'form-item-input-has-error' : ''}`}
+            className={`form-item-input ${props.error.errors.children.password.errors?.length ? 'form-item-input-has-error' : ''}`}
           />
         </Form.Item>
-        <p className='form-error'>{props.error?.errors.children.password.errors?.toString()}</p>
+        <p className='form-error'>{props.error.errors.children.password.errors?.toString()}</p>
         <Form.Item className='form-item'>
           <Button htmlType='submit' loading={props.loading} disabled={!isFormValid()} className='form-item-button register-page-form-submit'>Register</Button>
         </Form.Item>
