@@ -11,7 +11,7 @@ export default function SearchBar (props: Props) {
   return (
     <Input.Search
       onChange={props.onChangeCallback}
-      placeholder='Search for an article'
+      placeholder='Search for an article, a website'
       className='input-search'
       allowClear
       enterButton

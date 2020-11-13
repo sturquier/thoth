@@ -15,22 +15,30 @@
 
     &:hover {
       * {
-        border-color: var(--cyan-6) !important;
+        border-color: var(--cyan-5) !important;
       }
     }
   }
 
   &-checkbox-checked &-checkbox-inner {
-    background: var(--cyan-6) !important;
-    border-color: var(--cyan-6) !important;
+    background: var(--cyan-5) !important;
+    border-color: var(--cyan-5) !important;
   }
 
   &-checkbox-checked::after {
-    border-color: var(--cyan-6) !important;
+    border-color: var(--cyan-5) !important;
   }
 
   &-input {
     color: inherit !important;
+  }
+
+  &-input-group-wrapper {
+    @media (max-width: $xs) {
+      position: absolute !important;
+      left: 0 !important;
+      top: 62px !important;
+    }
   }
 
   &-menu {
@@ -57,11 +65,17 @@
   }
 
   &-tabs {
+    &-content {
+      @media (max-width: $xs) {
+        padding-top: 62px !important;
+      }
+    }
+
     &-tab {
       font-family: 'Open Sans' !important;
 
       &:hover {
-        color: var(--cyan-6) !important;
+        color: var(--cyan-5) !important;
       }
 
       &-active {
@@ -74,7 +88,12 @@
     }
 
     &-extra-content {
+      width: 300px !important;
       padding-top: 13px !important;
+
+      @media (max-width: $xs) {
+        width: auto !important;
+      }
     }
   }
 }

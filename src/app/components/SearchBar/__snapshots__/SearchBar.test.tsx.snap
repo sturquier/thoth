@@ -6,6 +6,6 @@ exports[`<Tabs /> renders well 1`] = `
   className="input-search"
   enterButton={true}
   onChange={[MockFunction]}
-  placeholder="Search for an article"
+  placeholder="Search for an article, a website"
 />
 `;

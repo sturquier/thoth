@@ -31,7 +31,7 @@ export function Card (props: Props) {
         {favorites.find(favorite => favorite.id === id) ? (
           <HeartFilled onClick={() => props.onRemoveFavorite({ article: id })} className='card-header-heartFilled' />
         ) : (
-          <HeartOutlined onClick={() => props.onCreateFavorite({ article: id })} />
+          <HeartOutlined onClick={() => props.onCreateFavorite({ article: id })} className='card-header-heartOutlined' />
         )}
       </div>
       <p className='card-content'>{descriptionPreview}</p>

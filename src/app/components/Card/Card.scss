@@ -8,14 +8,28 @@
     justify-content: space-between;
 
     &-title {
-      &-link,
-      &-link:hover {
+      &-link {
         color: var(--cyan-7);
+      }
+
+      &-link:hover {
+        color: var(--cyan-5);
       }
     }
 
     &-heartFilled {
       color: var(--red-6);
+    }
+
+    &-heartFilled,
+    &-heartOutlined {
+      height: 14px;
+      width: 14px;
+    }
+
+    &-heartFilled:hover,
+    &-heartOutlined:hover {
+      color: var(--red-4);
     }
   }
 

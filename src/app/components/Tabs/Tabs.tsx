@@ -15,9 +15,9 @@ export default function Tabs (props: Props) {
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)
 
-  const filteredArticles = search ? props.articles.filter(article => article.title.toLowerCase().includes(search.toLowerCase())) : props.articles
+  const filteredArticles = search ? props.articles.filter(article => article.title.toLowerCase().includes(search.toLowerCase()) || article.website.name.toLowerCase().includes(search.toLowerCase())) : props.articles
 
-  const filteredFavorites = search ? props.favorites.filter(article => article.title.toLowerCase().includes(search.toLowerCase())) : props.favorites
+  const filteredFavorites = search ? props.favorites.filter(article => article.title.toLowerCase().includes(search.toLowerCase()) || article.website.name.toLowerCase().includes(search.toLowerCase())) : props.favorites
 
   return (
     <AntdTabs defaultActiveKey='articles' tabBarExtraContent={<SearchBar onChangeCallback={onChange} />} className='tabs'>
