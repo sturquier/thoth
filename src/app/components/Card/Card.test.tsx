@@ -32,6 +32,7 @@ describe('Card', () => {
     favorites: [
       { id: 1, title: 'First article', createdAt: moment('2020-12-31').format('YYYY-MM-DD'), url: 'https://www.foo.com/article' }
     ],
+    pendingFavoriteId: 2,
     onCreateFavorite: jest.fn(),
     onRemoveFavorite: jest.fn()
   }
@@ -73,6 +74,16 @@ describe('Card', () => {
           ...props.article,
           description
         }
+      }
+
+      const wrapper = shallow(<Card {...props} />)
+      expect(wrapper).toMatchSnapshot()
+    })
+
+    it('renders well with pending favorite', () => {
+      props = {
+        ...props,
+        pendingFavoriteId: 1
       }
 
       const wrapper = shallow(<Card {...props} />)

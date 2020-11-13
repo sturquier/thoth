@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest, takeEvery } from 'redux-saga/effects'
 
 import { ArticleType } from '../../types/articles/articles'
 import { actionTypes, FavoriteType } from '../../types/favorites/favorites'
@@ -38,6 +38,6 @@ export function* removeFavoriteSaga (action: { type: string, payload: { article:
 
 export default function* favoritesRootSaga () {
   yield takeLatest(actionTypes.FETCH_FAVORITES_REQUEST, fetchFavoritesSaga)
-  yield takeLatest(actionTypes.CREATE_FAVORITE_REQUEST, createFavoriteSaga)
-  yield takeLatest(actionTypes.REMOVE_FAVORITE_REQUEST, removeFavoriteSaga)
+  yield takeEvery(actionTypes.CREATE_FAVORITE_REQUEST, createFavoriteSaga)
+  yield takeEvery(actionTypes.REMOVE_FAVORITE_REQUEST, removeFavoriteSaga)
 }

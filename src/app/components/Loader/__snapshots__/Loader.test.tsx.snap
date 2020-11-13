@@ -2,7 +2,7 @@
 
 exports[`<Loader /> renders well 1`] = `
 <div
-  className="loader-wrapper"
+  className="loader-wrapper loader-wrapper-page"
 >
   <Spin
     className="loader-wrapper-spinner"

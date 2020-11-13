@@ -16,6 +16,7 @@ export type StateType = {
   loading: boolean
   favorites: Array<ArticleType>
   error: string
+  pendingFavoriteId: number
 }
 
 export type ActionType = {
@@ -24,6 +25,9 @@ export type ActionType = {
   favorites?: Array<ArticleType>
   favorite?: FavoriteType
   error?: string
+  payload?: {
+    article: number
+  }
 }
 
 export type FavoriteType = {

@@ -3,6 +3,10 @@
   font-family: 'Open Sans';
   border-radius: 4px;
 
+  &-pending {
+    opacity: 0.5;
+  }
+
   &-header {
     display: flex;
     justify-content: space-between;

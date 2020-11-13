@@ -4,9 +4,13 @@ import { LoadingOutlined } from '@ant-design/icons'
 
 import './Loader.scss'
 
-export default function Loader () {
+type Props = {
+  className?: string
+}
+
+export default function Loader (props: Props) {
   return (
-    <div className='loader-wrapper'>
+    <div className={`loader-wrapper ${props.className}`}>
       <Spin
         indicator={<LoadingOutlined />}
         size='large'
@@ -14,4 +18,8 @@ export default function Loader () {
       />
     </div>
   )
+}
+
+Loader.defaultProps = {
+  className: 'loader-wrapper-page'
 }

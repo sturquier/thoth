@@ -2,7 +2,7 @@
 
 exports[`Card <Card /> renders well 1`] = `
 <Card
-  className="card"
+  className="card "
 >
   <div
     className="card-header"
@@ -44,7 +44,7 @@ exports[`Card <Card /> renders well 1`] = `
 
 exports[`Card <Card /> renders well with a description containing less than 100 characters 1`] = `
 <Card
-  className="card"
+  className="card "
 >
   <div
     className="card-header"
@@ -86,8 +86,54 @@ exports[`Card <Card /> renders well with a description containing less than 100 
 
 exports[`Card <Card /> renders well with a description containing more than 100 characters 1`] = `
 <Card
-  className="card"
+  className="card "
 >
+  <div
+    className="card-header"
+  >
+    <h3
+      className="card-header-title"
+    >
+      <a
+        className="card-header-title-link"
+        href="https://www.foo.com/article"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        First article
+      </a>
+    </h3>
+    <ForwardRef(HeartFilled)
+      className="card-header-heartFilled"
+      onClick={[Function]}
+    />
+  </div>
+  <p
+    className="card-content"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Donec pharetra nibh non odio interdum...
+  </p>
+  <div
+    className="card-footer"
+  >
+    <span>
+      2020-12-31
+    </span>
+    <span>
+      Foo
+    </span>
+  </div>
+</Card>
+`;
+
+exports[`Card <Card /> renders well with pending favorite 1`] = `
+<Card
+  className="card card-pending"
+>
+  <Loader
+    className="loader-wrapper-card"
+  />
   <div
     className="card-header"
   >

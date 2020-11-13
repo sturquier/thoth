@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest, takeEvery } from 'redux-saga/effects'
 
 import { actionTypes } from '../../types/favorites/favorites'
 import { fetchFavoritesSuccess, fetchFavoritesFailure, createFavoriteSuccess, createFavoriteFailure, removeFavoriteSuccess, removeFavoriteFailure } from '../../actions/favorites/favorites'
@@ -15,12 +15,12 @@ describe('Favorites sagas', () => {
 
     expect(saga.next()).toEqual({
       done: false,
-      value: takeLatest(actionTypes.CREATE_FAVORITE_REQUEST, createFavoriteSaga)
+      value: takeEvery(actionTypes.CREATE_FAVORITE_REQUEST, createFavoriteSaga)
     })
 
     expect(saga.next()).toEqual({
       done: false,
-      value: takeLatest(actionTypes.REMOVE_FAVORITE_REQUEST, removeFavoriteSaga)
+      value: takeEvery(actionTypes.REMOVE_FAVORITE_REQUEST, removeFavoriteSaga)
     })
 
     expect(saga.next()).toEqual({

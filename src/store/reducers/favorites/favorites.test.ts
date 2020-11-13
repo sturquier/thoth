@@ -31,7 +31,7 @@ describe('Favorites reducer', () => {
   it('handles CREATE_FAVORITE_REQUEST action type', () => {
     const payload = { article: 1 }
     const action = createFavoriteRequest(payload)
-    expect(reducer(initialState, action)).toHaveProperty('loading', true)
+    expect(reducer(initialState, action)).toHaveProperty('pendingFavoriteId', payload.article)
   })
 
   it('handles CREATE_FAVORITE_SUCCESS action type', () => {
@@ -45,7 +45,7 @@ describe('Favorites reducer', () => {
       }
     }
     const action = createFavoriteSuccess(favorite)
-    expect(reducer(initialState, action)).toHaveProperty('loading', false)
+    expect(reducer(initialState, action)).toHaveProperty('pendingFavoriteId', initialState.pendingFavoriteId)
     expect(reducer(initialState, action)).toHaveProperty('favorites', [
       { ...favorite.article }
     ])
@@ -54,14 +54,14 @@ describe('Favorites reducer', () => {
   it('handles CREATE_FAVORITE_FAILURE action type', () => {
     const error = 'An error has occurred while trying to create favorite'
     const action = createFavoriteFailure(error)
-    expect(reducer(initialState, action)).toHaveProperty('loading', false)
     expect(reducer(initialState, action)).toHaveProperty('error', error)
+    expect(reducer(initialState, action)).toHaveProperty('pendingFavoriteId', initialState.pendingFavoriteId)
   })
 
   it('handles REMOVE_FAVORITE_REQUEST action type', () => {
     const payload = { article: 1 }
     const action = removeFavoriteRequest(payload)
-    expect(reducer(initialState, action)).toHaveProperty('loading', true)
+    expect(reducer(initialState, action)).toHaveProperty('pendingFavoriteId', payload.article)
   })
 
   it('handles REMOVE_FAVORITE_SUCCESS action type', () => {
@@ -74,14 +74,14 @@ describe('Favorites reducer', () => {
         { id: 2, title: 'Second favorite', description: 'Lorem Ipsum', createdAt: new Date(), url: 'https://www.bar.com/favorite', image: 'https://www.bar.com/favorite-image.jpeg' }
       ]
     }
-    expect(reducer(state, action)).toHaveProperty('loading', false)
+    expect(reducer(state, action)).toHaveProperty('pendingFavoriteId', initialState.pendingFavoriteId)
     expect(reducer(state, action)).toHaveProperty('favorites', state.favorites.slice(1))
   })
 
   it('handles REMOVE_FAVORITE_FAILURE action type', () => {
     const error = 'An error has occurred while trying to remove favorite'
     const action = removeFavoriteFailure(error)
-    expect(reducer(initialState, action)).toHaveProperty('loading', false)
     expect(reducer(initialState, action)).toHaveProperty('error', error)
+    expect(reducer(initialState, action)).toHaveProperty('pendingFavoriteId', initialState.pendingFavoriteId)
   })
 })
