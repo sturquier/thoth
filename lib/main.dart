@@ -11,6 +11,7 @@ class ThothApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData.light(useMaterial3: true),
       routerConfig: router,
     );
   }

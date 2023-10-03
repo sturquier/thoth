@@ -19,6 +19,7 @@ class _ScaffoldWithNavbarWidgetState extends State<ScaffoldWithNavbarWidget> {
   final List<BottomNavigationBarItem> tabs = [
     const BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
     const BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: ''),
+    const BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
   ];
 
   int _calculateSelectedIndex(BuildContext context) {

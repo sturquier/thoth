@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:thoth/models/route.dart';
 import 'package:thoth/screens/home/home.dart';
 import 'package:thoth/screens/profile/profile.dart';
+import 'package:thoth/screens/settings/settings.dart';
 import 'package:thoth/widgets/navbar/navbar.dart';
 
 final List<AppRoute> routes = [
@@ -16,7 +17,11 @@ final List<AppRoute> routes = [
     path: '/profile',
     builder: (context, state) => const ProfileScreen(),
   ),
-  // Add other route definitions as needed
+  AppRoute(
+    route: ERoute.settings,
+    path: '/settings',
+    builder: (context, state) => const SettingsScreen(),
+  ),
 ];
 
 final GoRouter router = GoRouter(
