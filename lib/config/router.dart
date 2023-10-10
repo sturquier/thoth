@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thoth/models/route.dart';
 import 'package:thoth/screens/home/home.dart';
 import 'package:thoth/screens/profile/profile.dart';
 import 'package:thoth/screens/settings/settings.dart';
 import 'package:thoth/widgets/navbar/navbar.dart';
+
+enum ERoute { home, profile, settings }
+
+final class AppRoute {
+  final ERoute route;
+  final String path;
+  final Widget Function(BuildContext, GoRouterState) builder;
+
+  const AppRoute({
+    required this.route,
+    required this.path,
+    required this.builder,
+  });
+}
 
 final List<AppRoute> routes = [
   AppRoute(

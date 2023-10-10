@@ -25,6 +25,7 @@ class _ScaffoldWithNavbarWidgetState extends State<ScaffoldWithNavbarWidget> {
   int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
     final index = routes.indexWhere((route) => route.path == location);
+
     return index != -1 ? index : 0;
   }
 
