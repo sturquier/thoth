@@ -1,12 +1,10 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+import 'package:thoth/config/database.dart';
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/models/website.dart';
-
-final databaseReference = FirebaseDatabase.instance.ref();
 
 Future<bool> crawlLogRocket() async {
   final List<Article> articles = [];
@@ -42,7 +40,7 @@ Future<bool> crawlLogRocket() async {
     if (articles.isEmpty) return false;
 
     for (Article article in articles) {
-      databaseReference.child('articles').push().set(article.toJson());
+      articlesReference.push().set(article.toJson());
     }
 
     return true;

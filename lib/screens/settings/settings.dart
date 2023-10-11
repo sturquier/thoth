@@ -80,7 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: ListView.builder(
                 itemCount: websites.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final website = websites[index];
+                  final Website website = websites[index];
 
                   return Row(children: [
                     Expanded(
