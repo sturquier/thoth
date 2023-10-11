@@ -24,6 +24,9 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
   Widget build(BuildContext context) {
     return SearchBar(
       controller: _searchController,
+      leading: const Icon(Icons.search),
+      padding:
+          const MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 15)),
       onChanged: widget.onChangedCallback,
     );
   }

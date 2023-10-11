@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/services/articles.dart';
+import 'package:thoth/widgets/card/card.dart';
+import 'package:thoth/widgets/dialog/dialog.dart';
 import 'package:thoth/widgets/input/input.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,18 +29,47 @@ class _HomeScreenState extends State<HomeScreen> {
         .toList();
   }
 
+  void _openFiltersList(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => const ArticleDialogWidget());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Articles')),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: InputSearchWidget(
-                onChangedCallback: (String? value) =>
-                    setState(() => _search = value!)),
-          ),
+          Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Rechercher des articles',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(mainAxisSize: MainAxisSize.min, children: [
+                      Expanded(
+                          child: InputSearchWidget(
+                              onChangedCallback: (String? value) =>
+                                  setState(() => _search = value!))),
+                      IconButton(
+                          icon: const Icon(Icons.filter_list),
+                          onPressed: () => _openFiltersList(context))
+                    ]),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Divider(),
+                  ])),
           Expanded(
             child: FutureBuilder<List<Article>>(
               future: _articles,
@@ -56,12 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     itemCount: _filteredArticles(snapshot.data!).length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        child: Center(
-                          child: Text(
-                              _filteredArticles(snapshot.data!)[index].title),
-                        ),
-                      );
+                      Article article =
+                          _filteredArticles(snapshot.data!)[index];
+
+                      return ArticleCardWidget(article: article);
                     },
                   );
                 }

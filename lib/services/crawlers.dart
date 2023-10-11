@@ -1,17 +1,18 @@
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:thoth/config/database.dart';
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/models/website.dart';
 
-Future<bool> crawlLogRocket() async {
+Future<bool> crawlLogRocket(List<Article> existingArticles) async {
   final List<Article> articles = [];
-  final String url =
-      websites.firstWhere((Website website) => website.name == 'LogRocket').url;
+  final Website website =
+      websites.firstWhere((Website website) => website.name == 'LogRocket');
 
-  final http.Response response = await http.get(Uri.parse(url));
+  final http.Response response = await http.get(Uri.parse(website.url));
 
   if (response.statusCode == 200) {
     final Document document = parser.parse(response.body);
@@ -34,10 +35,47 @@ Future<bool> crawlLogRocket() async {
 
       if (title == null) return false;
 
-      articles.add(Article.fromJson({'title': title.text}));
-    }
+      Element? description = post.getElementsByClassName('card-text').isNotEmpty
+          ? post.getElementsByClassName('card-text')[0]
+          : null;
 
-    if (articles.isEmpty) return false;
+      if (description == null) return false;
+
+      Element? url = post.getElementsByTagName('a').isNotEmpty
+          ? post.getElementsByTagName('a')[0]
+          : null;
+
+      if (url == null) return false;
+
+      Element? image = post.getElementsByTagName('img').isNotEmpty
+          ? post.getElementsByTagName('img')[0]
+          : null;
+
+      if (image == null) return false;
+
+      Element? createdAt = post.getElementsByClassName('post-date').isNotEmpty
+          ? post.getElementsByClassName('post-date')[0]
+          : null;
+
+      if (createdAt == null) return false;
+
+      Article newArticle = Article.fromJson({
+        'title': title.text,
+        'description': description.text,
+        'url': url.attributes['href'],
+        'image': image.attributes['src'],
+        'createdAt': DateFormat('MMM d, y', 'en_US')
+            .parse(createdAt.text)
+            .millisecondsSinceEpoch,
+        'website': website.toJson()
+      });
+
+      if (!existingArticles.any((existingArticle) =>
+          existingArticle.title == newArticle.title &&
+          existingArticle.website.name == newArticle.website.name)) {
+        articles.add(newArticle);
+      }
+    }
 
     for (Article article in articles) {
       articlesReference.push().set(article.toJson());

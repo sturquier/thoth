@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:thoth/config/crawlers.dart';
 import 'package:thoth/config/websites.dart';
+import 'package:thoth/models/article.dart';
 import 'package:thoth/models/website.dart';
+import 'package:thoth/services/articles.dart';
 import 'package:thoth/widgets/checkbox/checkbox.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -26,6 +28,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           .any((status) => status == CrawlingStatus.crawling);
 
   void _crawlWebsites() async {
+    final List<Article> existingArticles = await fetchArticles();
+
     for (Website website in websites) {
       if (_checkedWebsites[website] == true) {
         setState(() {
@@ -33,7 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         });
 
         if (crawlers.containsKey(website.name)) {
-          bool success = await crawlers[website.name]!();
+          bool success = await crawlers[website.name]!(existingArticles);
           setState(() {
             _crawledWebsites[website] =
                 success ? CrawlingStatus.success : CrawlingStatus.failure;
@@ -58,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 20,
               ),
               const Text(
-                'Sélectionnez les sites web à scanner',
+                'Scanner les sites web',
                 style: TextStyle(fontSize: 18),
               ),
               const SizedBox(
