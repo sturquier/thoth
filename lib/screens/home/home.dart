@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                           child: InputSearchWidget(
                               onChangedCallback: (String? value) =>
-                                  setState(() => _search = value!))),
+                                  setState(() => _search = value ?? ''))),
                       IconButton(
                           icon: const Icon(Icons.filter_list),
                           onPressed: () => _openFiltersList(context))

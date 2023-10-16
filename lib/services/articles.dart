@@ -13,5 +13,7 @@ Future<List<Article>> fetchArticles() async {
         Article.fromJson(Map<String, dynamic>.from(snapshot.value as dynamic)));
   }
 
+  articles.sort((Article a, Article b) => -a.createdAt.compareTo(b.createdAt));
+
   return articles;
 }

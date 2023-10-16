@@ -2,7 +2,7 @@ import 'package:thoth/models/website.dart';
 
 class Article {
   final String title;
-  final String description;
+  final String? description;
   final String url;
   final String image;
   final DateTime createdAt;
@@ -10,7 +10,7 @@ class Article {
 
   const Article(
       {required this.title,
-      required this.description,
+      this.description,
       required this.url,
       required this.image,
       required this.createdAt,

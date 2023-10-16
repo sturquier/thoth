@@ -9,8 +9,8 @@ import 'package:thoth/models/website.dart';
 
 Future<bool> crawlLogRocket(List<Article> existingArticles) async {
   final List<Article> articles = [];
-  final Website website =
-      websites.firstWhere((Website website) => website.name == 'LogRocket');
+  final Website website = websites
+      .firstWhere((Website website) => website.name == EWebsite.logRocket.name);
 
   final http.Response response = await http.get(Uri.parse(website.url));
 

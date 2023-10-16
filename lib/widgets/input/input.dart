@@ -23,11 +23,21 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
   @override
   Widget build(BuildContext context) {
     return SearchBar(
-      controller: _searchController,
-      leading: const Icon(Icons.search),
-      padding:
-          const MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 15)),
-      onChanged: widget.onChangedCallback,
-    );
+        controller: _searchController,
+        leading: const Icon(Icons.search),
+        trailing: _searchController.text.isNotEmpty
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    _searchController.clear();
+                    widget.onChangedCallback(null);
+                  },
+                )
+              ]
+            : [],
+        padding: const MaterialStatePropertyAll(
+            EdgeInsets.symmetric(horizontal: 15)),
+        onChanged: widget.onChangedCallback);
   }
 }
