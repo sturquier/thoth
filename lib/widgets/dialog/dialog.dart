@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/website.dart';
+import 'package:thoth/widgets/date_picker/date_picker.dart';
 import 'package:thoth/widgets/dropdown/dropdown.dart';
 import 'package:thoth/widgets/switch/switch.dart';
 
@@ -31,6 +32,12 @@ class ArticleDialogWidget extends StatelessWidget {
               Icons.favorite,
               color: Colors.pink,
             )),
+        const Text(
+          'Date',
+          style: TextStyle(fontSize: 18),
+        ),
+        DatePickerWidget(
+            hintText: 'Date', onTapCallback: (String date) => print('TODO')),
         const Text('TODO'),
       ]),
       actions: [
