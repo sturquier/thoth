@@ -16,30 +16,49 @@ class ArticleDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Filtrer'),
-      content: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      content: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const Text(
-          'Site web',
+          'Par site web',
           style: TextStyle(fontSize: 18),
         ),
+        const SizedBox(height: 5),
         DropdownMenuWidget(
             width: MediaQuery.of(context).size.width * 0.6,
-            entries: websites.map((Website website) => website.name).toList()),
-        SwitchListTileWidget(
-            title: 'Favoris',
-            value: false,
-            onChangedCallback: (bool? value) => print('TODO'),
-            secondary: const Icon(
-              Icons.favorite,
-              color: Colors.pink,
-            )),
+            hintText: 'Sélectionner un site',
+            entries: [
+              '',
+              ...websites.map((Website website) => website.name).toList()
+            ]),
+        const SizedBox(height: 40),
         const Text(
-          'Date',
+          'Par date',
           style: TextStyle(fontSize: 18),
         ),
-        DatePickerWidget(
-            hintText: 'Date', onTapCallback: (String date) => print('TODO')),
-        const Text('TODO'),
-      ]),
+        const SizedBox(height: 5),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: DatePickerWidget(
+                hintText: 'Sélectionner une date',
+                onTapCallback: (String date) => print('TODO'))),
+        const SizedBox(height: 40),
+        const Text(
+          'Par favoris',
+          style: TextStyle(fontSize: 18),
+        ),
+        const SizedBox(height: 5),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: SwitchListTileWidget(
+                title: 'Par favoris',
+                value: false,
+                onChangedCallback: (bool? value) => print('TODO'),
+                secondary: const Icon(
+                  Icons.favorite,
+                  color: Colors.pink,
+                ))),
+      ])),
       actions: [
         TextButton(
             onPressed: () => Navigator.pop(context),

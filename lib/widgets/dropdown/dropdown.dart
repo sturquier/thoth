@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 class DropdownMenuWidget extends StatefulWidget {
   final double width;
+  final String hintText;
   final List<String> entries;
 
   const DropdownMenuWidget(
-      {Key? key, required this.width, required this.entries})
+      {Key? key,
+      required this.width,
+      required this.hintText,
+      required this.entries})
       : super(key: key);
 
   @override
@@ -17,6 +21,7 @@ class _DropdownMenuWidgetState extends State<DropdownMenuWidget> {
   Widget build(BuildContext context) {
     return DropdownMenu(
         width: widget.width,
+        hintText: widget.hintText,
         dropdownMenuEntries: widget.entries
             .map<DropdownMenuEntry<String>>(
                 (String entry) => DropdownMenuEntry(value: entry, label: entry))

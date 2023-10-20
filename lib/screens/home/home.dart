@@ -59,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(mainAxisSize: MainAxisSize.min, children: [
                       Expanded(
                           child: InputSearchWidget(
+                              hintText: 'Une titre, une description ...',
                               onChangedCallback: (String? value) =>
                                   setState(() => _search = value ?? ''))),
                       IconButton(

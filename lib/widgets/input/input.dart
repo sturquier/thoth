@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class InputSearchWidget extends StatefulWidget {
+  final String hintText;
   final void Function(String?) onChangedCallback;
 
-  const InputSearchWidget({Key? key, required this.onChangedCallback})
+  const InputSearchWidget(
+      {Key? key, required this.hintText, required this.onChangedCallback})
       : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class _InputSearchWidgetState extends State<InputSearchWidget> {
   Widget build(BuildContext context) {
     return SearchBar(
         controller: _searchController,
+        hintText: widget.hintText,
         leading: const Icon(Icons.search),
         trailing: _searchController.text.isNotEmpty
             ? [

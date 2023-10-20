@@ -66,7 +66,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 style: TextStyle(fontSize: 18),
               ),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               const Divider(),
               CheckboxListTileWidget(
