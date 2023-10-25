@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 class DropdownMenuWidget extends StatefulWidget {
   final double width;
   final String hintText;
+  final String initialSelection;
   final List<String> entries;
+  final void Function(String?) onSelectedCallback;
 
   const DropdownMenuWidget(
       {Key? key,
       required this.width,
       required this.hintText,
-      required this.entries})
+      required this.initialSelection,
+      required this.entries,
+      required this.onSelectedCallback})
       : super(key: key);
 
   @override
@@ -22,6 +26,8 @@ class _DropdownMenuWidgetState extends State<DropdownMenuWidget> {
     return DropdownMenu(
         width: widget.width,
         hintText: widget.hintText,
+        initialSelection: widget.initialSelection,
+        onSelected: widget.onSelectedCallback,
         dropdownMenuEntries: widget.entries
             .map<DropdownMenuEntry<String>>(
                 (String entry) => DropdownMenuEntry(value: entry, label: entry))

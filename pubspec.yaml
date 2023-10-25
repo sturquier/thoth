@@ -46,6 +46,8 @@ dependencies:
   url_launcher: ^6.1.14
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.4
+  flutter_riverpod: ^2.4.4
+  riverpod: ^2.4.4
 
 dev_dependencies:
   flutter_test:
