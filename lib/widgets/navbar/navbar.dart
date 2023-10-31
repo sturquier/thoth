@@ -24,14 +24,15 @@ class _ScaffoldWithNavbarWidgetState extends State<ScaffoldWithNavbarWidget> {
 
   int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
-    final int index = routes.indexWhere((route) => route.path == location);
+    final int index =
+        authenticatedRoutes.indexWhere((route) => route.path == location);
 
     return index != -1 ? index : 0;
   }
 
   void _onItemTapped(int index, BuildContext context) {
-    if (index >= 0 && index < routes.length) {
-      GoRouter.of(context).go(routes[index].path);
+    if (index >= 0 && index < authenticatedRoutes.length) {
+      GoRouter.of(context).go(authenticatedRoutes[index].path);
     }
   }
 

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:thoth/config/authentication.dart';
 import 'package:thoth/screens/home/home.dart';
+import 'package:thoth/screens/login/login.dart';
 import 'package:thoth/screens/profile/profile.dart';
 import 'package:thoth/screens/settings/settings.dart';
 import 'package:thoth/widgets/navbar/navbar.dart';
 
-enum ERoute { home, profile, settings }
+enum ERoute { home, profile, settings, login }
 
 final class AppRoute {
   final ERoute route;
@@ -19,7 +21,15 @@ final class AppRoute {
   });
 }
 
-final List<AppRoute> routes = [
+final List<AppRoute> anonymousRoutes = [
+  AppRoute(
+    route: ERoute.login,
+    path: '/login',
+    builder: (context, state) => const LoginScreen(),
+  )
+];
+
+final List<AppRoute> authenticatedRoutes = [
   AppRoute(
     route: ERoute.home,
     path: '/',
@@ -38,12 +48,22 @@ final List<AppRoute> routes = [
 ];
 
 final GoRouter router = GoRouter(
-  initialLocation: '/',
+  initialLocation: isAuthenticated ? '/' : '/login',
   routes: <RouteBase>[
     ShellRoute(
       builder: (BuildContext context, GoRouterState state, Widget child) =>
+          child,
+      routes: anonymousRoutes
+          .map((route) => GoRoute(
+                path: route.path,
+                builder: route.builder,
+              ))
+          .toList(),
+    ),
+    ShellRoute(
+      builder: (BuildContext context, GoRouterState state, Widget child) =>
           ScaffoldWithNavbarWidget(child: child),
-      routes: routes
+      routes: authenticatedRoutes
           .map((route) => GoRoute(
                 path: route.path,
                 builder: route.builder,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/filters.dart';
 import 'package:thoth/services/articles.dart';
 import 'package:thoth/widgets/card/card.dart';
 import 'package:thoth/widgets/dialog/dialog.dart';
-import 'package:thoth/widgets/input/input.dart';
+import 'package:thoth/widgets/input/input_search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -113,8 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     top: 3,
                                     right: 3,
                                     child: Badge(
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
                                       label: Text(ref
-                                          .read(filtersProvider)
+                                          .watch(filtersProvider)
                                           .activeFiltersCount
                                           .toString()),
                                     ))
@@ -136,9 +139,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: CircularProgressIndicator());
                         } else if (!snapshot.hasData ||
                             snapshot.data!.isEmpty) {
-                          // TODO : handle when no article in DB
-                          return const Center(
-                              child: Text("Aucun article n'a été trouvé"));
+                          return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Aucun article n'a été trouvé",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                const SizedBox(height: 10),
+                                FilledButton(
+                                    onPressed: () =>
+                                        GoRouter.of(context).go('/settings'),
+                                    child: const Text('Scanner des sites web'))
+                              ]);
                         } else {
                           // TODO : handle when no article when searching
                           List<Article> filteredArticles =

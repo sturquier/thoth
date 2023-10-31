@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/website.dart';
@@ -44,7 +45,7 @@ class _ArticleDialogWidgetState extends State<ArticleDialogWidget> {
 
     provider.updateFilters(updatedFilters);
 
-    Navigator.pop(context);
+    GoRouter.of(context).pop();
   }
 
   @override

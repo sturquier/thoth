@@ -8,6 +8,7 @@ import 'package:thoth/widgets/checkbox/checkbox.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }

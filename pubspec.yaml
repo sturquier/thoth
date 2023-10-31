@@ -48,6 +48,8 @@ dependencies:
   flutter_native_splash: ^2.3.4
   flutter_riverpod: ^2.4.4
   riverpod: ^2.4.4
+  firebase_auth: ^4.12.0
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
