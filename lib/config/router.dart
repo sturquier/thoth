@@ -7,7 +7,7 @@ import 'package:thoth/screens/profile/profile.dart';
 import 'package:thoth/screens/settings/settings.dart';
 import 'package:thoth/widgets/navbar/navbar.dart';
 
-enum ERoute { home, profile, settings, login }
+enum ERoute { home, settings, profile, login }
 
 final class AppRoute {
   final ERoute route;
@@ -36,14 +36,14 @@ final List<AppRoute> authenticatedRoutes = [
     builder: (context, state) => const HomeScreen(),
   ),
   AppRoute(
-    route: ERoute.profile,
-    path: '/profile',
-    builder: (context, state) => const ProfileScreen(),
-  ),
-  AppRoute(
     route: ERoute.settings,
     path: '/settings',
     builder: (context, state) => const SettingsScreen(),
+  ),
+  AppRoute(
+    route: ERoute.profile,
+    path: '/profile',
+    builder: (context, state) => const ProfileScreen(),
   ),
 ];
 

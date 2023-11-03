@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ArticleFilters {
+class Filters {
   String? search;
   String? websiteName;
   String? date;
   bool? favorite;
 
-  ArticleFilters({this.search, this.websiteName, this.date, this.favorite});
+  Filters({this.search, this.websiteName, this.date, this.favorite});
 
   int get activeFiltersCount {
     int count = 0;
@@ -19,13 +19,13 @@ class ArticleFilters {
   }
 }
 
-final filtersProvider = StateNotifierProvider<FiltersProvider, ArticleFilters>(
-    (ref) => FiltersProvider());
+final filtersProvider =
+    StateNotifierProvider<FiltersProvider, Filters>((ref) => FiltersProvider());
 
-class FiltersProvider extends StateNotifier<ArticleFilters> {
-  FiltersProvider() : super(ArticleFilters());
+class FiltersProvider extends StateNotifier<Filters> {
+  FiltersProvider() : super(Filters());
 
-  void updateFilters(ArticleFilters filters) {
+  void updateFilters(Filters filters) {
     state = filters;
   }
 

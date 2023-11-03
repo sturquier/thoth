@@ -1,33 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:thoth/models/article.dart';
+import 'package:thoth/provider/articles.dart';
 import 'package:thoth/provider/filters.dart';
-import 'package:thoth/services/articles.dart';
+import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
 import 'package:thoth/widgets/dialog/dialog.dart';
 import 'package:thoth/widgets/input/input_search.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  late Future<List<Article>> _articles;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _articles = fetchArticles();
-  }
-
-  List<Article> _filteredArticles(List<Article> articles, WidgetRef ref) {
-    final ArticleFilters filters = ref.watch(filtersProvider);
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  List<Article> _filteredArticles(List<Article> articles) {
+    final Filters filters = ref.watch(filtersProvider);
 
     if (filters.search != null) {
       articles = articles.where((Article article) {
@@ -54,17 +45,19 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     if (filters.favorite == true) {
-      print(filters.favorite);
+      articles = articles
+          .where((Article article) => article.isFavorite == true)
+          .toList();
     }
 
     return articles;
   }
 
-  void _handleSearch(String? search, WidgetRef ref) {
-    final ArticleFilters currentFilters = ref.read(filtersProvider);
+  void _handleSearch(String? search) {
+    final Filters currentFilters = ref.read(filtersProvider);
     final FiltersProvider provider = ref.read(filtersProvider.notifier);
 
-    final ArticleFilters updatedFilters = ArticleFilters(
+    final Filters updatedFilters = Filters(
         search: search,
         websiteName: currentFilters.websiteName,
         date: currentFilters.date,
@@ -76,119 +69,102 @@ class _HomeScreenState extends State<HomeScreen> {
   void _openFiltersList(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) => const ArticleDialogWidget());
+        builder: (BuildContext context) => ArticleDialogWidget(ref: ref));
+  }
+
+  void _toggleFavorite(Article article) async {
+    await toggleFavorite(article);
+    await ref.read(articlesProvider.notifier).fetchArticlesValues();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) =>
-            Scaffold(
-              appBar: AppBar(title: const Text('Articles')),
-              body: Column(
-                children: [
-                  Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
+    final AsyncValue<List<Article>> articlesValue = ref.watch(articlesProvider);
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Articles')),
+      body: Column(
+        children: [
+          Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Rechercher des articles',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(mainAxisSize: MainAxisSize.min, children: [
+                      Expanded(
+                          child: InputSearchWidget(
+                              hintText: 'Un titre, une description',
+                              onChangedCallback: (String? search) =>
+                                  _handleSearch(search))),
+                      Stack(children: [
+                        IconButton(
+                            icon: const Icon(Icons.filter_list),
+                            onPressed: () => _openFiltersList(context)),
+                        Positioned(
+                            top: 3,
+                            right: 3,
+                            child: Badge(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              label: Text(ref
+                                  .watch(filtersProvider)
+                                  .activeFiltersCount
+                                  .toString()),
+                            ))
+                      ])
+                    ]),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Divider(),
+                  ])),
+          Expanded(
+            child: articlesValue.when(
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (Object error, StackTrace stackTrace) => const Center(
+                      child: Text(
+                        "Une erreur s'est produite",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                data: (List<Article> articles) => _filteredArticles(articles)
+                        .isEmpty
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                             const Text(
-                              'Rechercher des articles',
+                              "Aucun article n'a été trouvé",
                               style: TextStyle(fontSize: 18),
                             ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(mainAxisSize: MainAxisSize.min, children: [
-                              Expanded(
-                                  child: InputSearchWidget(
-                                      hintText: 'Un titre, une description',
-                                      onChangedCallback: (String? search) =>
-                                          _handleSearch(search, ref))),
-                              Stack(children: [
-                                IconButton(
-                                    icon: const Icon(Icons.filter_list),
-                                    onPressed: () => _openFiltersList(context)),
-                                Positioned(
-                                    top: 3,
-                                    right: 3,
-                                    child: Badge(
-                                      backgroundColor:
-                                          Theme.of(context).primaryColor,
-                                      label: Text(ref
-                                          .watch(filtersProvider)
-                                          .activeFiltersCount
-                                          .toString()),
-                                    ))
-                              ])
-                            ]),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            const Divider(),
-                          ])),
-                  Expanded(
-                    child: FutureBuilder<List<Article>>(
-                      future: _articles,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<Article>> snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (!snapshot.hasData ||
-                            snapshot.data!.isEmpty) {
-                          return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  "Aucun article n'a été trouvé",
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                                const SizedBox(height: 10),
-                                FilledButton(
-                                    onPressed: () =>
-                                        GoRouter.of(context).go('/settings'),
-                                    child: const Text('Scanner des sites web'))
-                              ]);
-                        } else {
-                          List<Article> filteredArticles =
-                              _filteredArticles(snapshot.data!, ref);
+                            const SizedBox(height: 10),
+                            FilledButton(
+                                onPressed: () => _openFiltersList(context),
+                                child: const Text('Modifier les filtres'))
+                          ])
+                    : ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        itemCount: _filteredArticles(articles).length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Article article = _filteredArticles(articles)[index];
 
-                          if (filteredArticles.isEmpty) {
-                            return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Aucun article n'a été trouvé",
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  FilledButton(
-                                      onPressed: () =>
-                                          _openFiltersList(context),
-                                      child: const Text('Modifier les filtres'))
-                                ]);
-                          }
-
-                          return ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            itemCount: filteredArticles.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              Article article = filteredArticles[index];
-
-                              return ArticleCardWidget(article: article);
-                            },
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ));
+                          return ArticleCardWidget(
+                              article: article,
+                              toggleFavoriteCallback: () =>
+                                  _toggleFavorite(article));
+                        },
+                      )),
+          ),
+        ],
+      ),
+    );
   }
 }

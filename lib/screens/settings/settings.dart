@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:thoth/config/crawlers.dart';
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/models/website.dart';
-import 'package:thoth/services/articles.dart';
+import 'package:thoth/provider/articles.dart';
 import 'package:thoth/widgets/checkbox/checkbox.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _allWebsitesChecked = false;
 
   final Map<Website, bool> _checkedWebsites = {
@@ -29,7 +31,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           .any((status) => status == CrawlingStatus.crawling);
 
   void _crawlWebsites() async {
-    final List<Article> existingArticles = await fetchArticles();
+    final List<Article> existingArticles =
+        ref.read(articlesProvider).value ?? [];
+    int crawledWebsitesCount = 0;
 
     for (Website website in websites) {
       if (_checkedWebsites[website] == true) {
@@ -43,8 +47,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _crawledWebsites[website] =
                 success ? CrawlingStatus.success : CrawlingStatus.failure;
           });
+
+          if (success) {
+            crawledWebsitesCount++;
+          }
         }
       }
+    }
+
+    if (crawledWebsitesCount ==
+        _checkedWebsites.values.where((b) => b).length) {
+      Fluttertoast.showToast(
+          msg: 'Tous les sites web ont été scannés avec succès');
+      await ref.read(articlesProvider.notifier).fetchArticlesValues();
+    } else {
+      Fluttertoast.showToast(
+          msg:
+              "Une erreur s'est produite lors du scan d'un ou plusieurs sites web");
     }
   }
 
