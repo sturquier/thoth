@@ -53,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
           .toList();
     }
 
-    // TODO : filters.favorite
+    if (filters.favorite == true) {
+      print(filters.favorite);
+    }
 
     return articles;
   }
@@ -153,9 +155,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: const Text('Scanner des sites web'))
                               ]);
                         } else {
-                          // TODO : handle when no article when searching
                           List<Article> filteredArticles =
                               _filteredArticles(snapshot.data!, ref);
+
+                          if (filteredArticles.isEmpty) {
+                            return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Aucun article n'a été trouvé",
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  FilledButton(
+                                      onPressed: () =>
+                                          _openFiltersList(context),
+                                      child: const Text('Modifier les filtres'))
+                                ]);
+                          }
 
                           return ListView.builder(
                             padding: const EdgeInsets.symmetric(horizontal: 15),

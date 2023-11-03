@@ -57,7 +57,7 @@ Future<bool> crawlITNext(List<Article> existingArticles) async {
 
       if (createdAt == null) return false;
 
-      Article newArticle = Article.fromJson({
+      Article newArticle = Article.fromJson('', {
         'title': title.text.trim(),
         'description': description?.text,
         'url': url.attributes['href'],

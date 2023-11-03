@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:thoth/models/article.dart';
+import 'package:thoth/services/favorites.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleCardWidget extends StatefulWidget {
@@ -13,6 +14,15 @@ class ArticleCardWidget extends StatefulWidget {
 }
 
 class _ArticleCardWidgetState extends State<ArticleCardWidget> {
+  late bool _isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _isFavorite = widget.article.isFavorite;
+  }
+
   void _launchUrl() async {
     Uri url = Uri.parse(widget.article.url);
 
@@ -66,9 +76,12 @@ class _ArticleCardWidgetState extends State<ArticleCardWidget> {
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 IconButton(
-                    onPressed: () => print('TODO'),
-                    icon: const Icon(
-                      Icons.favorite_border,
+                    onPressed: () {
+                      setState(() => _isFavorite = !_isFavorite);
+                      toggleFavorite(widget.article);
+                    },
+                    icon: Icon(
+                      _isFavorite ? Icons.favorite : Icons.favorite_border,
                       color: Colors.pink,
                     )),
                 TextButton(
