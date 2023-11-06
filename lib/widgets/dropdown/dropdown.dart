@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
+final class DropdownEntry {
+  final String value;
+  final String label;
+
+  DropdownEntry({required this.value, required this.label});
+}
+
 class DropdownMenuWidget extends StatefulWidget {
   final double width;
   final String hintText;
   final String initialSelection;
-  final List<String> entries;
+  final List<DropdownEntry> entries;
   final void Function(String?) onSelectedCallback;
 
   const DropdownMenuWidget(
@@ -29,8 +36,8 @@ class _DropdownMenuWidgetState extends State<DropdownMenuWidget> {
         initialSelection: widget.initialSelection,
         onSelected: widget.onSelectedCallback,
         dropdownMenuEntries: widget.entries
-            .map<DropdownMenuEntry<String>>(
-                (String entry) => DropdownMenuEntry(value: entry, label: entry))
+            .map<DropdownMenuEntry<String>>((DropdownEntry entry) =>
+                DropdownMenuEntry(value: entry.value, label: entry.label))
             .toList());
   }
 }

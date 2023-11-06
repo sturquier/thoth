@@ -27,9 +27,9 @@ class _ArticleDialogWidgetState extends State<ArticleDialogWidget> {
 
     final Filters updatedFilters = Filters(
         search: currentFilters.search,
-        websiteName: null,
+        website: 'all',
         date: null,
-        favorite: false);
+        favorite: null);
 
     setState(() => _filters = Filters());
     provider.updateFilters(updatedFilters);
@@ -41,7 +41,7 @@ class _ArticleDialogWidgetState extends State<ArticleDialogWidget> {
 
     final Filters updatedFilters = Filters(
         search: currentFilters.search,
-        websiteName: _filters!.websiteName,
+        website: _filters!.website,
         date: _filters!.date,
         favorite: _filters!.favorite);
 
@@ -73,12 +73,15 @@ class _ArticleDialogWidgetState extends State<ArticleDialogWidget> {
         DropdownMenuWidget(
             width: MediaQuery.of(context).size.width * 0.6,
             hintText: 'Sélectionner un site',
-            initialSelection: _filters!.websiteName ?? '',
-            onSelectedCallback: (String? websiteName) =>
-                setState(() => _filters!.websiteName = websiteName),
+            initialSelection: _filters!.website ?? 'all',
+            onSelectedCallback: (String? website) =>
+                setState(() => _filters!.website = website),
             entries: [
-              '',
-              ...websites.map((Website website) => website.name).toList()
+              DropdownEntry(value: 'all', label: 'Tous les sites'),
+              ...websites
+                  .map((Website website) =>
+                      DropdownEntry(value: website.name, label: website.name))
+                  .toList()
             ]),
         const SizedBox(height: 40),
         Row(children: [
@@ -99,7 +102,7 @@ class _ArticleDialogWidgetState extends State<ArticleDialogWidget> {
                 initialDate: _filters!.date != null
                     ? DateFormat('dd/MM/yyyy').parse(_filters!.date!)
                     : null,
-                onTapCallback: (String date) =>
+                onTapCallback: (String? date) =>
                     setState(() => _filters!.date = date))),
         const SizedBox(height: 40),
         Row(children: [

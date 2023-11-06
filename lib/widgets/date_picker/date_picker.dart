@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class DatePickerWidget extends StatefulWidget {
   final String hintText;
   final DateTime? initialDate;
-  final void Function(String) onTapCallback;
+  final void Function(String?) onTapCallback;
 
   const DatePickerWidget(
       {Key? key,
@@ -52,11 +52,21 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     }
   }
 
+  void _resetDate() {
+    _datePickerController.clear();
+    widget.onTapCallback(null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
         controller: _datePickerController,
-        decoration: InputDecoration(hintText: widget.hintText),
+        decoration: InputDecoration(
+            hintText: widget.hintText,
+            suffixIcon: _datePickerController.text.isNotEmpty
+                ? IconButton(
+                    onPressed: _resetDate, icon: const Icon(Icons.close))
+                : null),
         readOnly: true,
         onTap: () async {
           DateTime? pickedDate = await showDatePicker(
@@ -65,7 +75,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               initialEntryMode: DatePickerEntryMode.calendarOnly,
               initialDate: widget.initialDate ?? DateTime.now(),
               firstDate: DateTime(1900),
-              lastDate: DateTime(2100));
+              lastDate: DateTime.now());
 
           if (pickedDate != null) {
             String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);

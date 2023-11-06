@@ -2,16 +2,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Filters {
   String? search;
-  String? websiteName;
+  String? website;
   String? date;
   bool? favorite;
 
-  Filters({this.search, this.websiteName, this.date, this.favorite});
+  Filters({this.search, this.website, this.date, this.favorite});
 
   int get activeFiltersCount {
     int count = 0;
 
-    if (websiteName != null && websiteName!.isNotEmpty) count++;
+    if (website != null && website != 'all') count++;
     if (date != null && date!.isNotEmpty) count++;
     if (favorite == true) count++;
 

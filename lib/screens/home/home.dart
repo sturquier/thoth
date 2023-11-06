@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/articles.dart';
 import 'package:thoth/provider/filters.dart';
@@ -17,49 +16,13 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  List<Article> _filteredArticles(List<Article> articles) {
-    final Filters filters = ref.watch(filtersProvider);
-
-    if (filters.search != null) {
-      articles = articles.where((Article article) {
-        final String search = filters.search!.toLowerCase();
-
-        return article.title.toLowerCase().contains(search) ||
-            (article.description?.toLowerCase() ?? '').contains(search);
-      }).toList();
-    }
-
-    if (filters.websiteName != null) {
-      articles = articles
-          .where(
-              (Article article) => article.website.name == filters.websiteName)
-          .toList();
-    }
-
-    if (filters.date != null) {
-      articles = articles
-          .where((Article article) =>
-              DateFormat('dd/MM/yyyy', 'fr_fr').format(article.createdAt) ==
-              filters.date)
-          .toList();
-    }
-
-    if (filters.favorite == true) {
-      articles = articles
-          .where((Article article) => article.isFavorite == true)
-          .toList();
-    }
-
-    return articles;
-  }
-
   void _handleSearch(String? search) {
     final Filters currentFilters = ref.read(filtersProvider);
     final FiltersProvider provider = ref.read(filtersProvider.notifier);
 
     final Filters updatedFilters = Filters(
         search: search,
-        websiteName: currentFilters.websiteName,
+        website: currentFilters.website,
         date: currentFilters.date,
         favorite: currentFilters.favorite);
 
@@ -93,12 +56,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Text(
-                      'Rechercher des articles',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Rechercher des articles',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Text(
+                            articlesValue.when(
+                              loading: () => '',
+                              error: (Object _, StackTrace __) => '',
+                              data: (List<Article> articles) => articles
+                                          .length >
+                                      1
+                                  ? '( ${articles.length} articles trouvés )'
+                                  : '( ${articles.length} article trouvé )',
+                            ),
+                            style: const TextStyle(
+                                fontSize: 13, fontStyle: FontStyle.italic),
+                          ),
+                        ]),
                     const SizedBox(
-                      height: 5,
+                      height: 20,
                     ),
                     Row(mainAxisSize: MainAxisSize.min, children: [
                       Expanded(
@@ -130,14 +110,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           Expanded(
             child: articlesValue.when(
                 loading: () => const Center(child: CircularProgressIndicator()),
-                error: (Object error, StackTrace stackTrace) => const Center(
+                error: (Object error, StackTrace _) => const Center(
                       child: Text(
                         "Une erreur s'est produite",
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
-                data: (List<Article> articles) => _filteredArticles(articles)
-                        .isEmpty
+                data: (List<Article> articles) => articles.isEmpty
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -152,9 +131,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           ])
                     : ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
-                        itemCount: _filteredArticles(articles).length,
+                        itemCount: articles.length,
                         itemBuilder: (BuildContext context, int index) {
-                          Article article = _filteredArticles(articles)[index];
+                          Article article = articles[index];
 
                           return ArticleCardWidget(
                               article: article,
