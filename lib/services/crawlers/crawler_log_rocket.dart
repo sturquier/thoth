@@ -18,25 +18,25 @@ Future<bool> crawlLogRocket(List<Article> existingArticles) async {
     final Document document = parser.parse(response.body);
 
     final Element? postsSection =
-        document.getElementsByClassName('featured-posts').isNotEmpty
-            ? document.getElementsByClassName('featured-posts')[0]
+        document.getElementsByClassName('post-list-container').isNotEmpty
+            ? document.getElementsByClassName('post-list-container')[1]
             : null;
 
     if (postsSection == null) return false;
 
-    List<Element> posts = postsSection.getElementsByClassName('col-md-6');
+    List<Element> posts = postsSection.getElementsByClassName('post-list');
 
     if (posts.isEmpty) return false;
 
     for (Element post in posts) {
-      Element? title = post.getElementsByTagName('h2').isNotEmpty
-          ? post.getElementsByTagName('h2')[0]
+      Element? title = post.getElementsByTagName('h4').isNotEmpty
+          ? post.getElementsByTagName('h4')[0]
           : null;
 
       if (title == null) return false;
 
-      Element? description = post.getElementsByClassName('card-text').isNotEmpty
-          ? post.getElementsByClassName('card-text')[0]
+      Element? description = post.getElementsByTagName('p').isNotEmpty
+          ? post.getElementsByTagName('p')[0]
           : null;
 
       if (description == null) return false;
@@ -53,9 +53,12 @@ Future<bool> crawlLogRocket(List<Article> existingArticles) async {
 
       if (image == null) return false;
 
-      Element? createdAt = post.getElementsByClassName('post-date').isNotEmpty
-          ? post.getElementsByClassName('post-date')[0]
-          : null;
+      Element? createdAt =
+          post.getElementsByClassName('post-card-author-name').isNotEmpty
+              ? post
+                  .getElementsByClassName('post-card-author-name')[0]
+                  .nextElementSibling
+              : null;
 
       if (createdAt == null) return false;
 

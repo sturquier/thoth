@@ -67,14 +67,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             articlesValue.when(
                               loading: () => '',
                               error: (Object _, StackTrace __) => '',
-                              data: (List<Article> articles) => articles
-                                          .length >
-                                      1
-                                  ? '( ${articles.length} articles trouvés )'
-                                  : '( ${articles.length} article trouvé )',
+                              data: (List<Article> articles) =>
+                                  articles.length > 1
+                                      ? '( ${articles.length} résultats )'
+                                      : '( ${articles.length} résultat )',
                             ),
                             style: const TextStyle(
-                                fontSize: 13, fontStyle: FontStyle.italic),
+                                fontSize: 14, fontStyle: FontStyle.italic),
                           ),
                         ]),
                     const SizedBox(
