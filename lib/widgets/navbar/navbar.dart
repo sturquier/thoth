@@ -17,7 +17,8 @@ class ScaffoldWithNavbarWidget extends StatefulWidget {
 
 class _ScaffoldWithNavbarWidgetState extends State<ScaffoldWithNavbarWidget> {
   final List<BottomNavigationBarItem> tabs = [
-    const BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+    const BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
+    const BottomNavigationBarItem(icon: Icon(Icons.manage_search), label: ''),
     const BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
     const BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: ''),
   ];

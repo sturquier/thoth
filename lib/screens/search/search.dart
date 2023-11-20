@@ -8,14 +8,14 @@ import 'package:thoth/widgets/card/card.dart';
 import 'package:thoth/widgets/dialog/dialog.dart';
 import 'package:thoth/widgets/input/input_search.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+class SearchScreen extends ConsumerStatefulWidget {
+  const SearchScreen({super.key});
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   void _handleSearch(String? search) {
     final Filters currentFilters = ref.read(filtersProvider);
     final FiltersProvider provider = ref.read(filtersProvider.notifier);
