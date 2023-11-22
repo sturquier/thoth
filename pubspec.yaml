@@ -50,6 +50,8 @@ dependencies:
   riverpod: ^2.4.4
   firebase_auth: ^4.12.0
   fluttertoast: ^8.2.2
+  syncfusion_flutter_charts: ^23.2.4
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:

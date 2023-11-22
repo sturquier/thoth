@@ -75,10 +75,27 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
     final AsyncValue<List<Article>> articlesValue = ref.watch(articlesProvider);
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const Text(
-        'Mes articles favoris',
-        style: TextStyle(fontSize: 18),
-      ),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const Text(
+          'Mes articles favoris',
+          style: TextStyle(fontSize: 18),
+        ),
+        Text(
+          articlesValue.when(
+              loading: () => '',
+              error: (Object _, StackTrace __) => '',
+              data: (List<Article> articles) {
+                final favorites = articles
+                    .where((Article article) => article.isFavorite)
+                    .toList();
+
+                return favorites.length > 1
+                    ? '( ${favorites.length} résultats )'
+                    : '( ${favorites.length} résultat )';
+              }),
+          style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+        )
+      ]),
       const SizedBox(
         height: 30,
       ),
@@ -95,6 +112,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
               final favorites = articles
                   .where((Article article) => article.isFavorite)
                   .toList();
+
               return favorites.isEmpty
                   ? const Center(
                       child: Text(
