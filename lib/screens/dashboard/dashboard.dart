@@ -14,6 +14,13 @@ class DashboardScreen extends ConsumerStatefulWidget {
 }
 
 class _DashboardScreenState extends ConsumerState<DashboardScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    ref.read(articlesProvider.notifier).setApplyFilters(false);
+  }
+
   Map<String, int> getArticlesCountPerWebsite(List<Article> articles) {
     Map<String, List<Article>> groupedArticles =
         groupBy(articles, (Article a) => a.website.name);

@@ -22,6 +22,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
   void initState() {
     super.initState();
 
+    ref.read(articlesProvider.notifier).setApplyFilters(false);
+
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(_handleTabSelection);
   }

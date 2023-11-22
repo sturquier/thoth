@@ -16,6 +16,13 @@ class SearchScreen extends ConsumerStatefulWidget {
 }
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    ref.read(articlesProvider.notifier).setApplyFilters(true);
+  }
+
   void _handleSearch(String? search) {
     final Filters currentFilters = ref.read(filtersProvider);
     final FiltersProvider provider = ref.read(filtersProvider.notifier);
@@ -82,9 +89,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     Row(mainAxisSize: MainAxisSize.min, children: [
                       Expanded(
                           child: InputSearchWidget(
-                              hintText: 'Un titre, une description',
-                              onChangedCallback: (String? search) =>
-                                  _handleSearch(search))),
+                        hintText: 'Un titre, une description',
+                        onChangedCallback: (String? search) =>
+                            _handleSearch(search),
+                        currentSearch: ref.watch(filtersProvider).search,
+                      )),
                       Stack(children: [
                         IconButton(
                             icon: const Icon(Icons.filter_list),

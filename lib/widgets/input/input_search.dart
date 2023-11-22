@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class InputSearchWidget extends StatefulWidget {
   final String hintText;
   final void Function(String?) onChangedCallback;
+  final String? currentSearch;
 
   const InputSearchWidget(
-      {Key? key, required this.hintText, required this.onChangedCallback})
+      {Key? key,
+      required this.hintText,
+      required this.onChangedCallback,
+      this.currentSearch})
       : super(key: key);
 
   @override
@@ -13,7 +17,14 @@ class InputSearchWidget extends StatefulWidget {
 }
 
 class _InputSearchWidgetState extends State<InputSearchWidget> {
-  final TextEditingController _searchController = TextEditingController();
+  late final TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _searchController = TextEditingController(text: widget.currentSearch);
+  }
 
   @override
   void dispose() {

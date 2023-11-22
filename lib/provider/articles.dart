@@ -5,13 +5,21 @@ import 'package:thoth/provider/filters.dart';
 import 'package:thoth/services/articles.dart';
 
 final articlesProvider =
-    StateNotifierProvider<ArticlesProvider, AsyncValue<List<Article>>>(
-        (ref) => ArticlesProvider(ref.watch(filtersProvider)));
+    StateNotifierProvider<ArticlesProvider, AsyncValue<List<Article>>>((ref) =>
+        ArticlesProvider(ref.watch(filtersProvider), applyFilters: true));
 
 class ArticlesProvider extends StateNotifier<AsyncValue<List<Article>>> {
   final Filters _filters;
+  bool _applyFilters;
 
-  ArticlesProvider(this._filters) : super(const AsyncValue.loading()) {
+  ArticlesProvider(this._filters, {bool applyFilters = true})
+      : _applyFilters = applyFilters,
+        super(const AsyncValue.loading()) {
+    fetchArticlesValues();
+  }
+
+  void setApplyFilters(bool value) {
+    _applyFilters = value;
     fetchArticlesValues();
   }
 
@@ -19,7 +27,7 @@ class ArticlesProvider extends StateNotifier<AsyncValue<List<Article>>> {
     try {
       final List<Article> articles = await fetchArticles();
       final List<Article> filteredArticles =
-          _filterArticles(articles, _filters);
+          _applyFilters ? _filterArticles(articles, _filters) : articles;
 
       state = AsyncValue.data(filteredArticles);
     } catch (e, stackTrace) {
