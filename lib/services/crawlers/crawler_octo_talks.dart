@@ -18,13 +18,13 @@ Future<bool> crawlOctoTalks(List<Article> existingArticles) async {
     final Document document = parser.parse(response.body);
 
     final Element? postsSection =
-        document.getElementsByClassName('content-area').isNotEmpty
-            ? document.getElementsByClassName('content-area')[0]
+        document.getElementsByClassName('blogContainer').isNotEmpty
+            ? document.getElementsByClassName('blogContainer')[0]
             : null;
 
     if (postsSection == null) return false;
 
-    List<Element> posts = postsSection.getElementsByTagName('article');
+    List<Element> posts = postsSection.getElementsByClassName('articleList');
 
     if (posts.isEmpty) return false;
 
@@ -53,19 +53,26 @@ Future<bool> crawlOctoTalks(List<Article> existingArticles) async {
 
       if (image == null) return false;
 
-      Element? createdAt = post.getElementsByTagName('time').isNotEmpty
-          ? post.getElementsByTagName('time')[0]
-          : null;
+      Element? createdAt =
+          post.getElementsByClassName('articleListItem-dateAuthor').isNotEmpty
+              ? post.getElementsByClassName('articleListItem-dateAuthor')[0]
+              : null;
 
       if (createdAt == null) return false;
+
+      RegExp createdAtPattern = RegExp(r'\d{2}/\d{2}/\d{4}');
+      String? createdAtString =
+          createdAtPattern.firstMatch(createdAt.text)?.group(0);
+
+      if (createdAtString == null) return false;
 
       Article newArticle = Article.fromJson('', {
         'title': title.text.trim(),
         'description': description.text,
         'url': url.attributes['href'],
-        'image': image.attributes['src'],
+        'image': '${website.url}${image.attributes['src']}',
         'createdAt': DateFormat('dd/MM/yyyy', 'fr_FR')
-            .parse(createdAt.text)
+            .parse(createdAtString)
             .millisecondsSinceEpoch,
         'website': website.toJson()
       });
