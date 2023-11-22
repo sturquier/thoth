@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thoth/config/router.dart';
 
-class ScaffoldWithNavbarWidget extends StatefulWidget {
+class ScaffoldWithNavbarWidget extends StatelessWidget {
   final Widget child;
 
-  const ScaffoldWithNavbarWidget({
+  ScaffoldWithNavbarWidget({
     Key? key,
     required this.child,
   }) : super(key: key);
 
-  @override
-  State<ScaffoldWithNavbarWidget> createState() =>
-      _ScaffoldWithNavbarWidgetState();
-}
-
-class _ScaffoldWithNavbarWidgetState extends State<ScaffoldWithNavbarWidget> {
   final List<BottomNavigationBarItem> tabs = [
     const BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
     const BottomNavigationBarItem(icon: Icon(Icons.manage_search), label: ''),
@@ -40,7 +34,7 @@ class _ScaffoldWithNavbarWidgetState extends State<ScaffoldWithNavbarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: widget.child,
+        body: child,
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             iconSize: 30,

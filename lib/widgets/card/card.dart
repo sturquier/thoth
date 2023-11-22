@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:thoth/models/article.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ArticleCardWidget extends StatefulWidget {
+class ArticleCardWidget extends StatelessWidget {
   final Article article;
   final VoidCallback toggleFavoriteCallback;
 
@@ -11,13 +11,8 @@ class ArticleCardWidget extends StatefulWidget {
       {Key? key, required this.article, required this.toggleFavoriteCallback})
       : super(key: key);
 
-  @override
-  State<ArticleCardWidget> createState() => _ArticleCardWidgetState();
-}
-
-class _ArticleCardWidgetState extends State<ArticleCardWidget> {
   void _launchUrl() async {
-    Uri url = Uri.parse(widget.article.url);
+    Uri url = Uri.parse(article.url);
 
     if (await canLaunchUrl(url)) {
       launchUrl(url);
@@ -31,9 +26,9 @@ class _ArticleCardWidgetState extends State<ArticleCardWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          leading: Image.network(widget.article.image),
+          leading: Image.network(article.image),
           title: Text(
-            widget.article.title,
+            article.title,
             style: const TextStyle(fontSize: 18),
           ),
         ),
@@ -42,19 +37,19 @@ class _ArticleCardWidgetState extends State<ArticleCardWidget> {
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Text(
-                    'Le ${DateFormat('dd/MM/yyyy', 'fr_fr').format(widget.article.createdAt)}',
+                    'Le ${DateFormat('dd/MM/yyyy', 'fr_fr').format(article.createdAt)}',
                     style: const TextStyle(
                         fontSize: 12, fontStyle: FontStyle.italic)),
-                Text('Par ${widget.article.website.name}',
+                Text('Par ${article.website.name}',
                     style: const TextStyle(
                         fontSize: 12, fontStyle: FontStyle.italic))
               ]),
-              if (widget.article.description != null) ...[
+              if (article.description != null) ...[
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  widget.article.description!,
+                  article.description!,
                   style: const TextStyle(fontSize: 15),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -69,9 +64,9 @@ class _ArticleCardWidgetState extends State<ArticleCardWidget> {
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 IconButton(
-                    onPressed: widget.toggleFavoriteCallback,
+                    onPressed: toggleFavoriteCallback,
                     icon: Icon(
-                      widget.article.isFavorite
+                      article.isFavorite
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: Colors.pink,

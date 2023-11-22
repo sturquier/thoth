@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CheckboxListTileWidget extends StatefulWidget {
+class CheckboxListTileWidget extends StatelessWidget {
   final String title;
   final bool value;
   final void Function(bool?) onChangedCallback;
@@ -13,17 +13,12 @@ class CheckboxListTileWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<CheckboxListTileWidget> createState() => _CheckboxListTileWidgetState();
-}
-
-class _CheckboxListTileWidgetState extends State<CheckboxListTileWidget> {
-  @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
         contentPadding: EdgeInsets.zero,
-        title: Text(widget.title),
-        value: widget.value,
-        onChanged: widget.onChangedCallback);
+        title: Text(title),
+        value: value,
+        onChanged: onChangedCallback);
   }
 }

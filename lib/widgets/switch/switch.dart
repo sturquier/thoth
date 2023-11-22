@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SwitchListTileWidget extends StatefulWidget {
+class SwitchListTileWidget extends StatelessWidget {
   final String? title;
   final bool value;
   final void Function(bool?) onChangedCallback;
@@ -13,23 +13,18 @@ class SwitchListTileWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<SwitchListTileWidget> createState() => _SwitchListTileWidgetState();
-}
-
-class _SwitchListTileWidgetState extends State<SwitchListTileWidget> {
-  @override
   Widget build(BuildContext context) {
     return SwitchListTile(
       contentPadding: EdgeInsets.zero,
       controlAffinity: ListTileControlAffinity.leading,
-      title: widget.title != null
+      title: title != null
           ? Text(
-              widget.title!,
+              title!,
               style: const TextStyle(fontSize: 12),
             )
           : null,
-      value: widget.value,
-      onChanged: widget.onChangedCallback,
+      value: value,
+      onChanged: onChangedCallback,
     );
   }
 }

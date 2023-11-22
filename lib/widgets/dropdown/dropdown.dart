@@ -7,7 +7,7 @@ final class DropdownEntry {
   DropdownEntry({required this.value, required this.label});
 }
 
-class DropdownMenuWidget extends StatefulWidget {
+class DropdownMenuWidget extends StatelessWidget {
   final double width;
   final String hintText;
   final String initialSelection;
@@ -24,18 +24,13 @@ class DropdownMenuWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<DropdownMenuWidget> createState() => _DropdownMenuWidgetState();
-}
-
-class _DropdownMenuWidgetState extends State<DropdownMenuWidget> {
-  @override
   Widget build(BuildContext context) {
     return DropdownMenu(
-        width: widget.width,
-        hintText: widget.hintText,
-        initialSelection: widget.initialSelection,
-        onSelected: widget.onSelectedCallback,
-        dropdownMenuEntries: widget.entries
+        width: width,
+        hintText: hintText,
+        initialSelection: initialSelection,
+        onSelected: onSelectedCallback,
+        dropdownMenuEntries: entries
             .map<DropdownMenuEntry<String>>((DropdownEntry entry) =>
                 DropdownMenuEntry(value: entry.value, label: entry.label))
             .toList());
