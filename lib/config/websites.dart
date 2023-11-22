@@ -1,10 +1,12 @@
 import 'package:thoth/models/website.dart';
 
-enum EWebsite { itnext, logRocket, octoTalks, towardsDataScience }
+enum EWebsite { angularBlog, itnext, logRocket, octoTalks, towardsDataScience }
 
 extension WebsiteExtension on EWebsite {
   String get name {
     switch (this) {
+      case EWebsite.angularBlog:
+        return 'Angular Blog';
       case EWebsite.itnext:
         return 'ITNext';
       case EWebsite.logRocket:
@@ -18,6 +20,7 @@ extension WebsiteExtension on EWebsite {
 }
 
 final List<Website> websites = [
+  Website(name: EWebsite.angularBlog.name, url: 'https://blog.angular.io'),
   Website(name: EWebsite.itnext.name, url: 'https://itnext.io'),
   Website(name: EWebsite.logRocket.name, url: 'https://blog.logrocket.com'),
   Website(name: EWebsite.octoTalks.name, url: 'https://blog.octo.com'),
