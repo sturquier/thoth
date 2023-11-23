@@ -5,6 +5,7 @@ import 'package:thoth/provider/articles.dart';
 import 'package:thoth/provider/filters.dart';
 import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
+import 'package:thoth/widgets/dialog/category_dialog.dart';
 import 'package:thoth/widgets/dialog/filters_dialog.dart';
 import 'package:thoth/widgets/input/input_search.dart';
 
@@ -45,6 +46,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   void _toggleFavorite(Article article) async {
     await toggleFavorite(article);
     await ref.read(articlesProvider.notifier).fetchArticlesValues();
+  }
+
+  void _openCategoryDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => CategoryDialogWidget());
   }
 
   @override
@@ -146,7 +153,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           return ArticleCardWidget(
                               article: article,
                               toggleFavoriteCallback: () =>
-                                  _toggleFavorite(article));
+                                  _toggleFavorite(article),
+                              openCategoryDialogCallback: () =>
+                                  _openCategoryDialog(context));
                         },
                       )),
           ),

@@ -25,3 +25,7 @@ Future<List<Article>> fetchArticles() async {
 
   return articles;
 }
+
+Future<void> addArticle(Article article) async {
+  await articlesReference.push().set(article.toJson());
+}

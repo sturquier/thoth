@@ -6,9 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 class ArticleCardWidget extends StatelessWidget {
   final Article article;
   final VoidCallback toggleFavoriteCallback;
+  final VoidCallback openCategoryDialogCallback;
 
   const ArticleCardWidget(
-      {Key? key, required this.article, required this.toggleFavoriteCallback})
+      {Key? key,
+      required this.article,
+      required this.toggleFavoriteCallback,
+      required this.openCategoryDialogCallback})
       : super(key: key);
 
   void _launchUrl() async {
@@ -67,7 +71,7 @@ class ArticleCardWidget extends StatelessWidget {
                     onPressed: _launchUrl, child: const Text("VOIR L'ARTICLE")),
                 Row(children: [
                   IconButton(
-                      onPressed: () => print('TODO'),
+                      onPressed: openCategoryDialogCallback,
                       icon: const Icon(Icons.create_new_folder_outlined)),
                   IconButton(
                       onPressed: toggleFavoriteCallback,

@@ -7,3 +7,6 @@ final DatabaseReference articlesReference =
 
 final DatabaseReference favoritesReference =
     _databaseReference.child('favorites');
+
+final DatabaseReference categoriesReference =
+    _databaseReference.child('categories');

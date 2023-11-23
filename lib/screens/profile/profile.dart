@@ -24,7 +24,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
 
     ref.read(articlesProvider.notifier).setApplyFilters(false);
 
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
   }
 
@@ -127,14 +127,34 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                         Article article = favorites[index];
 
                         return ArticleCardWidget(
-                            article: article,
-                            toggleFavoriteCallback: () =>
-                                _toggleFavorite(article));
+                          article: article,
+                          toggleFavoriteCallback: () =>
+                              _toggleFavorite(article),
+                          openCategoryDialogCallback: () => print('TODO'),
+                        );
                       },
                     );
             }),
       )
     ]);
+  }
+
+  Widget _buildCategoriesTab() {
+    return const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Mes catégories d'articles",
+            style: TextStyle(fontSize: 18),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Text(
+            'TODO',
+            style: TextStyle(fontSize: 16),
+          ),
+        ]);
   }
 
   @override
@@ -150,7 +170,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
               children: [
                 TabBar(controller: _tabController, tabs: const [
                   Tab(text: 'Informations'),
-                  Tab(text: 'Favoris')
+                  Tab(text: 'Favoris'),
+                  Tab(text: 'Catégories')
                 ]),
                 const SizedBox(
                   height: 20,
@@ -158,7 +179,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                 Expanded(
                     child: TabBarView(controller: _tabController, children: [
                   _buildInformationsTab(),
-                  _buildFavoritesTab()
+                  _buildFavoritesTab(),
+                  _buildCategoriesTab()
                 ])),
               ],
             )),

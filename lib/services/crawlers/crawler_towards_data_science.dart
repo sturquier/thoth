@@ -2,10 +2,10 @@ import 'package:html/dom.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:thoth/config/database.dart';
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/models/website.dart';
+import 'package:thoth/services/articles.dart';
 
 Future<bool> crawlTowardsDataScience(List<Article> existingArticles) async {
   final List<Article> articles = [];
@@ -78,7 +78,7 @@ Future<bool> crawlTowardsDataScience(List<Article> existingArticles) async {
     }
 
     for (Article article in articles) {
-      articlesReference.push().set(article.toJson());
+      await addArticle(article);
     }
 
     return true;
