@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:thoth/config/authentication.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/articles.dart';
+import 'package:thoth/provider/categories.dart';
 import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
 
@@ -140,21 +141,38 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
   }
 
   Widget _buildCategoriesTab() {
-    return const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Mes catégories d'articles",
-            style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Text(
-            'TODO',
-            style: TextStyle(fontSize: 16),
-          ),
-        ]);
+    final AsyncValue<List<String>> categoriesValue =
+        ref.watch(categoriesProvider);
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const Text(
+        "Mes catégories d'articles",
+        style: TextStyle(fontSize: 18),
+      ),
+      const SizedBox(
+        height: 30,
+      ),
+      Expanded(
+        child: categoriesValue.when(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (Object error, StackTrace stackTrace) => const Center(
+                  child: Text(
+                    "Une erreur s'est produite",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+            data: (List<String> categories) => categories.isEmpty
+                ? const Center(
+                    child: Text(
+                    "Aucune catégorie n'a été trouvée",
+                    style: TextStyle(fontSize: 18),
+                  ))
+                : ListView(
+                    children: categories
+                        .map((String categoryName) => Text(categoryName))
+                        .toList())),
+      ),
+    ]);
   }
 
   @override

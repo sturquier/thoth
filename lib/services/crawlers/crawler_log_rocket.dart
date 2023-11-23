@@ -81,7 +81,7 @@ Future<bool> crawlLogRocket(List<Article> existingArticles) async {
     }
 
     for (Article article in articles) {
-      await addArticle(article);
+      await createArticle(article);
     }
 
     return true;

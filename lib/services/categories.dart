@@ -15,3 +15,17 @@ Future<List<String>> fetchCategories() async {
 
   return categories;
 }
+
+Future<void> createCategory(String categoryName) async {
+  final DatabaseReference categoryReference =
+      categoriesReference.child(getCurrentUser()!.uid).child(categoryName);
+
+  await categoryReference.set({});
+}
+
+Future<void> removeCategory(String categoryName) async {
+  final DatabaseReference categoryReference =
+      categoriesReference.child(getCurrentUser()!.uid).child(categoryName);
+
+  await categoryReference.remove();
+}

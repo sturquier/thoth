@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:thoth/config/authentication.dart';
 import 'package:thoth/config/database.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/services/favorites.dart';
@@ -26,6 +27,15 @@ Future<List<Article>> fetchArticles() async {
   return articles;
 }
 
-Future<void> addArticle(Article article) async {
+Future<void> createArticle(Article article) async {
   await articlesReference.push().set(article.toJson());
+}
+
+Future<void> setArticleCategory(String categoryName, String articleId) async {
+  final DatabaseReference categoryArticleReference = categoriesReference
+      .child(getCurrentUser()!.uid)
+      .child(categoryName)
+      .child(articleId);
+
+  await categoryArticleReference.set(true);
 }
