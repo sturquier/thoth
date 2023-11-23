@@ -63,16 +63,21 @@ class ArticleCardWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                IconButton(
-                    onPressed: toggleFavoriteCallback,
-                    icon: Icon(
-                      article.isFavorite
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: Colors.pink,
-                    )),
                 TextButton(
-                    onPressed: _launchUrl, child: const Text("VOIR L'ARTICLE"))
+                    onPressed: _launchUrl, child: const Text("VOIR L'ARTICLE")),
+                Row(children: [
+                  IconButton(
+                      onPressed: () => print('TODO'),
+                      icon: const Icon(Icons.create_new_folder_outlined)),
+                  IconButton(
+                      onPressed: toggleFavoriteCallback,
+                      icon: Icon(
+                        article.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Colors.pink,
+                      ))
+                ])
               ])
             ]))
       ],

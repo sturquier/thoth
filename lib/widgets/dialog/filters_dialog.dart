@@ -9,16 +9,16 @@ import 'package:thoth/widgets/date_picker/date_picker.dart';
 import 'package:thoth/widgets/dropdown/dropdown.dart';
 import 'package:thoth/widgets/switch/switch.dart';
 
-class ArticleDialogWidget extends StatefulWidget {
+class FiltersDialogWidget extends StatefulWidget {
   final WidgetRef ref;
 
-  const ArticleDialogWidget({Key? key, required this.ref}) : super(key: key);
+  const FiltersDialogWidget({Key? key, required this.ref}) : super(key: key);
 
   @override
-  State<ArticleDialogWidget> createState() => _ArticleDialogWidgetState();
+  State<FiltersDialogWidget> createState() => _FiltersDialogWidgetState();
 }
 
-class _ArticleDialogWidgetState extends State<ArticleDialogWidget> {
+class _FiltersDialogWidgetState extends State<FiltersDialogWidget> {
   Filters? _filters;
 
   void _resetFilters(BuildContext context) {

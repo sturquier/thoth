@@ -5,7 +5,7 @@ import 'package:thoth/provider/articles.dart';
 import 'package:thoth/provider/filters.dart';
 import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
-import 'package:thoth/widgets/dialog/dialog.dart';
+import 'package:thoth/widgets/dialog/filters_dialog.dart';
 import 'package:thoth/widgets/input/input_search.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
@@ -39,7 +39,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   void _openFiltersList(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) => ArticleDialogWidget(ref: ref));
+        builder: (BuildContext context) => FiltersDialogWidget(ref: ref));
   }
 
   void _toggleFavorite(Article article) async {

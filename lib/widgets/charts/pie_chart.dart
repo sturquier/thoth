@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:thoth/widgets/dialog/pie_chart_dialog.dart';
 
 class PieChart extends StatelessWidget {
   final Map<String, int> articlesCountPerWebsite;
@@ -24,28 +24,11 @@ class PieChart extends StatelessWidget {
           final int articlesCount = tappedPoint.value;
 
           showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(websiteName),
-                content: articlesCount > 1
-                    ? Text(
-                        '$articlesCount articles',
-                        style: const TextStyle(fontSize: 18),
-                      )
-                    : Text(
-                        '$articlesCount article',
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                actions: <Widget>[
-                  TextButton(
-                    child: const Text('FERMER'),
-                    onPressed: () => GoRouter.of(context).pop(),
-                  ),
-                ],
-              );
-            },
-          );
+              context: context,
+              builder: (BuildContext context) => PieChartDialogWidget(
+                    websiteName: websiteName,
+                    articlesCount: articlesCount,
+                  ));
         },
       )
     ]);
