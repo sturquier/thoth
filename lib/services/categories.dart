@@ -20,7 +20,7 @@ Future<void> createCategory(String categoryName) async {
   final DatabaseReference categoryReference =
       categoriesReference.child(getCurrentUser()!.uid).child(categoryName);
 
-  await categoryReference.set({});
+  await categoryReference.set(true);
 }
 
 Future<void> removeCategory(String categoryName) async {
@@ -28,4 +28,13 @@ Future<void> removeCategory(String categoryName) async {
       categoriesReference.child(getCurrentUser()!.uid).child(categoryName);
 
   await categoryReference.remove();
+}
+
+Future<bool> existsCategory(String categoryName) async {
+  final DatabaseReference categoryReference =
+      categoriesReference.child(getCurrentUser()!.uid).child(categoryName);
+
+  DatabaseEvent event = await categoryReference.once();
+
+  return event.snapshot.exists;
 }

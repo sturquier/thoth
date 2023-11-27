@@ -48,10 +48,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     await ref.read(articlesProvider.notifier).fetchArticlesValues();
   }
 
-  void _openCategoryDialog(BuildContext context) {
+  void _openCategorySelectionDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (BuildContext context) => CategoryDialogWidget());
+        builder: (BuildContext context) => CategoryDialogWidget(
+              mode: CategoryDialogMode.selection,
+            ));
   }
 
   @override
@@ -154,8 +156,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                               article: article,
                               toggleFavoriteCallback: () =>
                                   _toggleFavorite(article),
-                              openCategoryDialogCallback: () =>
-                                  _openCategoryDialog(context));
+                              openCategorySelectionDialogCallback: () =>
+                                  _openCategorySelectionDialog(context));
                         },
                       )),
           ),

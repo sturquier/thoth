@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class InputTextWidget extends StatefulWidget {
   final String hintText;
   final void Function(String?) onChangedCallback;
-  final Icon prefixIcon;
+  final Icon? prefixIcon;
   final bool isPassword;
 
   const InputTextWidget({
     Key? key,
     required this.hintText,
     required this.onChangedCallback,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.isPassword = false,
   }) : super(key: key);
 

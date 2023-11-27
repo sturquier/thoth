@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:thoth/config/authentication.dart';
+import 'package:thoth/extensions/format.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/articles.dart';
 import 'package:thoth/provider/categories.dart';
+import 'package:thoth/services/categories.dart';
 import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
+import 'package:thoth/widgets/dialog/category_dialog.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -52,6 +56,39 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
   void _toggleFavorite(Article article) async {
     await toggleFavorite(article);
     await ref.read(articlesProvider.notifier).fetchArticlesValues();
+  }
+
+  Future<void> _createCategory(String categoryName) async {
+    String capitalizedCategoryName = categoryName.capitalize();
+
+    if (await existsCategory(capitalizedCategoryName)) {
+      Fluttertoast.showToast(msg: "Cette catégorie d'articles existe déjà");
+      return;
+    }
+
+    await createCategory(capitalizedCategoryName);
+    await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
+
+    // ignore: use_build_context_synchronously
+    GoRouter.of(context).pop();
+  }
+
+  void _openCategoryCreationDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => CategoryDialogWidget(
+              mode: CategoryDialogMode.creation,
+              onCreateCategoryCallback: (String categoryName) async =>
+                  await _createCategory(categoryName),
+            ));
+  }
+
+  void _openCategorySelectionDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => CategoryDialogWidget(
+              mode: CategoryDialogMode.selection,
+            ));
   }
 
   Widget _buildInformationsTab() {
@@ -131,7 +168,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                           article: article,
                           toggleFavoriteCallback: () =>
                               _toggleFavorite(article),
-                          openCategoryDialogCallback: () => print('TODO'),
+                          openCategorySelectionDialogCallback: () =>
+                              _openCategorySelectionDialog(context),
                         );
                       },
                     );
@@ -145,10 +183,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
         ref.watch(categoriesProvider);
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const Text(
-        "Mes catégories d'articles",
-        style: TextStyle(fontSize: 18),
-      ),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const Text(
+          "Mes catégories d'articles",
+          style: TextStyle(fontSize: 18),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.create_new_folder_outlined,
+            color: Theme.of(context).primaryColor,
+          ),
+          onPressed: () => _openCategoryCreationDialog(context),
+        )
+      ]),
       const SizedBox(
         height: 30,
       ),
@@ -167,10 +214,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                     "Aucune catégorie n'a été trouvée",
                     style: TextStyle(fontSize: 18),
                   ))
-                : ListView(
-                    children: categories
-                        .map((String categoryName) => Text(categoryName))
-                        .toList())),
+                : ListView.builder(
+                    itemCount: categories.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final String categoryName = categories[index];
+
+                      return Container(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            '${index + 1}. $categoryName',
+                            style: const TextStyle(fontSize: 16),
+                          ));
+                    })),
       ),
     ]);
   }
