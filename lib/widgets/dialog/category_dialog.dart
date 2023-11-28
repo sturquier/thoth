@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:thoth/provider/categories.dart';
 import 'package:thoth/widgets/dropdown/dropdown.dart';
 import 'package:thoth/widgets/input/input_text.dart';
 
-enum CategoryDialogMode { creation, selection }
+enum CategoryDialogMode { creation, selection, removal }
 
 class CategoryDialogWidget extends ConsumerStatefulWidget {
   final CategoryDialogMode mode;
-  final void Function(String) onCallback;
+  final void Function(String?) onCallback;
 
   const CategoryDialogWidget({
     Key? key,
@@ -24,13 +25,21 @@ class CategoryDialogWidget extends ConsumerStatefulWidget {
 class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
   String? _categoryName;
 
-  bool get _buttonEnabled => _categoryName != null && _categoryName!.isNotEmpty;
+  bool get _confirmationButtonEnabled =>
+      _categoryName != null && _categoryName!.isNotEmpty;
+
+  void _cancelDialog(BuildContext context) {
+    GoRouter.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final AsyncValue<List<String>> categoriesValue =
+        ref.watch(categoriesProvider);
+
     if (widget.mode == CategoryDialogMode.creation) {
       return AlertDialog(
-        title: const Text("Créer une catégorie d'articles"),
+        title: const Text('Créer une catégorie'),
         content: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -49,7 +58,10 @@ class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
         ])),
         actions: [
           TextButton(
-              onPressed: _buttonEnabled
+              onPressed: () => _cancelDialog(context),
+              child: const Text('ANNULER')),
+          TextButton(
+              onPressed: _confirmationButtonEnabled
                   ? () => widget.onCallback(_categoryName!)
                   : null,
               child: const Text('CONFIRMER'))
@@ -57,11 +69,30 @@ class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
       );
     }
 
-    final AsyncValue<List<String>> categoriesValue =
-        ref.watch(categoriesProvider);
+    if (widget.mode == CategoryDialogMode.removal) {
+      return AlertDialog(
+        title: const Text('Supprimer une catégorie'),
+        content: const SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            'Êtes-vous sûr de vouloir supprimer cette catégorie ?',
+            style: TextStyle(fontSize: 16),
+          )
+        ])),
+        actions: [
+          TextButton(
+              onPressed: () => _cancelDialog(context),
+              child: const Text('ANNULER')),
+          TextButton(
+              onPressed: () => widget.onCallback(null),
+              child: const Text('CONFIRMER'))
+        ],
+      );
+    }
 
     return AlertDialog(
-        title: const Text("Sélectionner une catégorie d'articles"),
+        title: const Text('Sélectionner une catégorie'),
         content: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -70,14 +101,14 @@ class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
               error: (Object error, StackTrace stackTrace) => const Center(
                     child: Text(
                       "Une erreur s'est produite",
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
               data: (List<String> categories) => categories.isEmpty
                   ? const Center(
                       child: Text(
                       "Aucune catégorie n'a été trouvée",
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 16),
                     ))
                   : DropdownMenuWidget(
                       width: MediaQuery.of(context).size.width * 0.6,
@@ -93,7 +124,10 @@ class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
         ])),
         actions: [
           TextButton(
-              onPressed: _buttonEnabled
+              onPressed: () => _cancelDialog(context),
+              child: const Text('ANNULER')),
+          TextButton(
+              onPressed: _confirmationButtonEnabled
                   ? () => widget.onCallback(_categoryName!)
                   : null,
               child: const Text('CONFIRMER'))

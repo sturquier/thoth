@@ -75,8 +75,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.selection,
-              onCallback: (String categoryName) =>
-                  _setArticleCategory(categoryName, article.id),
+              onCallback: (String? categoryName) =>
+                  _setArticleCategory(categoryName!, article.id),
             ));
   }
 

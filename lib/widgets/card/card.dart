@@ -79,8 +79,10 @@ class ArticleCardWidget extends StatelessWidget {
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor),
                           ),
-                          onDeleted: removeArticleCategoryCallback,
                           side: BorderSide.none,
+                          backgroundColor:
+                              Theme.of(context).primaryColor.withOpacity(0.05),
+                          onDeleted: removeArticleCategoryCallback,
                           deleteIconColor: Theme.of(context).primaryColor,
                         )
                       : IconButton(

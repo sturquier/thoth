@@ -63,7 +63,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
     String capitalizedCategoryName = categoryName.capitalize();
 
     if (await existsCategory(capitalizedCategoryName)) {
-      Fluttertoast.showToast(msg: "Cette catégorie d'articles existe déjà");
+      Fluttertoast.showToast(msg: 'Cette catégorie existe déjà');
       return;
     }
 
@@ -79,6 +79,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
 
     await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
     await ref.read(articlesProvider.notifier).fetchArticlesValues();
+
+    // ignore: use_build_context_synchronously
+    GoRouter.of(context).pop();
   }
 
   Future<void> _setArticleCategory(
@@ -105,8 +108,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.creation,
-              onCallback: (String categoryName) async =>
-                  await _createCategory(categoryName),
+              onCallback: (String? categoryName) async =>
+                  await _createCategory(categoryName!),
             ));
   }
 
@@ -115,8 +118,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.selection,
-              onCallback: (String categoryName) =>
-                  _setArticleCategory(categoryName, article.id),
+              onCallback: (String? categoryName) =>
+                  _setArticleCategory(categoryName!, article.id),
+            ));
+  }
+
+  void _openCategoryRemovalDialog(BuildContext context, String categoryName) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => CategoryDialogWidget(
+              mode: CategoryDialogMode.removal,
+              onCallback: (String? _) async =>
+                  await _removeCategory(categoryName),
             ));
   }
 
@@ -260,8 +273,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                                   style: const TextStyle(fontSize: 16),
                                 ),
                                 IconButton(
-                                    onPressed: () async =>
-                                        await _removeCategory(categoryName),
+                                    onPressed: () => _openCategoryRemovalDialog(
+                                        context, categoryName),
                                     icon: const Icon(
                                       Icons.close,
                                       color: Colors.red,
@@ -283,11 +296,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
-                TabBar(controller: _tabController, tabs: const [
-                  Tab(text: 'Informations'),
-                  Tab(text: 'Favoris'),
-                  Tab(text: 'Catégories')
-                ]),
+                TabBar(
+                  controller: _tabController,
+                  tabs: const [
+                    Tab(text: 'Informations'),
+                    Tab(text: 'Favoris'),
+                    Tab(text: 'Catégories')
+                  ],
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
