@@ -7,6 +7,7 @@ import 'package:thoth/extensions/format.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/articles.dart';
 import 'package:thoth/provider/categories.dart';
+import 'package:thoth/services/articles.dart';
 import 'package:thoth/services/categories.dart';
 import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
@@ -73,21 +74,49 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
     GoRouter.of(context).pop();
   }
 
+  Future<void> _removeCategory(String categoryName) async {
+    await removeCategory(categoryName);
+
+    await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
+    await ref.read(articlesProvider.notifier).fetchArticlesValues();
+  }
+
+  Future<void> _setArticleCategory(
+      String categoryName, String articleId) async {
+    await setArticleCategory(categoryName, articleId);
+
+    await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
+    await ref.read(articlesProvider.notifier).fetchArticlesValues();
+
+    // ignore: use_build_context_synchronously
+    GoRouter.of(context).pop();
+  }
+
+  Future<void> _removeArticleCategory(
+      String categoryName, String articleId) async {
+    await removeArticleCategory(categoryName, articleId);
+
+    await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
+    await ref.read(articlesProvider.notifier).fetchArticlesValues();
+  }
+
   void _openCategoryCreationDialog(BuildContext context) {
     showDialog(
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.creation,
-              onCreateCategoryCallback: (String categoryName) async =>
+              onCallback: (String categoryName) async =>
                   await _createCategory(categoryName),
             ));
   }
 
-  void _openCategorySelectionDialog(BuildContext context) {
+  void _openCategorySelectionDialog(BuildContext context, Article article) {
     showDialog(
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.selection,
+              onCallback: (String categoryName) =>
+                  _setArticleCategory(categoryName, article.id),
             ));
   }
 
@@ -165,12 +194,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                         Article article = favorites[index];
 
                         return ArticleCardWidget(
-                          article: article,
-                          toggleFavoriteCallback: () =>
-                              _toggleFavorite(article),
-                          openCategorySelectionDialogCallback: () =>
-                              _openCategorySelectionDialog(context),
-                        );
+                            article: article,
+                            toggleFavoriteCallback: () =>
+                                _toggleFavorite(article),
+                            openCategorySelectionDialogCallback: () =>
+                                _openCategorySelectionDialog(context, article),
+                            removeArticleCategoryCallback: () =>
+                                _removeArticleCategory(
+                                    article.categoryName!, article.id));
                       },
                     );
             }),
@@ -221,10 +252,21 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
 
                       return Container(
                           padding: const EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            '${index + 1}. $categoryName',
-                            style: const TextStyle(fontSize: 16),
-                          ));
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${index + 1}. $categoryName',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                IconButton(
+                                    onPressed: () async =>
+                                        await _removeCategory(categoryName),
+                                    icon: const Icon(
+                                      Icons.close,
+                                      color: Colors.red,
+                                    ))
+                              ]));
                     })),
       ),
     ]);

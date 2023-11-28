@@ -10,18 +10,18 @@ final class DropdownEntry {
 class DropdownMenuWidget extends StatelessWidget {
   final double width;
   final String hintText;
-  final String initialSelection;
   final List<DropdownEntry> entries;
   final void Function(String?) onSelectedCallback;
+  final String? initialSelection;
 
-  const DropdownMenuWidget(
-      {Key? key,
-      required this.width,
-      required this.hintText,
-      required this.initialSelection,
-      required this.entries,
-      required this.onSelectedCallback})
-      : super(key: key);
+  const DropdownMenuWidget({
+    Key? key,
+    required this.width,
+    required this.hintText,
+    required this.entries,
+    required this.onSelectedCallback,
+    this.initialSelection,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

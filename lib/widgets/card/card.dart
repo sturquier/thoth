@@ -7,12 +7,14 @@ class ArticleCardWidget extends StatelessWidget {
   final Article article;
   final VoidCallback toggleFavoriteCallback;
   final VoidCallback openCategorySelectionDialogCallback;
+  final VoidCallback removeArticleCategoryCallback;
 
   const ArticleCardWidget(
       {Key? key,
       required this.article,
       required this.toggleFavoriteCallback,
-      required this.openCategorySelectionDialogCallback})
+      required this.openCategorySelectionDialogCallback,
+      required this.removeArticleCategoryCallback})
       : super(key: key);
 
   void _launchUrl() async {
@@ -70,12 +72,23 @@ class ArticleCardWidget extends StatelessWidget {
                 TextButton(
                     onPressed: _launchUrl, child: const Text("VOIR L'ARTICLE")),
                 Row(children: [
-                  IconButton(
-                      onPressed: openCategorySelectionDialogCallback,
-                      icon: Icon(
-                        Icons.create_new_folder_outlined,
-                        color: Theme.of(context).primaryColor,
-                      )),
+                  article.categoryName != null
+                      ? Chip(
+                          label: Text(
+                            article.categoryName!,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                          onDeleted: removeArticleCategoryCallback,
+                          side: BorderSide.none,
+                          deleteIconColor: Theme.of(context).primaryColor,
+                        )
+                      : IconButton(
+                          onPressed: openCategorySelectionDialogCallback,
+                          icon: Icon(
+                            Icons.create_new_folder_outlined,
+                            color: Theme.of(context).primaryColor,
+                          )),
                   IconButton(
                       onPressed: toggleFavoriteCallback,
                       icon: Icon(

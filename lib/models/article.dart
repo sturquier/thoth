@@ -9,6 +9,7 @@ class Article {
   final DateTime createdAt;
   final Website website;
   bool isFavorite;
+  String? categoryName;
 
   Article(
       {required this.id,
@@ -18,7 +19,8 @@ class Article {
       required this.image,
       required this.createdAt,
       required this.website,
-      this.isFavorite = false});
+      this.isFavorite = false,
+      this.categoryName});
 
   factory Article.fromJson(String id, Map<String, dynamic> json) => Article(
       id: id,
@@ -28,7 +30,8 @@ class Article {
       image: json['image'],
       createdAt: DateTime.fromMillisecondsSinceEpoch(json['createdAt']),
       website: Website.fromJson(Map<String, dynamic>.from(json['website'])),
-      isFavorite: json['isFavorite'] ?? false);
+      isFavorite: json['isFavorite'] ?? false,
+      categoryName: json['categoryName']);
 
   Map<String, dynamic> toJson() => {
         'title': title,
@@ -37,6 +40,7 @@ class Article {
         'image': image,
         'createdAt': createdAt.millisecondsSinceEpoch,
         'website': website.toJson(),
-        'isFavorite': isFavorite
+        'isFavorite': isFavorite,
+        'categoryName': categoryName
       };
 }

@@ -16,6 +16,23 @@ Future<List<String>> fetchCategories() async {
   return categories;
 }
 
+Future<Map<String, String>> fetchCategoriesMap() async {
+  final Map<String, String> articleCategory = {};
+  final DatabaseEvent event =
+      await categoriesReference.child(getCurrentUser()!.uid).once();
+
+  Iterable<DataSnapshot> snapshots = event.snapshot.children;
+
+  for (DataSnapshot snapshot in snapshots) {
+    String categoryName = snapshot.key!;
+    for (DataSnapshot articleSnapshot in snapshot.children) {
+      articleCategory[articleSnapshot.key!] = categoryName;
+    }
+  }
+
+  return articleCategory;
+}
+
 Future<void> createCategory(String categoryName) async {
   final DatabaseReference categoryReference =
       categoriesReference.child(getCurrentUser()!.uid).child(categoryName);

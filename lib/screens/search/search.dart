@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/articles.dart';
+import 'package:thoth/provider/categories.dart';
 import 'package:thoth/provider/filters.dart';
+import 'package:thoth/services/articles.dart';
 import 'package:thoth/services/favorites.dart';
 import 'package:thoth/widgets/card/card.dart';
 import 'package:thoth/widgets/dialog/category_dialog.dart';
@@ -43,16 +46,37 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         builder: (BuildContext context) => FiltersDialogWidget(ref: ref));
   }
 
-  void _toggleFavorite(Article article) async {
+  Future<void> _toggleFavorite(Article article) async {
     await toggleFavorite(article);
     await ref.read(articlesProvider.notifier).fetchArticlesValues();
   }
 
-  void _openCategorySelectionDialog(BuildContext context) {
+  Future<void> _setArticleCategory(
+      String categoryName, String articleId) async {
+    await setArticleCategory(categoryName, articleId);
+
+    await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
+    await ref.read(articlesProvider.notifier).fetchArticlesValues();
+
+    // ignore: use_build_context_synchronously
+    GoRouter.of(context).pop();
+  }
+
+  Future<void> _removeArticleCategory(
+      String categoryName, String articleId) async {
+    await removeArticleCategory(categoryName, articleId);
+
+    await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
+    await ref.read(articlesProvider.notifier).fetchArticlesValues();
+  }
+
+  void _openCategorySelectionDialog(BuildContext context, Article article) {
     showDialog(
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.selection,
+              onCallback: (String categoryName) =>
+                  _setArticleCategory(categoryName, article.id),
             ));
   }
 
@@ -153,11 +177,15 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           Article article = articles[index];
 
                           return ArticleCardWidget(
-                              article: article,
-                              toggleFavoriteCallback: () =>
-                                  _toggleFavorite(article),
-                              openCategorySelectionDialogCallback: () =>
-                                  _openCategorySelectionDialog(context));
+                            article: article,
+                            toggleFavoriteCallback: () =>
+                                _toggleFavorite(article),
+                            openCategorySelectionDialogCallback: () =>
+                                _openCategorySelectionDialog(context, article),
+                            removeArticleCategoryCallback: () =>
+                                _removeArticleCategory(
+                                    article.categoryName!, article.id),
+                          );
                         },
                       )),
           ),
