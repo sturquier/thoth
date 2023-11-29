@@ -74,61 +74,71 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         title: const Text('Paramètres'),
       ),
       body: Stack(children: [
-        Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'Scanner les sites web',
-                style: TextStyle(fontSize: 18),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Divider(),
-              CheckboxListTileWidget(
-                  title: 'Tout sélectionner',
-                  value: _allWebsitesChecked,
-                  onChangedCallback: (bool? value) => setState(() {
-                        _allWebsitesChecked = value!;
-                        _checkedWebsites
-                            .updateAll((key, value) => _allWebsitesChecked);
-                      })),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                  child: ListView.builder(
-                itemCount: websites.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Website website = websites[index];
-
-                  return Row(children: [
-                    Expanded(
-                        child: CheckboxListTileWidget(
-                            title: websites[index].name,
-                            value: _checkedWebsites[website] ?? false,
-                            onChangedCallback: (bool? value) => setState(() {
-                                  _checkedWebsites[website] = value!;
-                                  _allWebsitesChecked = _checkedWebsites.values
-                                      .every((element) => element);
-                                }))),
-                    if (_crawledWebsites[website] == CrawlingStatus.crawling)
+        SingleChildScrollView(
+            child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator()),
-                    if (_crawledWebsites[website] == CrawlingStatus.success)
-                      const Icon(Icons.check, color: Colors.green),
-                    if (_crawledWebsites[website] == CrawlingStatus.failure)
-                      const Icon(Icons.close, color: Colors.red),
-                  ]);
-                },
-              )),
-            ])),
+                        height: 20,
+                      ),
+                      const Text(
+                        'Scanner les sites web',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Divider(),
+                      CheckboxListTileWidget(
+                          title: 'Tout sélectionner',
+                          value: _allWebsitesChecked,
+                          onChangedCallback: (bool? value) => setState(() {
+                                _allWebsitesChecked = value!;
+                                _checkedWebsites.updateAll(
+                                    (key, value) => _allWebsitesChecked);
+                              })),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                          children: websites
+                              .map((Website website) => Row(children: [
+                                    Expanded(
+                                        child: CheckboxListTileWidget(
+                                            title: website.name,
+                                            value: _checkedWebsites[website] ??
+                                                false,
+                                            onChangedCallback: (bool? value) =>
+                                                setState(() {
+                                                  _checkedWebsites[website] =
+                                                      value!;
+                                                  _allWebsitesChecked =
+                                                      _checkedWebsites.values
+                                                          .every((element) =>
+                                                              element);
+                                                }))),
+                                    if (_crawledWebsites[website] ==
+                                        CrawlingStatus.crawling)
+                                      const SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child: CircularProgressIndicator()),
+                                    if (_crawledWebsites[website] ==
+                                        CrawlingStatus.success)
+                                      const Icon(Icons.check,
+                                          color: Colors.green),
+                                    if (_crawledWebsites[website] ==
+                                        CrawlingStatus.failure)
+                                      const Icon(Icons.close,
+                                          color: Colors.red),
+                                  ]))
+                              .toList()),
+                      const SizedBox(
+                        height: 80,
+                      )
+                    ]))),
         Positioned(
             bottom: 15,
             left: 15,

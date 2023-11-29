@@ -1,5 +1,6 @@
 import 'package:thoth/config/websites.dart';
 import 'package:thoth/models/article.dart';
+import 'package:thoth/services/crawlers/crawler_all_about_algorithms.dart';
 import 'package:thoth/services/crawlers/crawler_angular_blog.dart';
 import 'package:thoth/services/crawlers/crawler_engineering_at_meta.dart';
 import 'package:thoth/services/crawlers/crawler_it_next.dart';
@@ -12,6 +13,7 @@ enum CrawlingStatus { notCrawled, crawling, success, failure }
 
 final Map<String, Future<bool> Function(List<Article> existingArticles)>
     crawlers = {
+  EWebsite.allAboutAlgorithms.name: crawlAllAboutAlgorithms,
   EWebsite.angularBlog.name: crawlAngularBlog,
   EWebsite.engineeringAtMeta.name: crawlEngineeringAtMeta,
   EWebsite.itnext.name: crawlITNext,
