@@ -46,6 +46,10 @@ class ArticlesProvider extends StateNotifier<AsyncValue<List<Article>>> {
           filters.website == 'all' ||
           article.website.name == filters.website;
 
+      final bool matchesCategoryName = filters.categoryName == null ||
+          filters.categoryName == 'all' ||
+          article.categoryName == filters.categoryName;
+
       final bool matchesDate = filters.date == null ||
           DateFormat('dd/MM/yyyy', 'fr_fr').format(article.createdAt) ==
               filters.date;
@@ -53,7 +57,11 @@ class ArticlesProvider extends StateNotifier<AsyncValue<List<Article>>> {
       final bool matchesFavorite =
           filters.favorite == null || article.isFavorite == filters.favorite;
 
-      return matchesSearch && matchesWebsite && matchesDate && matchesFavorite;
+      return matchesSearch &&
+          matchesWebsite &&
+          matchesCategoryName &&
+          matchesDate &&
+          matchesFavorite;
     }).toList();
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:thoth/provider/categories.dart';
 import 'package:thoth/widgets/dropdown/dropdown.dart';
 import 'package:thoth/widgets/input/input_text.dart';
 
@@ -10,11 +9,13 @@ enum CategoryDialogMode { creation, selection, removal }
 class CategoryDialogWidget extends ConsumerStatefulWidget {
   final CategoryDialogMode mode;
   final void Function(String?) onCallback;
+  final List<String> categories;
 
   const CategoryDialogWidget({
     Key? key,
     required this.mode,
     required this.onCallback,
+    this.categories = const [],
   }) : super(key: key);
 
   @override
@@ -34,9 +35,6 @@ class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final AsyncValue<List<String>> categoriesValue =
-        ref.watch(categoriesProvider);
-
     if (widget.mode == CategoryDialogMode.creation) {
       return AlertDialog(
         title: const Text('Créer une catégorie'),
@@ -96,31 +94,23 @@ class _CategoryDialogWidgetState extends ConsumerState<CategoryDialogWidget> {
         content: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          categoriesValue.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (Object error, StackTrace stackTrace) => const Center(
-                    child: Text(
-                      "Une erreur s'est produite",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-              data: (List<String> categories) => categories.isEmpty
-                  ? const Center(
-                      child: Text(
-                      "Aucune catégorie n'a été trouvée",
-                      style: TextStyle(fontSize: 16),
-                    ))
-                  : DropdownMenuWidget(
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      hintText: 'Sélectionner une catégorie',
-                      onSelectedCallback: (String? categoryName) =>
-                          setState(() => _categoryName = categoryName),
-                      entries: [
-                          ...categories
-                              .map((String categoryName) => DropdownEntry(
-                                  value: categoryName, label: categoryName))
-                              .toList()
-                        ])),
+          widget.categories.isEmpty
+              ? const Center(
+                  child: Text(
+                  "Aucune catégorie n'a été trouvée",
+                  style: TextStyle(fontSize: 16),
+                ))
+              : DropdownMenuWidget(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  hintText: 'Sélectionner une catégorie',
+                  onSelectedCallback: (String? categoryName) =>
+                      setState(() => _categoryName = categoryName),
+                  entries: [
+                      ...widget.categories
+                          .map((String categoryName) => DropdownEntry(
+                              value: categoryName, label: categoryName))
+                          .toList()
+                    ]),
         ])),
         actions: [
           TextButton(

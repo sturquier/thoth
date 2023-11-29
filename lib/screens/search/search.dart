@@ -40,10 +40,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     provider.updateFilters(updatedFilters);
   }
 
-  void _openFiltersList(BuildContext context) {
+  void _openFiltersList(BuildContext context, List<String> categories) {
     showDialog(
         context: context,
-        builder: (BuildContext context) => FiltersDialogWidget(ref: ref));
+        builder: (BuildContext context) =>
+            FiltersDialogWidget(ref: ref, categories: categories));
   }
 
   Future<void> _toggleFavorite(Article article) async {
@@ -83,6 +84,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final AsyncValue<List<Article>> articlesValue = ref.watch(articlesProvider);
+    final AsyncValue<List<String>> categoriesValue =
+        ref.watch(categoriesProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Articles')),
@@ -130,7 +133,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       Stack(children: [
                         IconButton(
                             icon: const Icon(Icons.filter_list),
-                            onPressed: () => _openFiltersList(context)),
+                            onPressed: () => _openFiltersList(
+                                context, categoriesValue.asData!.value)),
                         Positioned(
                             top: 3,
                             right: 3,
@@ -167,7 +171,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             ),
                             const SizedBox(height: 10),
                             FilledButton(
-                                onPressed: () => _openFiltersList(context),
+                                onPressed: () => _openFiltersList(
+                                    context, categoriesValue.asData!.value),
                                 child: const Text('Modifier les filtres'))
                           ])
                     : ListView.builder(

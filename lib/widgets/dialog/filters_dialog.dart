@@ -11,8 +11,11 @@ import 'package:thoth/widgets/switch/switch.dart';
 
 class FiltersDialogWidget extends StatefulWidget {
   final WidgetRef ref;
+  final List<String> categories;
 
-  const FiltersDialogWidget({Key? key, required this.ref}) : super(key: key);
+  const FiltersDialogWidget(
+      {Key? key, required this.ref, required this.categories})
+      : super(key: key);
 
   @override
   State<FiltersDialogWidget> createState() => _FiltersDialogWidgetState();
@@ -28,6 +31,7 @@ class _FiltersDialogWidgetState extends State<FiltersDialogWidget> {
     final Filters updatedFilters = Filters(
         search: currentFilters.search,
         website: 'all',
+        categoryName: 'all',
         date: null,
         favorite: null);
 
@@ -42,6 +46,7 @@ class _FiltersDialogWidgetState extends State<FiltersDialogWidget> {
     final Filters updatedFilters = Filters(
         search: currentFilters.search,
         website: _filters!.website,
+        categoryName: _filters!.categoryName,
         date: _filters!.date,
         favorite: _filters!.favorite);
 
@@ -81,6 +86,31 @@ class _FiltersDialogWidgetState extends State<FiltersDialogWidget> {
               ...websites
                   .map((Website website) =>
                       DropdownEntry(value: website.name, label: website.name))
+                  .toList()
+            ]),
+        const SizedBox(height: 40),
+        Row(children: [
+          Icon(Icons.category, color: Theme.of(context).primaryColor),
+          const SizedBox(
+            width: 5,
+          ),
+          const Text(
+            'Par catégorie',
+            style: TextStyle(fontSize: 18),
+          )
+        ]),
+        const SizedBox(height: 5),
+        DropdownMenuWidget(
+            width: MediaQuery.of(context).size.width * 0.6,
+            hintText: 'Sélectionner une catégorie',
+            initialSelection: _filters!.categoryName ?? 'all',
+            onSelectedCallback: (String? categoryName) =>
+                setState(() => _filters!.categoryName = categoryName),
+            entries: [
+              DropdownEntry(value: 'all', label: 'Toutes les catégories'),
+              ...widget.categories
+                  .map((String categoryName) =>
+                      DropdownEntry(value: categoryName, label: categoryName))
                   .toList()
             ]),
         const SizedBox(height: 40),

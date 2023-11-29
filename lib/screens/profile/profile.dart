@@ -113,11 +113,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
             ));
   }
 
-  void _openCategorySelectionDialog(BuildContext context, Article article) {
+  void _openCategorySelectionDialog(
+      BuildContext context, Article article, List<String> categories) {
     showDialog(
         context: context,
         builder: (BuildContext context) => CategoryDialogWidget(
               mode: CategoryDialogMode.selection,
+              categories: categories,
               onCallback: (String? categoryName) =>
                   _setArticleCategory(categoryName!, article.id),
             ));
@@ -155,6 +157,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
 
   Widget _buildFavoritesTab() {
     final AsyncValue<List<Article>> articlesValue = ref.watch(articlesProvider);
+    final AsyncValue<List<String>> categoriesValue =
+        ref.watch(categoriesProvider);
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -211,7 +215,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                             toggleFavoriteCallback: () =>
                                 _toggleFavorite(article),
                             openCategorySelectionDialogCallback: () =>
-                                _openCategorySelectionDialog(context, article),
+                                _openCategorySelectionDialog(context, article,
+                                    categoriesValue.asData!.value),
                             removeArticleCategoryCallback: () =>
                                 _removeArticleCategory(
                                     article.categoryName!, article.id));
