@@ -60,14 +60,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
   }
 
   Future<void> _createCategory(String categoryName) async {
-    String capitalizedCategoryName = categoryName.capitalize();
+    String formattedCategoryName =
+        categoryName.isLowerCase() ? categoryName.capitalize() : categoryName;
 
-    if (await existsCategory(capitalizedCategoryName)) {
+    if (await existsCategory(formattedCategoryName)) {
       Fluttertoast.showToast(msg: 'Cette catégorie existe déjà');
       return;
     }
 
-    await createCategory(capitalizedCategoryName);
+    await createCategory(formattedCategoryName);
     await ref.read(categoriesProvider.notifier).fetchCategoriesValues();
 
     // ignore: use_build_context_synchronously
@@ -133,6 +134,31 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
               onCallback: (String? _) async =>
                   await _removeCategory(categoryName),
             ));
+  }
+
+  void _reorderCategoriesList(
+      int oldIndex, int newIndex, List<String> categories) {
+    if (oldIndex < newIndex) {
+      int i = 0;
+      int end = newIndex - 1;
+      int localIndex = oldIndex;
+      String startItem = categories[oldIndex];
+
+      do {
+        categories[localIndex] = categories[++localIndex];
+        i++;
+      } while (i < end - oldIndex);
+
+      categories[end] = startItem;
+    } else if (oldIndex > newIndex) {
+      String startItem = categories[oldIndex];
+
+      for (int i = oldIndex; i > newIndex; i--) {
+        categories[i] = categories[i - 1];
+      }
+
+      categories[newIndex] = startItem;
+    }
   }
 
   Widget _buildInformationsTab() {
@@ -263,25 +289,40 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen>
                     "Aucune catégorie n'a été trouvée",
                     style: TextStyle(fontSize: 18),
                   ))
-                : ListView.builder(
+                : ReorderableListView.builder(
+                    onReorder: (int oldIndex, int newIndex) =>
+                        _reorderCategoriesList(oldIndex, newIndex, categories),
                     itemCount: categories.length,
                     itemBuilder: (BuildContext context, int index) {
                       final String categoryName = categories[index];
 
                       return Container(
+                          key: ValueKey(index),
                           padding: const EdgeInsets.only(bottom: 10),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  '${index + 1}. $categoryName',
-                                  style: const TextStyle(fontSize: 16),
-                                ),
+                                Row(children: [
+                                  ReorderableDragStartListener(
+                                    index: index,
+                                    child: Icon(
+                                      Icons.drag_indicator,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    categoryName,
+                                    style: const TextStyle(fontSize: 16),
+                                  )
+                                ]),
                                 IconButton(
                                     onPressed: () => _openCategoryRemovalDialog(
                                         context, categoryName),
                                     icon: const Icon(
-                                      Icons.close,
+                                      Icons.delete,
                                       color: Colors.red,
                                     ))
                               ]));

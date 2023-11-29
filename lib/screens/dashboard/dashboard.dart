@@ -121,19 +121,19 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                       children: [
                         _buildChartTile(
                             ChartType.countPerWebsite,
-                            "Répartition du nombre d'articles par site web",
+                            "Répartition des articles par site web",
                             PieChart(
                                 articlesCountPerWebsite:
                                     _getArticlesCountPerWebsite(articles))),
                         _buildChartTile(
                             ChartType.countPerCategory,
-                            "Répartition du nombre d'articles par catégorie",
+                            "Répartition des articles par catégorie",
                             BarChart(
                                 articlesCountPerCategory:
                                     _getArticlesCountPerCategory(articles))),
                         _buildChartTile(
                             ChartType.evolLast7Days,
-                            "Évolution du nombre d'articles scannés au cours des 7 derniers jours",
+                            "Évolution du nombre d'articles scannés par jour",
                             LineChart(
                                 articlesCountPerDay:
                                     _getArticlesCountPerDay(articles)))

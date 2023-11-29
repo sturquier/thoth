@@ -8,6 +8,12 @@ class LineChart extends StatelessWidget {
   const LineChart({Key? key, required this.articlesCountPerDay})
       : super(key: key);
 
+  List<MapEntry<DateTime, int>> get dataSource {
+    return articlesCountPerDay.entries
+        .where((MapEntry<DateTime, int> entry) => entry.value > 0)
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SfCartesianChart(
@@ -24,9 +30,7 @@ class LineChart extends StatelessWidget {
       ),
       series: <ChartSeries>[
         LineSeries<MapEntry<DateTime, int>, DateTime>(
-            dataSource: articlesCountPerDay.entries
-                .where((MapEntry<DateTime, int> entry) => entry.value > 0)
-                .toList(),
+            dataSource: dataSource,
             xValueMapper: (MapEntry<DateTime, int> data, _) => data.key,
             yValueMapper: (MapEntry<DateTime, int> data, _) => data.value,
             dataLabelSettings: DataLabelSettings(
@@ -43,6 +47,14 @@ class LineChart extends StatelessWidget {
                       child: Text(data.value.toString()),
                     )),
             color: Theme.of(context).primaryColor),
+        ScatterSeries<MapEntry<DateTime, int>, DateTime>(
+            dataSource: dataSource,
+            xValueMapper: (MapEntry<DateTime, int> data, _) => data.key,
+            yValueMapper: (MapEntry<DateTime, int> data, _) => data.value,
+            markerSettings: MarkerSettings(
+                isVisible: true,
+                color: Theme.of(context).primaryColorLight,
+                borderColor: Theme.of(context).primaryColorLight))
       ],
     );
   }
