@@ -1,16 +1,14 @@
-# thoth
+# Thoth
 
-A new Flutter project.
+Application for searching and filtering web development articles
 
-## Getting Started
+## Run project
 
-This project is a starting point for a Flutter application.
+1. Clone repository `git clone git@github.com:sturquier/thoth.git`
+2. Install dependencies `flutter pub get`
+3. Configure Firebase `flutterfire configure`
+4. Run `flutter run`
 
-A few resources to get you started if this is your first Flutter project:
+## Generate APK
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Run `flutter build apk`
