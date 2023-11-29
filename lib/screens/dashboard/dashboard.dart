@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:thoth/config/dashboard.dart';
 import 'package:thoth/models/article.dart';
 import 'package:thoth/provider/articles.dart';
+import 'package:thoth/widgets/charts/bar_chart.dart';
 import 'package:thoth/widgets/charts/line_chart.dart';
 import 'package:thoth/widgets/charts/pie_chart.dart';
 import 'package:thoth/widgets/list_tile/list_tile.dart';
@@ -30,8 +31,16 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     Map<String, List<Article>> groupedArticles =
         groupBy(articles, (Article a) => a.website.name);
 
-    return groupedArticles
-        .map((website, articles) => MapEntry(website, articles.length));
+    return groupedArticles.map((String website, List<Article> articles) =>
+        MapEntry(website, articles.length));
+  }
+
+  Map<String, int> _getArticlesCountPerCategory(List<Article> articles) {
+    Map<String, List<Article>> groupedArticles =
+        groupBy(articles, (Article a) => a.categoryName ?? 'Aucune catégorie');
+
+    return groupedArticles.map((String website, List<Article> articles) =>
+        MapEntry(website, articles.length));
   }
 
   Map<DateTime, int> _getArticlesCountPerDay(List<Article> articles) {
@@ -116,6 +125,12 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                             PieChart(
                                 articlesCountPerWebsite:
                                     _getArticlesCountPerWebsite(articles))),
+                        _buildChartTile(
+                            ChartType.countPerCategory,
+                            "Répartition du nombre d'articles par catégorie",
+                            BarChart(
+                                articlesCountPerCategory:
+                                    _getArticlesCountPerCategory(articles))),
                         _buildChartTile(
                             ChartType.evolLast7Days,
                             "Évolution du nombre d'articles au cours des 7 derniers jours",

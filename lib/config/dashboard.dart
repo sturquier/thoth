@@ -1,1 +1,1 @@
-enum ChartType { countPerWebsite, evolLast7Days }
+enum ChartType { countPerWebsite, countPerCategory, evolLast7Days }

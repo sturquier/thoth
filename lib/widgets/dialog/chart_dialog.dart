@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class PieChartDialogWidget extends StatelessWidget {
-  final String websiteName;
+class ChartDialogWidget extends StatelessWidget {
+  final String title;
   final int articlesCount;
 
-  const PieChartDialogWidget(
-      {Key? key, required this.websiteName, required this.articlesCount})
+  const ChartDialogWidget(
+      {Key? key, required this.title, required this.articlesCount})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(websiteName),
+      title: Text(title),
       content: articlesCount > 1
           ? Text(
               '$articlesCount articles',

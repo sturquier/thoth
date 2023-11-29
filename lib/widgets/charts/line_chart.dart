@@ -29,7 +29,19 @@ class LineChart extends StatelessWidget {
                 .toList(),
             xValueMapper: (MapEntry<DateTime, int> data, _) => data.key,
             yValueMapper: (MapEntry<DateTime, int> data, _) => data.value,
-            dataLabelSettings: const DataLabelSettings(isVisible: true),
+            dataLabelSettings: DataLabelSettings(
+                isVisible: true,
+                color: Colors.transparent,
+                builder: (dynamic data, dynamic point, dynamic series,
+                        int pointIndex, int seriesIndex) =>
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(data.value.toString()),
+                    )),
             color: Theme.of(context).primaryColor),
       ],
     );

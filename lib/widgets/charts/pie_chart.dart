@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:thoth/widgets/dialog/pie_chart_dialog.dart';
+import 'package:thoth/widgets/dialog/chart_dialog.dart';
 
 class PieChart extends StatelessWidget {
   final Map<String, int> articlesCountPerWebsite;
@@ -25,8 +25,8 @@ class PieChart extends StatelessWidget {
 
           showDialog(
               context: context,
-              builder: (BuildContext context) => PieChartDialogWidget(
-                    websiteName: websiteName,
+              builder: (BuildContext context) => ChartDialogWidget(
+                    title: websiteName,
                     articlesCount: articlesCount,
                   ));
         },
