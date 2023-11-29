@@ -133,7 +133,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                                     _getArticlesCountPerCategory(articles))),
                         _buildChartTile(
                             ChartType.evolLast7Days,
-                            "Évolution du nombre d'articles au cours des 7 derniers jours",
+                            "Évolution du nombre d'articles scannés au cours des 7 derniers jours",
                             LineChart(
                                 articlesCountPerDay:
                                     _getArticlesCountPerDay(articles)))
