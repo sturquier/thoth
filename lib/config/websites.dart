@@ -4,6 +4,7 @@ enum EWebsite {
   allAboutAlgorithms,
   angularBlog,
   engineeringAtMeta,
+  ionicBlog,
   itnext,
   logRocket,
   netflixTechBlog,
@@ -20,6 +21,8 @@ extension WebsiteExtension on EWebsite {
         return 'Angular Blog';
       case EWebsite.engineeringAtMeta:
         return 'Engineering at Meta';
+      case EWebsite.ionicBlog:
+        return 'Ionic Blog';
       case EWebsite.itnext:
         return 'ITNext';
       case EWebsite.logRocket:
@@ -41,6 +44,7 @@ final List<Website> websites = [
   Website(name: EWebsite.angularBlog.name, url: 'https://blog.angular.io'),
   Website(
       name: EWebsite.engineeringAtMeta.name, url: 'https://engineering.fb.com'),
+  Website(name: EWebsite.ionicBlog.name, url: 'https://ionic.io/blog'),
   Website(name: EWebsite.itnext.name, url: 'https://itnext.io'),
   Website(name: EWebsite.logRocket.name, url: 'https://blog.logrocket.com'),
   Website(

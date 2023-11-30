@@ -3,6 +3,7 @@ import 'package:thoth/models/article.dart';
 import 'package:thoth/services/crawlers/crawler_all_about_algorithms.dart';
 import 'package:thoth/services/crawlers/crawler_angular_blog.dart';
 import 'package:thoth/services/crawlers/crawler_engineering_at_meta.dart';
+import 'package:thoth/services/crawlers/crawler_ionic_blog.dart';
 import 'package:thoth/services/crawlers/crawler_it_next.dart';
 import 'package:thoth/services/crawlers/crawler_log_rocket.dart';
 import 'package:thoth/services/crawlers/crawler_netflix_tech_blog.dart';
@@ -16,6 +17,7 @@ final Map<String, Future<bool> Function(List<Article> existingArticles)>
   EWebsite.allAboutAlgorithms.name: crawlAllAboutAlgorithms,
   EWebsite.angularBlog.name: crawlAngularBlog,
   EWebsite.engineeringAtMeta.name: crawlEngineeringAtMeta,
+  EWebsite.ionicBlog.name: crawlIonicBlog,
   EWebsite.itnext.name: crawlITNext,
   EWebsite.logRocket.name: crawlLogRocket,
   EWebsite.netflixTechBlog.name: crawlNetflixTechBlog,
