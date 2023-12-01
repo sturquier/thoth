@@ -6,7 +6,8 @@ import '../../mocks/article.dart';
 import '../../utils/wrapper.dart';
 
 void main() {
-  testWidgets('finds a Card widget', (WidgetTester widgetTester) async {
+  testWidgets('finds a ArticleCardWidget widget',
+      (WidgetTester widgetTester) async {
     await pumpWrappedWidget(
       widgetTester,
       ArticleCardWidget(

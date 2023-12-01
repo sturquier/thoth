@@ -6,14 +6,16 @@ import 'package:network_image_mock/network_image_mock.dart';
 pumpWrappedWidget(WidgetTester widgetTester, Widget child) async {
   return await mockNetworkImagesFor(
     () => widgetTester.pumpWidget(
-      Localizations(
-        delegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
-        ],
-        locale: const Locale('fr', 'FR'),
-        child: child,
+      Material(
+        child: Localizations(
+          delegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          locale: const Locale('fr', 'FR'),
+          child: child,
+        ),
       ),
     ),
   );

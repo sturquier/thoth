@@ -26,7 +26,7 @@ final List<AppRoute> anonymousRoutes = [
   AppRoute(
     route: ERoute.login,
     path: '/login',
-    builder: (context, state) => const LoginScreen(),
+    builder: (BuildContext context, GoRouterState state) => const LoginScreen(),
   )
 ];
 
@@ -34,22 +34,26 @@ final List<AppRoute> authenticatedRoutes = [
   AppRoute(
     route: ERoute.dashboard,
     path: '/',
-    builder: (context, state) => const DashboardScreen(),
+    builder: (BuildContext context, GoRouterState state) =>
+        const DashboardScreen(),
   ),
   AppRoute(
     route: ERoute.search,
     path: '/search',
-    builder: (context, state) => const SearchScreen(),
+    builder: (BuildContext context, GoRouterState state) =>
+        const SearchScreen(),
   ),
   AppRoute(
     route: ERoute.settings,
     path: '/settings',
-    builder: (context, state) => const SettingsScreen(),
+    builder: (BuildContext context, GoRouterState state) =>
+        const SettingsScreen(),
   ),
   AppRoute(
     route: ERoute.profile,
     path: '/profile',
-    builder: (context, state) => const ProfileScreen(),
+    builder: (BuildContext context, GoRouterState state) =>
+        const ProfileScreen(),
   ),
 ];
 
@@ -60,7 +64,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state, Widget child) =>
           child,
       routes: anonymousRoutes
-          .map((route) => GoRoute(
+          .map((AppRoute route) => GoRoute(
                 path: route.path,
                 builder: route.builder,
               ))
@@ -70,7 +74,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state, Widget child) =>
           ScaffoldWithNavbarWidget(child: child),
       routes: authenticatedRoutes
-          .map((route) => GoRoute(
+          .map((AppRoute route) => GoRoute(
                 path: route.path,
                 builder: route.builder,
               ))
