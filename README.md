@@ -1,5 +1,7 @@
 # Thoth
 
+[![CI](https://github.com/sturquier/thoth/actions/workflows/api.yml/badge.svg)](https://github.com/sturquier/thoth/actions/workflows/api.yml)
+
 Application for searching and filtering web development articles
 
 ## Run project
