@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:thoth/widgets/card/card.dart';
 
-import '../mocks/article.dart';
-import '../utils/wrapper.dart';
+import '../../mocks/article.dart';
+import '../../utils/wrapper.dart';
 
 void main() {
   testWidgets('finds a Card widget', (WidgetTester widgetTester) async {

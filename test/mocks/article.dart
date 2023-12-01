@@ -1,6 +1,8 @@
 import 'package:thoth/models/article.dart';
 import 'package:thoth/models/website.dart';
 
+import 'category.dart';
+
 final List<Article> articlesMock = [
   Article(
       id: '1',
@@ -32,5 +34,5 @@ final List<Article> articlesMock = [
       image: 'https://bar.com/assets/d4e5f6.jpg',
       createdAt: DateTime(2023, 12, 31),
       website: const Website(name: 'Bar', url: 'https://bar.com'),
-      categoryName: 'Flutter')
+      categoryName: categoriesMock[0])
 ];
